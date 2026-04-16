@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where (and When) Does It Pay to Go Electric?</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --surface2: #f0ede6;
+    --border: rgba(0,0,0,0.10);
+    --border-strong: rgba(0,0,0,0.18);
+    --text: #1a1a17;
+    --text-2: #5c5c54;
+    --text-3: #9c9c90;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    background: #1E360D;
+    color: #fff;
+    padding: 2.5rem 2rem 2rem;
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 0.6rem;
+  }
+  header h1 {
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+  header h1 em { font-style: normal; color: #8fca6e; }
+  .header-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    max-width: 640px;
+    line-height: 1.65;
+  }
+
+  /* ── Main layout ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 1rem;
+  }
+
+  /* ── Explainer cards ── */
+  .explainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .exp-card { background: var(--surface); padding: 1.1rem 1.25rem; }
+  .exp-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.3rem;
+  }
+  .exp-val {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .exp-sub { font-size: 12px; color: var(--text-3); margin-top: 0.2rem; }
+
+  /* ── Tabs ── */
+  .tabs-bar { display: flex; gap: 4px; margin-bottom: 1.25rem; }
+  .tab {
+    font-size: 13px;
+    font-family: var(--sans);
+    padding: 6px 18px;
+    border-radius: 20px;
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-2);
+    transition: all 0.15s;
+  }
+  .tab:hover { background: var(--surface2); }
+  .tab.active { background: var(--text); color: #fff; border-color: var(--text); }
+
+  /* ── Controls bar ── */
+  .controls-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    align-items: center;
+  }
+  .control-group { display: flex; align-items: center; gap: 8px; }
+  .ctrl-label {
+    font-size: 12px;
+    color: var(--text-3);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+  }
+  .pill-group { display: flex; gap: 4px; flex-wrap: wrap; }
+  .pill {
+    font-size: 12px;
+    font-family: var(--sans);
+    padding: 4px 11px;
+    border-radius: 20px;
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-2);
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .pill:hover { background: var(--surface2); }
+  .pill.active { background: var(--text); color: #fff; border-color: var(--text); }
+  select {
+    font-family: var(--sans);
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  /* ── Map panel ── */
+  .map-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  #map-container svg { display: block; }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    align-items: center;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-2); }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+  /* ── Stat grid ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .stat-card { background: var(--surface); padding: 1rem 1.25rem; }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.3rem;
+  }
+  .stat-val {
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .stat-sub { font-size: 12px; color: var(--text-3); margin-top: 0.25rem; }
+
+  /* ── Table ── */
+  .table-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    text-align: right;
+    padding: 8px 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-3);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    background: var(--surface2);
+  }
+  thead th:first-child { text-align: left; }
+  tbody td {
+    padding: 7px 10px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+  tbody td:first-child { text-align: left; font-weight: 500; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+
+  /* ── Formula box ── */
+  .formula-box {
+    background: var(--surface2);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  
+  /* ── Input Grid ── */
+  .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; margin-bottom: 1.25rem; }
+  .input-group { display: flex; flex-direction: column; gap: 6px; }
+  .input-group label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); }
+  .input-group input { font-family: var(--sans); font-size: 14px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-strong); background: var(--bg); color: var(--text); outline: none; transition: border 0.2s; }
+  .input-group input:focus { border-color: var(--text); }
+
+  
+  @media (max-width: 600px) {
+    .desktop-spacer { display: none !important; }
+  }
+
+  /* ── Tooltip ── */
+  #tooltip {
+    position: fixed;
+    display: none;
+    background: rgba(20,20,17,0.94);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    pointer-events: none;
+    z-index: 100;
+    max-width: 250px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+  .tt-title { font-weight: 500; font-size: 14px; margin-bottom: 6px; }
+  .tt-row { display: flex; justify-content: space-between; gap: 12px; padding: 2px 0; }
+  .tt-label { color: rgba(255,255,255,0.55); white-space: nowrap; }
+  .tt-val { font-family: var(--mono); font-size: 12px; }
+  .tt-green { color: #8fca6e; font-weight: 500; }
+  .tt-red { color: #e07858; font-weight: 500; }
+
+  /* ── Footer ── */
+  footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem 3rem;
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.7;
+  }
+  footer a { color: var(--text-3); }
+
+  @media (max-width: 600px) {
+    .controls-bar { gap: 0.75rem; }
+    .header-desc { display: none; }
+    main { padding: 1.5rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="eyebrow">EV Cost Calculator · By State</div>
+    <h1>Where (and When) Does It Pay<br>to Go <em>Electric</em>?</h1>
+    <p class="header-desc">See how EV and gasoline fuel costs compare across all 50 states and DC, then estimate how long it would take an EV to pay for itself based on your driving, your car, and your electricity source.</p>
+  </div>
+</header>
+
+<main>
+  <!-- Dynamic explainer cards -->
+  <div class="explainer" id="explainer-cards"></div>
+
+  <!-- Tab bar -->
+  <div class="tabs-bar">
+    <button class="tab active" onclick="setView('map', this)">Savings Map</button>
+    <button class="tab" onclick="setView('table', this)">Data Table</button>
+    <button class="tab" onclick="setView('payback', this)">Payback Calculator</button>
+    <button class="tab" onclick="setView('co2', this)">CO₂ Map</button>
+  </div>
+
+  <!-- ═══ MAP VIEW ═══ -->
+  <div id="map-view">
+    <div class="controls-bar" style="flex-direction: column; align-items: flex-start; gap: 1rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; width: 100%;">
+        <div class="control-group">
+          <span class="ctrl-label">Gas car MPG</span>
+          <div class="pill-group mpg-pills">
+            <button class="pill" onclick="setMpg(20)">20</button>
+            <button class="pill active" onclick="setMpg(25)">25</button>
+            <button class="pill" onclick="setMpg(30)">30</button>
+            <button class="pill" onclick="setMpg(35)">35</button>
+            <button class="pill" onclick="setMpg(40)">40</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <span class="ctrl-label">Fuel grade</span>
+          <div class="pill-group grade-pills">
+            <button class="pill active" onclick="setGrade('Regular')">Regular</button>
+            <button class="pill" onclick="setGrade('Mid-Grade')">Mid-Grade</button>
+            <button class="pill" onclick="setGrade('Premium')">Premium</button>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; width: 100%;">
+        <div class="control-group">
+          <span class="ctrl-label">EV</span>
+          <select class="ev-model-select" onchange="handleModelChange(this.value)" style="max-width: 225px; text-overflow: ellipsis;"></select>
+          <select class="ev-year-select" onchange="handleYearChange(this.value)"></select>
+        </div>
+        <div class="control-group">
+          <span class="ctrl-label">EV Charging</span>
+          <div class="pill-group charging-pills" style="align-items: center;">
+            <button class="pill active" onclick="setCharging('home')">At Home</button>
+            <button class="pill" onclick="setCharging('public')">Public Charger</button>
+            <button class="pill" onclick="setCharging('mix')">Mix (50/50)</button>
+            <button class="pill" onclick="setCharging('custom')">Custom</button>
+            <div class="custom-kwh-wrap" style="display:none; align-items:center; gap:4px; margin-left: 4px;">
+              <input type="number" class="input-custom-kwh" step="0.01" value="0.15" style="width: 70px; padding: 2px 6px; font-size: 13px; border-radius: 4px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text);" oninput="handleCustomKwh(this.value)">
+              <span style="font-size: 11px; color: var(--text-2); font-family: var(--sans);">$/kWh</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-panel">
+      <div id="map-container"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+
+    <div class="stat-grid" id="stat-cards"></div>
+  </div>
+
+  <!-- ═══ TABLE VIEW ═══ -->
+  <div id="table-view" style="display:none">
+    <div class="controls-bar" style="flex-direction: column; align-items: flex-start; gap: 1rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; width: 100%;">
+        <div class="control-group">
+          <span class="ctrl-label">Gas car MPG</span>
+          <div class="pill-group mpg-pills">
+            <button class="pill" onclick="setMpg(20)">20</button>
+            <button class="pill active" onclick="setMpg(25)">25</button>
+            <button class="pill" onclick="setMpg(30)">30</button>
+            <button class="pill" onclick="setMpg(35)">35</button>
+            <button class="pill" onclick="setMpg(40)">40</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <span class="ctrl-label">Fuel grade</span>
+          <div class="pill-group grade-pills">
+            <button class="pill active" onclick="setGrade('Regular')">Regular</button>
+            <button class="pill" onclick="setGrade('Mid-Grade')">Mid-Grade</button>
+            <button class="pill" onclick="setGrade('Premium')">Premium</button>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; width: 100%;">
+        <div class="control-group">
+          <span class="ctrl-label">EV</span>
+          <select class="ev-model-select" onchange="handleModelChange(this.value)" style="max-width: 225px; text-overflow: ellipsis;"></select>
+          <select class="ev-year-select" onchange="handleYearChange(this.value)"></select>
+        </div>
+        <div class="control-group">
+          <span class="ctrl-label">EV Charging</span>
+          <div class="pill-group charging-pills" style="align-items: center;">
+            <button class="pill active" onclick="setCharging('home')">At Home</button>
+            <button class="pill" onclick="setCharging('public')">Public Charger</button>
+            <button class="pill" onclick="setCharging('mix')">Mix (50/50)</button>
+            <button class="pill" onclick="setCharging('custom')">Custom</button>
+            <div class="custom-kwh-wrap" style="display:none; align-items:center; gap:4px; margin-left: 4px;">
+              <input type="number" class="input-custom-kwh" step="0.01" value="0.15" style="width: 70px; padding: 2px 6px; font-size: 13px; border-radius: 4px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text);" oninput="handleCustomKwh(this.value)">
+              <span style="font-size: 11px; color: var(--text-2); font-family: var(--sans);">$/kWh</span>
+            </div>
+          </div>
+        </div>
+        <div class="control-group" style="margin-left: auto;">
+          <span class="ctrl-label">Sort by</span>
+          <select id="sort-sel" onchange="renderTable()">
+            <option value="savings">EV Savings</option>
+            <option value="evcost">EV Cost/100 mi</option>
+            <option value="gascost">Gas Cost/100 mi</option>
+            <option value="name">State Name</option>
+          </select>
+          <select id="order-sel" onchange="renderTable()">
+            <option value="desc">High → Low</option>
+            <option value="asc">Low → High</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-panel">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align:left">State</th>
+              <th>Elec. Price<br><span style="font-weight:400;text-transform:none;letter-spacing:0">$/kWh</span></th>
+              <th>Gas Price<br><span style="font-weight:400;text-transform:none;letter-spacing:0">$/gal</span></th>
+              <th>EV Cost<br><span style="font-weight:400;text-transform:none;letter-spacing:0">$/100 mi</span></th>
+              <th>Gas Cost<br><span style="font-weight:400;text-transform:none;letter-spacing:0">$/100 mi</span></th>
+              <th>EV Savings<br><span style="font-weight:400;text-transform:none;letter-spacing:0">$/100 mi</span></th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ PAYBACK VIEW ═══ -->
+  <div id="payback-view" style="display:none">
+    <div class="controls-bar" style="flex-direction: column; align-items: flex-start; gap: 1rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; width: 100%;">
+        <div class="control-group">
+          <span class="ctrl-label">Gas car MPG</span>
+          <div class="pill-group mpg-pills">
+            <button class="pill" onclick="setMpg(20)">20</button>
+            <button class="pill active" onclick="setMpg(25)">25</button>
+            <button class="pill" onclick="setMpg(30)">30</button>
+            <button class="pill" onclick="setMpg(35)">35</button>
+            <button class="pill" onclick="setMpg(40)">40</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <span class="ctrl-label">Fuel grade</span>
+          <div class="pill-group grade-pills">
+            <button class="pill active" onclick="setGrade('Regular')">Regular</button>
+            <button class="pill" onclick="setGrade('Mid-Grade')">Mid-Grade</button>
+            <button class="pill" onclick="setGrade('Premium')">Premium</button>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; width: 100%;">
+        <div class="control-group">
+          <span class="ctrl-label">EV</span>
+          <select class="ev-model-select" onchange="handleModelChange(this.value)" style="max-width: 225px; text-overflow: ellipsis;"></select>
+          <select class="ev-year-select" onchange="handleYearChange(this.value)"></select>
+        </div>
+        <div class="control-group">
+          <span class="ctrl-label">EV Charging</span>
+          <div class="pill-group charging-pills" style="align-items: center;">
+            <button class="pill active" onclick="setCharging('home')">At Home</button>
+            <button class="pill" onclick="setCharging('public')">Public Charger</button>
+            <button class="pill" onclick="setCharging('mix')">Mix (50/50)</button>
+            <button class="pill" onclick="setCharging('custom')">Custom</button>
+            <div class="custom-kwh-wrap" style="display:none; align-items:center; gap:4px; margin-left: 4px;">
+              <input type="number" class="input-custom-kwh" step="0.01" value="0.15" style="width: 70px; padding: 2px 6px; font-size: 13px; border-radius: 4px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text);" oninput="handleCustomKwh(this.value)">
+              <span style="font-size: 11px; color: var(--text-2); font-family: var(--sans);">$/kWh</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-grid" style="margin-bottom: 0;">
+        <div class="input-group">
+          <label>State</label>
+          <select id="state-select-p" onchange="setStateP(this.value)" style="padding: 8px 12px; font-size: 14px; border-radius: 6px; border: 1px solid var(--border-strong); background: var(--bg);"></select>
+        </div>
+        <div class="input-group">
+          <label>Miles Driven / Year</label>
+          <input type="number" id="input-miles" value="12000" oninput="updatePayback()">
+        </div>
+        <div class="input-group desktop-spacer"></div>
+      </div>
+      <div class="input-grid" style="margin-bottom: 0;">
+        <div class="input-group">
+          <label>Current Gas Insurance / Yr ($)</label>
+          <input type="number" id="input-gas-ins" value="1500" oninput="updatePayback()">
+        </div>
+        <div class="input-group">
+          <label>Expected EV Insurance / Yr ($)</label>
+          <input type="number" id="input-ev-ins" value="1800" oninput="updatePayback()">
+        </div>
+        <div class="input-group desktop-spacer"></div>
+      </div>
+      <div class="input-grid" style="margin-bottom: 0;">
+        <div class="input-group">
+          <label>Gas Car Trade-in Value ($)</label>
+          <input type="number" id="input-trade-in" value="10000" oninput="updatePayback()">
+        </div>
+        <div class="input-group">
+          <label>EV Purchase Cost ($)</label>
+          <input type="number" id="input-ev-cost" value="40000" oninput="updatePayback()">
+        </div>
+        <div class="input-group">
+          <label>Level 2 Charger + Install ($)</label>
+          <input type="number" id="input-charger-cost" value="1200" oninput="updatePayback()">
+        </div>
+      </div>
+
+    <div class="stat-grid" id="payback-stats"></div>
+  </div>
+
+  <!-- ═══ CO2 MAP VIEW ═══ -->
+  <div id="co2-view" style="display:none">
+    <div class="controls-bar" style="flex-direction: column; align-items: flex-start; gap: 1rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; width: 100%;">
+        <div class="control-group">
+          <span class="ctrl-label">Gas car MPG</span>
+          <div class="pill-group mpg-pills">
+            <button class="pill" onclick="setMpg(20)">20</button>
+            <button class="pill active" onclick="setMpg(25)">25</button>
+            <button class="pill" onclick="setMpg(30)">30</button>
+            <button class="pill" onclick="setMpg(35)">35</button>
+            <button class="pill" onclick="setMpg(40)">40</button>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; width: 100%;">
+        <div class="control-group">
+          <span class="ctrl-label">EV</span>
+          <select class="ev-model-select" onchange="handleModelChange(this.value)" style="max-width: 225px; text-overflow: ellipsis;"></select>
+          <select class="ev-year-select" onchange="handleYearChange(this.value)"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-panel">
+      <div id="co2-map-container"></div>
+      <div class="legend" id="co2-legend"></div>
+    </div>
+
+    <div class="stat-grid" id="co2-stat-cards"></div>
+  </div>
+
+  <!-- Formula box -->
+  <div class="formula-box">
+    <strong>How to read this:</strong> On the <strong>Savings Map</strong>, green states are where an EV costs less to fuel than the selected gas car; red states are where gasoline is cheaper. The metric is <em>savings per 100 miles</em> = (gas cost) − (EV fuel cost). On the <strong>CO₂ Map</strong>, green states show where driving the selected EV avoids the most CO₂ compared to the gas car; lighter shades indicate smaller reductions. The metric is <em>kg CO₂ avoided per 100 miles</em> = (gasoline CO₂) − (grid electricity CO₂). Gasoline emits 8.887 kg CO₂ per gallon burned (GREET). EV emissions depend on each state's electricity grid carbon intensity. <strong>At-home charging</strong> uses EIA average residential electricity rates by state for January 2026. <strong>Public charger</strong> uses AAA average Level 2 / DC fast-charging prices by state (March 2026). <strong>Gasoline prices</strong> are AAA state averages by grade (March 2026). <strong>EV charging</strong> calculations assume a standard 90% efficiency rate to account for energy lost as heat. The <strong>Payback Calculator</strong> assumes maintenance costs of ¢9.59/mile for gas cars and ¢7.94/mile for EVs. <strong>Important:</strong> The Savings Map and Table compare fuel costs only — they exclude vehicle purchase price differences, maintenance, insurance, and other ownership costs.
+  </div>
+</main>
+
+<footer>
+  <strong>Sources:</strong>
+  At-home electricity — U.S. EIA Electric Power Monthly, Table 5.6.A, residential average retail price by state, January 2026. ·
+  Public EV charging — AAA EV Charging Prices by state (<a href="https://gasprices.aaa.com/ev-charging-prices/" target="_blank">gasprices.aaa.com</a>, March 2026). ·
+  Maintenance costs — AAA "Your Driving Costs" study. ·
+  Gasoline prices — AAA State Gas Price Averages by grade (<a href="https://gasprices.aaa.com/state-gas-price-averages/" target="_blank">gasprices.aaa.com</a>, March 2026). ·
+  Gasoline CO₂ emissions — Argonne National Laboratory GREET model (8.887 kg CO₂ per gallon). ·
+  Electricity grid emissions intensity — <a href="https://ember-energy.org/data/us-electricity-data/" target="_blank">Ember US Electricity Data</a>, CO₂ intensity by state, 2025.
+  <br><br>
+  Built with <a href="https://d3js.org" target="_blank">D3.js</a> and <a href="https://github.com/topojson/topojson" target="_blank">TopoJSON</a> using <a href="https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json" target="_blank">US Atlas</a> topology. Inspired by Jesse Jenkins' <a href="https://jessejenkins.github.io/heat-pump-map/" target="_blank">Heat Pump Economics Tool</a>.
+</footer>
+
+<div id="tooltip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+// ═══════════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════════
+
+// EIA residential electricity prices (¢/kWh) — January 2026
+// Source: EIA Electric Power Monthly, Table 5.6.A
+const elecHomeData = {
+  "Alabama":16.06,"Alaska":25.52,"Arizona":15.61,"Arkansas":12.35,
+  "California":30.29,"Colorado":16.44,"Connecticut":28.30,"Delaware":16.51,
+  "District of Columbia":23.72,"Florida":15.92,"Georgia":14.46,"Hawaii":39.79,
+  "Idaho":12.07,"Illinois":16.36,"Indiana":16.19,"Iowa":12.83,
+  "Kansas":14.29,"Kentucky":12.31,"Louisiana":12.46,"Maine":30.73,
+  "Maryland":20.61,"Massachusetts":31.16,"Michigan":19.52,"Minnesota":14.98,
+  "Mississippi":11.74,"Missouri":11.80,"Montana":12.86,"Nebraska":11.76,
+  "Nevada":13.98,"New Hampshire":26.32,"New Jersey":23.13,"New Mexico":14.70,
+  "New York":28.37,"North Carolina":13.68,"North Dakota":10.92,"Ohio":17.59,
+  "Oklahoma":12.62,"Oregon":14.66,"Pennsylvania":20.19,"Rhode Island":30.14,
+  "South Carolina":15.41,"South Dakota":13.60,"Tennessee":12.30,"Texas":15.69,
+  "Utah":12.88,"Vermont":23.29,"Virginia":15.87,"Washington":13.81,
+  "West Virginia":14.77,"Wisconsin":18.20,"Wyoming":12.85
+};
+
+// AAA public EV charging prices ($/kWh) — March 2026
+const evPublicData = {
+  "Alabama":0.430,"Alaska":0.501,"Arizona":0.435,"Arkansas":0.449,
+  "California":0.468,"Colorado":0.378,"Connecticut":0.397,"Delaware":0.364,
+  "District of Columbia":0.392,"Florida":0.408,"Georgia":0.421,"Hawaii":0.515,
+  "Idaho":0.436,"Illinois":0.422,"Indiana":0.423,"Iowa":0.339,
+  "Kansas":0.293,"Kentucky":0.391,"Louisiana":0.476,"Maine":0.415,
+  "Maryland":0.339,"Massachusetts":0.392,"Michigan":0.393,"Minnesota":0.388,
+  "Mississippi":0.411,"Missouri":0.320,"Montana":0.423,"Nebraska":0.340,
+  "Nevada":0.442,"New Hampshire":0.477,"New Jersey":0.461,"New Mexico":0.373,
+  "New York":0.407,"North Carolina":0.406,"North Dakota":0.436,"Ohio":0.428,
+  "Oklahoma":0.424,"Oregon":0.403,"Pennsylvania":0.431,"Rhode Island":0.404,
+  "South Carolina":0.466,"South Dakota":0.351,"Tennessee":0.426,"Texas":0.409,
+  "Utah":0.331,"Vermont":0.346,"Virginia":0.420,"Washington":0.392,
+  "West Virginia":0.536,"Wisconsin":0.421,"Wyoming":0.420
+};
+
+// AAA gasoline prices by grade ($/gallon) — March 2026
+const gasData = {
+  "Alabama":     {"Regular":3.676,"Mid-Grade":4.098,"Premium":4.501,"Diesel":5.248},
+  "Alaska":      {"Regular":4.590,"Mid-Grade":4.865,"Premium":5.089,"Diesel":5.640},
+  "Arizona":     {"Regular":4.682,"Mid-Grade":5.071,"Premium":5.382,"Diesel":6.003},
+  "Arkansas":    {"Regular":3.444,"Mid-Grade":3.896,"Premium":4.250,"Diesel":4.884},
+  "California":  {"Regular":5.887,"Mid-Grade":6.118,"Premium":6.311,"Diesel":7.455},
+  "Colorado":    {"Regular":3.874,"Mid-Grade":4.266,"Premium":4.593,"Diesel":4.916},
+  "Connecticut": {"Regular":3.953,"Mid-Grade":4.480,"Premium":4.895,"Diesel":5.885},
+  "Delaware":    {"Regular":3.876,"Mid-Grade":4.463,"Premium":4.748,"Diesel":5.737},
+  "District of Columbia":{"Regular":4.191,"Mid-Grade":4.736,"Premium":5.117,"Diesel":5.693},
+  "Florida":     {"Regular":4.124,"Mid-Grade":4.578,"Premium":4.903,"Diesel":5.736},
+  "Georgia":     {"Regular":3.625,"Mid-Grade":4.092,"Premium":4.508,"Diesel":5.172},
+  "Hawaii":      {"Regular":5.452,"Mid-Grade":5.670,"Premium":5.905,"Diesel":6.691},
+  "Idaho":       {"Regular":4.267,"Mid-Grade":4.559,"Premium":4.814,"Diesel":5.510},
+  "Illinois":    {"Regular":4.203,"Mid-Grade":4.790,"Premium":5.263,"Diesel":5.147},
+  "Indiana":     {"Regular":3.975,"Mid-Grade":4.527,"Premium":5.022,"Diesel":5.189},
+  "Iowa":        {"Regular":3.282,"Mid-Grade":3.522,"Premium":4.138,"Diesel":4.859},
+  "Kansas":      {"Regular":3.288,"Mid-Grade":3.619,"Premium":3.939,"Diesel":4.559},
+  "Kentucky":    {"Regular":3.784,"Mid-Grade":4.319,"Premium":4.754,"Diesel":5.057},
+  "Louisiana":   {"Regular":3.630,"Mid-Grade":4.041,"Premium":4.431,"Diesel":5.119},
+  "Maine":       {"Regular":3.863,"Mid-Grade":4.420,"Premium":4.885,"Diesel":5.769},
+  "Maryland":    {"Regular":4.014,"Mid-Grade":4.574,"Premium":4.907,"Diesel":5.784},
+  "Massachusetts":{"Regular":3.818,"Mid-Grade":4.387,"Premium":4.787,"Diesel":5.731},
+  "Michigan":    {"Regular":3.915,"Mid-Grade":4.514,"Premium":5.073,"Diesel":5.010},
+  "Minnesota":   {"Regular":3.416,"Mid-Grade":3.849,"Premium":4.341,"Diesel":4.875},
+  "Mississippi": {"Regular":3.608,"Mid-Grade":4.035,"Premium":4.419,"Diesel":5.094},
+  "Missouri":    {"Regular":3.438,"Mid-Grade":3.871,"Premium":4.170,"Diesel":4.617},
+  "Montana":     {"Regular":3.711,"Mid-Grade":4.019,"Premium":4.369,"Diesel":4.794},
+  "Nebraska":    {"Regular":3.369,"Mid-Grade":3.552,"Premium":3.997,"Diesel":4.622},
+  "Nevada":      {"Regular":4.931,"Mid-Grade":5.239,"Premium":5.531,"Diesel":6.159},
+  "New Hampshire":{"Regular":3.801,"Mid-Grade":4.346,"Premium":4.804,"Diesel":5.678},
+  "New Jersey":  {"Regular":3.927,"Mid-Grade":4.458,"Premium":4.730,"Diesel":5.770},
+  "New Mexico":  {"Regular":3.850,"Mid-Grade":4.279,"Premium":4.591,"Diesel":5.256},
+  "New York":    {"Regular":3.949,"Mid-Grade":4.439,"Premium":4.828,"Diesel":5.774},
+  "North Carolina":{"Regular":3.839,"Mid-Grade":4.298,"Premium":4.689,"Diesel":5.585},
+  "North Dakota":{"Regular":3.433,"Mid-Grade":3.779,"Premium":4.194,"Diesel":4.592},
+  "Ohio":        {"Regular":3.794,"Mid-Grade":4.327,"Premium":4.837,"Diesel":5.039},
+  "Oklahoma":    {"Regular":3.272,"Mid-Grade":3.688,"Premium":3.979,"Diesel":4.491},
+  "Oregon":      {"Regular":4.933,"Mid-Grade":5.151,"Premium":5.434,"Diesel":6.076},
+  "Pennsylvania":{"Regular":3.976,"Mid-Grade":4.414,"Premium":4.791,"Diesel":5.918},
+  "Rhode Island":{"Regular":3.862,"Mid-Grade":4.513,"Premium":4.922,"Diesel":5.731},
+  "South Carolina":{"Regular":3.701,"Mid-Grade":4.146,"Premium":4.543,"Diesel":5.388},
+  "South Dakota":{"Regular":3.397,"Mid-Grade":3.587,"Premium":4.095,"Diesel":4.618},
+  "Tennessee":   {"Regular":3.724,"Mid-Grade":4.196,"Premium":4.593,"Diesel":5.312},
+  "Texas":       {"Regular":3.678,"Mid-Grade":4.149,"Premium":4.522,"Diesel":5.029},
+  "Utah":        {"Regular":4.199,"Mid-Grade":4.485,"Premium":4.728,"Diesel":5.486},
+  "Vermont":     {"Regular":3.931,"Mid-Grade":4.424,"Premium":4.883,"Diesel":5.744},
+  "Virginia":    {"Regular":3.932,"Mid-Grade":4.399,"Premium":4.775,"Diesel":5.617},
+  "Washington":  {"Regular":5.346,"Mid-Grade":5.585,"Premium":5.836,"Diesel":6.614},
+  "West Virginia":{"Regular":3.864,"Mid-Grade":4.311,"Premium":4.758,"Diesel":5.358},
+  "Wisconsin":   {"Regular":3.615,"Mid-Grade":4.136,"Premium":4.707,"Diesel":4.737},
+  "Wyoming":     {"Regular":3.846,"Mid-Grade":4.151,"Premium":4.436,"Diesel":4.984}
+};
+
+// Grid CO2 emissions intensity by state (gCO2/kWh) — Ember 2025
+const gridCO2Data = {
+  "Alabama":359.41,"Alaska":416.45,"Arizona":282.98,"Arkansas":420.43,
+  "California":177.11,"Colorado":355.39,"Connecticut":285.38,"Delaware":482.32,
+  "District of Columbia":131.45,"Florida":397.63,"Georgia":317.96,"Hawaii":479.46,
+  "Idaho":156.22,"Illinois":222.41,"Indiana":567.96,"Iowa":275.36,
+  "Kansas":291.52,"Kentucky":671.17,"Louisiana":419.64,"Maine":228.11,
+  "Maryland":270.40,"Massachusetts":371.72,"Michigan":406.76,"Minnesota":305.80,
+  "Mississippi":413.44,"Missouri":587.21,"Montana":333.23,"Nebraska":400.49,
+  "Nevada":299.02,"New Hampshire":169.10,"New Jersey":246.21,"New Mexico":307.04,
+  "New York":247.58,"North Carolina":316.22,"North Dakota":468.41,"Ohio":479.05,
+  "Oklahoma":309.69,"Oregon":184.02,"Pennsylvania":352.61,"Rhode Island":429.84,
+  "South Carolina":259.37,"South Dakota":134.92,"Tennessee":323.65,"Texas":342.52,
+  "Utah":542.89,"Vermont":61.96,"Virginia":327.17,"Washington":124.36,
+  "West Virginia":745.30,"Wisconsin":469.23,"Wyoming":539.33
+};
+
+// Gasoline CO2: 8.887 kg CO2 per gallon (GREET)
+const GASOLINE_KG_CO2_PER_GALLON = 8.887;
+
+// ═══════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════
+let currentEff = 275;
+let currentMpg = 25;
+let currentGrade = 'Regular';
+let currentCharging = 'home';
+let currentCustomKwh = 0.15;
+let currentStateP = 'California';
+let pathsSel = null;
+
+// Color scale: savings per 100 miles (gas cost − EV cost)
+// Positive → EV cheaper (green), Negative → gas cheaper (red)
+const COLORS = {
+  ev_great:  '#27500A',
+  ev_good:   '#5a9932',
+  ev_slight: '#8BAF30',
+  gas_slight:'#BA7517',
+  gas_good:  '#993C1D',
+  gas_great: '#71321B',
+  no_data:   '#C8C5BC'
+};
+
+// ═══════════════════════════════════════════════
+//  CALCULATIONS
+// ═══════════════════════════════════════════════
+function getElecPrice(state, charging) {
+  if (charging === 'home') {
+    const c = elecHomeData[state];
+    return c != null ? c / 100 : null;
+  }
+  if (charging === 'public') {
+    return evPublicData[state] ?? null;
+  }
+  if (charging === 'mix') {
+    const h = elecHomeData[state] != null ? elecHomeData[state] / 100 : null;
+    const p = evPublicData[state] ?? null;
+    if (h != null && p != null) return (h + p) / 2;
+    return null;
+  }
+  if (charging === 'custom') {
+    return currentCustomKwh;
+  }
+  return null;
+}
+
+function calcState(state, eff, mpg, grade, charging) {
+  const elecPrice = getElecPrice(state, charging);
+  const gradeData = gasData[state];
+  if (elecPrice == null || !gradeData) return null;
+  const gasPrice = gradeData[grade];
+  if (gasPrice == null) return null;
+
+  const evCost100  = ((eff / 1000) * 100 * elecPrice) / 0.9;  // $/100mi
+  const gasCost100 = (100 / mpg) * gasPrice;           // $/100mi
+  const savings    = gasCost100 - evCost100;            // + = EV cheaper
+
+  return { name: state, elecPrice, gasPrice, evCost100, gasCost100, savings };
+}
+
+// Live lookup keyed by state name
+const stateMap = {};
+
+function refreshStateMap() {
+  Object.keys(stateMap).forEach(k => delete stateMap[k]);
+  Object.keys(gasData).forEach(state => {
+    const d = calcState(state, currentEff, currentMpg, currentGrade, currentCharging);
+    if (d) stateMap[state] = d;
+  });
+}
+refreshStateMap();
+
+// ═══════════════════════════════════════════════
+//  COLOR LOGIC
+// ═══════════════════════════════════════════════
+function savingsToColor(savings) {
+  if (savings == null) return COLORS.no_data;
+  if (savings >  8)   return COLORS.ev_great;
+  if (savings >  3)   return COLORS.ev_good;
+  if (savings >  0)   return COLORS.ev_slight;
+  if (savings > -3)   return COLORS.gas_slight;
+  if (savings > -8)   return COLORS.gas_good;
+  return COLORS.gas_great;
+}
+
+function getFill(d) {
+  return d ? savingsToColor(d.savings) : COLORS.no_data;
+}
+
+// ═══════════════════════════════════════════════
+//  LEGEND
+// ═══════════════════════════════════════════════
+function renderLegend() {
+  document.getElementById('legend').innerHTML = `
+    <span style="font-size:11px;color:var(--text-3);margin-right:4px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;">EV savings vs gas ($/100 mi):</span>
+    <span class="legend-item"><span class="swatch" style="background:${COLORS.ev_great}"></span>EV saves &gt;$8</span>
+    <span class="legend-item"><span class="swatch" style="background:${COLORS.ev_good}"></span>EV saves $3–$8</span>
+    <span class="legend-item"><span class="swatch" style="background:${COLORS.ev_slight}"></span>EV saves $0–$3</span>
+    <span class="legend-item"><span class="swatch" style="background:${COLORS.gas_slight}"></span>Gas saves $0–$3</span>
+    <span class="legend-item"><span class="swatch" style="background:${COLORS.gas_good}"></span>Gas saves $3–$8</span>
+    <span class="legend-item"><span class="swatch" style="background:${COLORS.gas_great}"></span>Gas saves &gt;$8</span>
+    <span class="legend-item"><span class="swatch" style="background:${COLORS.no_data}"></span>No data</span>
+  `;
+}
+
+// ═══════════════════════════════════════════════
+//  EXPLAINER CARDS
+// ═══════════════════════════════════════════════
+function renderExplainerCards() {
+  const data = Object.values(stateMap);
+  if (!data.length) return;
+
+  const avgEv  = data.reduce((s, d) => s + d.evCost100,  0) / data.length;
+  const avgGas = data.reduce((s, d) => s + d.gasCost100, 0) / data.length;
+  const avgSav = avgGas - avgEv;
+  const sign   = avgSav >= 0 ? '+' : '';
+  const savCol = avgSav >= 0 ? '#5a9932' : '#993C1D';
+
+  const chargeSub = currentCharging === 'home'
+    ? `${currentEff} Wh/mi · residential electricity (EIA Jan 2026)`
+    : currentCharging === 'public'
+    ? `${currentEff} Wh/mi · public charger (AAA Mar 2026)`
+    : currentCharging === 'mix'
+    ? `${currentEff} Wh/mi · home (EIA Jan 2026) / public (AAA Mar 2026)`
+    : `${currentEff} Wh/mi · custom pricing`;
+
+  document.getElementById('explainer-cards').innerHTML = `
+    <div class="exp-card">
+      <div class="exp-label">EV avg fuel cost / 100 mi</div>
+      <div class="exp-val">$${avgEv.toFixed(2)}</div>
+      <div class="exp-sub">${chargeSub}</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-label">ICE car avg gas cost / 100 mi</div>
+      <div class="exp-val">$${avgGas.toFixed(2)}</div>
+      <div class="exp-sub">${currentMpg} MPG · ${currentGrade} unleaded (AAA Mar 2026)</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-label">Avg EV advantage / 100 mi</div>
+      <div class="exp-val" style="color:${savCol}">${sign}$${avgSav.toFixed(2)}</div>
+      <div class="exp-sub">national average across states with data</div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════
+//  STAT CARDS
+// ═══════════════════════════════════════════════
+function renderStatCards() {
+  const data = Object.values(stateMap);
+  if (!data.length) return;
+
+  const sorted    = [...data].sort((a, b) => b.savings - a.savings);
+  const avgSav    = data.reduce((s, d) => s + d.savings, 0) / data.length;
+  const evCheaper = data.filter(d => d.savings > 0).length;
+  const best      = sorted.slice(0, 3).map(d => d.name).join(', ');
+  const worst     = sorted.slice(-3).reverse().map(d => d.name).join(', ');
+  const sign      = avgSav >= 0 ? '+' : '';
+  const savCol    = avgSav >= 0 ? '#5a9932' : '#993C1D';
+
+  document.getElementById('stat-cards').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-label">Avg EV savings</div>
+      <div class="stat-val" style="color:${savCol}">${sign}$${avgSav.toFixed(2)}</div>
+      <div class="stat-sub">per 100 miles vs gas · national avg</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Places where an EV is Cheaper</div>
+      <div class="stat-val">${evCheaper}</div>
+      <div class="stat-sub">out of 51 places with data</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Best for EV</div>
+      <div class="stat-val" style="font-size:1rem;padding-top:3px">${best}</div>
+      <div class="stat-sub">Largest EV savings per 100 mi</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Closest / gas advantage</div>
+      <div class="stat-val" style="font-size:1rem;padding-top:3px">${worst}</div>
+      <div class="stat-sub">Smallest EV savings (or gas wins)</div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════
+//  CO2 CALCULATIONS & RENDERING
+// ═══════════════════════════════════════════════
+const CO2_COLORS = {
+  great:   '#1a4301',
+  good:    '#38761d',
+  moderate:'#6aa84f',
+  slight:  '#b6d7a8',
+  minimal: '#d9ead3',
+  negative:'#e07858',
+  no_data: '#C8C5BC'
+};
+
+const co2StateMap = {};
+
+function calcCO2(state, eff, mpg) {
+  const gridIntensity = gridCO2Data[state];
+  if (gridIntensity == null) return null;
+
+  // Gasoline: kg CO2 per 100 miles
+  const gasCO2 = (100 / mpg) * GASOLINE_KG_CO2_PER_GALLON;
+
+  // EV: kWh per 100 miles (with 90% charging efficiency), then * gCO2/kWh, convert to kg
+  const kwhPer100 = ((eff / 1000) * 100) / 0.9;
+  const evCO2 = (kwhPer100 * gridIntensity) / 1000;
+
+  const avoided = gasCO2 - evCO2;
+  return { name: state, gasCO2, evCO2, avoided, gridIntensity };
+}
+
+function refreshCO2Map() {
+  Object.keys(co2StateMap).forEach(k => delete co2StateMap[k]);
+  Object.keys(gridCO2Data).forEach(state => {
+    const d = calcCO2(state, currentEff, currentMpg);
+    if (d) co2StateMap[state] = d;
+  });
+}
+refreshCO2Map();
+
+function co2ToColor(avoided) {
+  if (avoided == null) return CO2_COLORS.no_data;
+  if (avoided < 0)     return CO2_COLORS.negative;
+  if (avoided < 5)     return CO2_COLORS.minimal;
+  if (avoided < 15)    return CO2_COLORS.slight;
+  if (avoided < 25)    return CO2_COLORS.moderate;
+  if (avoided < 30)    return CO2_COLORS.good;
+  return CO2_COLORS.great;
+}
+
+function getCO2Fill(d) {
+  return d ? co2ToColor(d.avoided) : CO2_COLORS.no_data;
+}
+
+function renderCO2Legend() {
+  document.getElementById('co2-legend').innerHTML = `
+    <span style="font-size:11px;color:var(--text-3);margin-right:4px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;">CO₂ avoided vs gas (kg/100 mi):</span>
+    <span class="legend-item"><span class="swatch" style="background:${CO2_COLORS.great}"></span>&gt;30 kg</span>
+    <span class="legend-item"><span class="swatch" style="background:${CO2_COLORS.good}"></span>25–30 kg</span>
+    <span class="legend-item"><span class="swatch" style="background:${CO2_COLORS.moderate}"></span>15–25 kg</span>
+    <span class="legend-item"><span class="swatch" style="background:${CO2_COLORS.slight}"></span>5–15 kg</span>
+    <span class="legend-item"><span class="swatch" style="background:${CO2_COLORS.minimal}"></span>0–5 kg</span>
+    <span class="legend-item"><span class="swatch" style="background:${CO2_COLORS.negative}"></span>EV emits more</span>
+    <span class="legend-item"><span class="swatch" style="background:${CO2_COLORS.no_data}"></span>No data</span>
+  `;
+}
+
+function renderCO2StatCards() {
+  const data = Object.values(co2StateMap);
+  if (!data.length) return;
+
+  const avgAvoided = data.reduce((s, d) => s + d.avoided, 0) / data.length;
+  const sorted = [...data].sort((a, b) => b.avoided - a.avoided);
+  const best = sorted.slice(0, 3).map(d => d.name).join(', ');
+  const worst = sorted.slice(-3).reverse().map(d => d.name).join(', ');
+  const allPositive = data.filter(d => d.avoided > 0).length;
+
+  document.getElementById('co2-stat-cards').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-label">Avg CO₂ Avoided</div>
+      <div class="stat-val" style="color:#5a9932">${avgAvoided.toFixed(1)} kg</div>
+      <div class="stat-sub">per 100 miles vs gas · national avg</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">States where EV is Cleaner</div>
+      <div class="stat-val">${allPositive}</div>
+      <div class="stat-sub">out of ${data.length} with data</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Most CO₂ Avoided</div>
+      <div class="stat-val" style="font-size:1rem;padding-top:3px">${best}</div>
+      <div class="stat-sub">Cleanest grids for EV driving</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Least CO₂ Avoided</div>
+      <div class="stat-val" style="font-size:1rem;padding-top:3px">${worst}</div>
+      <div class="stat-sub">Dirtiest grids (smallest EV advantage)</div>
+    </div>
+  `;
+}
+
+let co2PathsSel = null;
+
+function updateCO2Map() {
+  refreshCO2Map();
+  if (co2PathsSel) {
+    co2PathsSel.attr('fill', d => getCO2Fill(co2StateMap[d.properties.name]));
+  }
+  renderCO2StatCards();
+}
+
+// ═══════════════════════════════════════════════
+//  MAP UPDATE
+// ═══════════════════════════════════════════════
+function updateMap() {
+  refreshStateMap();
+  if (pathsSel) {
+    pathsSel.attr('fill', d => getFill(stateMap[d.properties.name]));
+  }
+  renderStatCards();
+  renderExplainerCards();
+}
+
+// ═══════════════════════════════════════════════
+//  GLOBAL CONTROL HANDLERS
+// ═══════════════════════════════════════════════
+function updateAll() {
+  refreshStateMap();
+  updateMap();
+  renderTable();
+  updatePayback();
+  renderExplainerCards();
+  updateCO2Map();
+}
+
+function setMpg(v) {
+  currentMpg = v;
+  document.querySelectorAll('.mpg-pills .pill').forEach(b => {
+    if (parseInt(b.innerText) === v) b.classList.add('active');
+    else b.classList.remove('active');
+  });
+  updateAll();
+}
+
+function setGrade(v) {
+  currentGrade = v;
+  document.querySelectorAll('.grade-pills .pill').forEach(b => {
+    if (b.innerText === v) b.classList.add('active');
+    else b.classList.remove('active');
+  });
+  updateAll();
+}
+
+function setCharging(v) {
+  currentCharging = v;
+  const map = { 'home': 'At Home', 'public': 'Public Charger', 'mix': 'Mix (50/50)', 'custom': 'Custom' };
+  document.querySelectorAll('.charging-pills .pill').forEach(b => {
+    if (b.innerText.trim() === map[v]) b.classList.add('active');
+    else b.classList.remove('active');
+  });
+  document.querySelectorAll('.custom-kwh-wrap').forEach(el => {
+    el.style.display = v === 'custom' ? 'flex' : 'none';
+  });
+  updateAll();
+}
+
+function handleCustomKwh(val) {
+  currentCustomKwh = parseFloat(val) || 0;
+  document.querySelectorAll('.input-custom-kwh').forEach(el => {
+    if (el.value !== val) el.value = val;
+  });
+  updateAll();
+}
+
+function handleModelChange(val) {
+  document.querySelectorAll('.ev-model-select').forEach(el => el.value = val);
+  updateYears();
+}
+
+function handleYearChange(val) {
+  document.querySelectorAll('.ev-year-select').forEach(el => el.value = val);
+  currentEff = parseFloat(val);
+  updateAll();
+}
+
+function setStateP(v) {
+  currentStateP = v;
+  updatePayback();
+}
+
+// ═══════════════════════════════════════════════
+//  TABLE RENDER
+// ═══════════════════════════════════════════════
+function renderTable() {
+  const rows = Object.keys(gasData).map(state => {
+    const d = calcState(state, currentEff, currentMpg, currentGrade, currentCharging);
+    return d || {
+      name: state,
+      elecPrice: getElecPrice(state, currentCharging),
+      gasPrice: gasData[state]?.[currentGrade] ?? null,
+      evCost100: null, gasCost100: null, savings: null
+    };
+  });
+
+  const sortField = document.getElementById('sort-sel').value;
+  const order     = document.getElementById('order-sel').value;
+
+  rows.sort((a, b) => {
+    const key = { savings: 'savings', evcost: 'evCost100', gascost: 'gasCost100', name: 'name' }[sortField];
+    let av = a[key], bv = b[key];
+    if (av === null || av === undefined) av = order === 'asc' ?  Infinity : -Infinity;
+    if (bv === null || bv === undefined) bv = order === 'asc' ?  Infinity : -Infinity;
+    if (key === 'name') return order === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+    return order === 'asc' ? av - bv : bv - av;
+  });
+
+  const f2  = v => v != null ? '$' + v.toFixed(2) : '—';
+  const f3  = v => v != null ? '$' + v.toFixed(3) : '—';
+
+  document.getElementById('table-body').innerHTML = rows.map(r => {
+    const c    = r.savings != null ? savingsToColor(r.savings) : '#aaa';
+    const sign = r.savings != null ? (r.savings >= 0 ? '+' : '') : '';
+    return `<tr>
+      <td>${r.name}</td>
+      <td>${f3(r.elecPrice)}</td>
+      <td>${f3(r.gasPrice)}</td>
+      <td>${f2(r.evCost100)}</td>
+      <td>${f2(r.gasCost100)}</td>
+      <td style="font-weight:500;color:${c}">${r.savings != null ? sign + f2(r.savings) : '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════
+//  VIEW SWITCHING
+// ═══════════════════════════════════════════════
+function setView(v, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('map-view').style.display     = v === 'map'     ? '' : 'none';
+  document.getElementById('table-view').style.display   = v === 'table'   ? '' : 'none';
+  document.getElementById('payback-view').style.display = v === 'payback' ? '' : 'none';
+  document.getElementById('co2-view').style.display     = v === 'co2'     ? '' : 'none';
+  if (v === 'table') renderTable();
+  if (v === 'payback') updatePayback();
+  if (v === 'co2') updateCO2Map();
+}
+
+
+// --- INJECTED EV DATABASE ---
+const evDatabase = {"Acura ZDX AWD": {"2024": 390, "2026": 380}, "Acura ZDX AWD Type S": {"2024": 430, "2026": 410}, "Acura ZDX RWD": {"2024": 370, "2026": 370}, "Audi Q4 40 e-tron": {"2024": 330}, "Audi Q4 45 e-tron": {"2025": 290, "2026": 290}, "Audi Q4 50 e-tron quattro": {"2024": 360}, "Audi Q4 55 e-tron quattro": {"2024": 340, "2025": 340, "2026": 350}, "Audi Q4 Sportback 50 e-tron quattro": {"2024": 360}, "Audi Q4 Sportback 55 e-tron quattro": {"2024": 340, "2025": 340, "2026": 350}, "Audi Q4 e-tron": {"2023": 330}, "Audi Q4 e-tron Sportback": {"2023": 360}, "Audi Q4 e-tron Sportback quattro": {"2022": 360}, "Audi Q4 e-tron quattro": {"2022": 360, "2023": 360}, "Audi Q6 Sportback e-tron quattro": {"2025": 335}, "Audi Q6 e-tron": {"2025": 345}, "Audi Q6 e-tron quattro": {"2025": 345}, "Audi Q6 e-tron ultra": {"2025": 320}, "Audi Q8 Sportback e-tron quattro": {"2024": 390, "2025": 445}, "Audi Q8 Sportback e-tron ultra quattro": {"2024": 390}, "Audi Q8 e-tron quattro": {"2024": 410, "2025": 445}, "Audi RS e-tron GT": {"2022": 420, "2023": 420, "2024": 400}, "Audi RS e-tron GT Performance": {"2025": 400, "2026": 400}, "Audi S e-tron GT": {"2025": 380, "2026": 380}, "Audi SQ6 Sportback e-tron": {"2025": 370}, "Audi SQ6 e-tron": {"2025": 380}, "Audi SQ8 Sportback e-tron": {"2024": 500, "2025": 520}, "Audi SQ8 e-tron": {"2024": 500, "2025": 520}, "Audi e-tron GT": {"2022": 410, "2023": 410, "2024": 400}, "Audi e-tron S": {"2022": 495, "2023": 495}, "Audi e-tron S Sportback": {"2022": 485, "2023": 485}, "Audi e-tron Sportback quattro": {"2022": 440, "2023": 430}, "Audi e-tron quattro": {"2022": 430, "2023": 430}, "BMW i4 M50 Gran Coupe": {"2022": 385, "2023": 385, "2024": 385, "2025": 390}, "BMW i4 M60 xDrive Gran Coupe": {"2026": 375}, "BMW i4 eDrive35 Gran Coupe": {"2023": 310, "2024": 295, "2025": 305, "2026": 310}, "BMW i4 eDrive40 Gran Coupe": {"2022": 325, "2023": 340, "2024": 325, "2025": 310, "2026": 300}, "BMW i4 xDrive40 Gran Coupe": {"2024": 325, "2025": 345, "2026": 345}, "BMW i5 M60 xDrive Sedan": {"2024": 383, "2025": 386, "2026": 356}, "BMW i5 eDrive40 Sedan": {"2024": 336, "2025": 336, "2026": 323}, "BMW i5 xDrive40 Sedan": {"2025": 370, "2026": 353}, "BMW i7 M70 xDrive Sedan": {"2024": 430, "2025": 435, "2026": 435}, "BMW i7 eDrive50 Sedan": {"2024": 380, "2025": 390, "2026": 390}, "BMW i7 xDrive60 Sedan": {"2023": 393, "2024": 386, "2025": 393, "2026": 393}, "BMW iX M60": {"2023": 435, "2024": 420, "2025": 440}, "BMW iX M70": {"2026": 436}, "BMW iX xDrive40": {"2024": 390, "2025": 396}, "BMW iX xDrive45": {"2026": 382}, "BMW iX xDrive50": {"2022": 396, "2023": 396, "2024": 410, "2025": 410}, "BMW iX xDrive60": {"2026": 377}, "Bugatti Rimac Nevera": {"2024": 630, "2025": 630}, "Bugatti Rimac Nevera R": {"2025": 660, "2026": 660}, "Cadillac CELESTIQ": {"2025": 420, "2026": 420}, "Cadillac LYRIQ": {"2023": 380, "2024": 380, "2025": 360, "2026": 370}, "Cadillac LYRIQ AWD": {"2023": 380, "2024": 380, "2025": 390, "2026": 400}, "Cadillac LYRIQ PAWD": {"2026": 380}, "Cadillac LYRIQ PAWD V SERIES": {"2026": 420}, "Cadillac OPTIQ AWD": {"2026": 340}, "Cadillac OPTIQ AWD V SERIES 11 kW Charger 15 modes": {"2026": 370}, "Cadillac OPTIQ AWD V SERIES 19 kW charger 15 modes": {"2026": 410}, "Cadillac OPTIQ RWD": {"2026": 320}, "Cadillac VISTIQ": {"2026": 390}, "Chevrolet Blazer EV AWD": {"2024": 350, "2025": 360, "2026": 360}, "Chevrolet Blazer EV AWD SS": {"2025": 400, "2026": 400}, "Chevrolet Blazer EV FWD": {"2025": 320, "2026": 320}, "Chevrolet Blazer EV FWD 22 inch tire": {"2025": 360, "2026": 360}, "Chevrolet Blazer EV RWD": {"2024": 370, "2025": 350}, "Chevrolet Bolt EUV": {"2022": 290, "2023": 290}, "Chevrolet Bolt EV": {"2022": 280, "2023": 280}, "Chevrolet Equinox EV AWD": {"2024": 350, "2025": 340, "2026": 340}, "Chevrolet Equinox EV FWD": {"2024": 310, "2025": 310, "2026": 310}, "Chevrolet Silverado EV": {"2024": 520, "2025": 510}, "Chevrolet Silverado EV 14-mod battery, 11kW 15-mode charger": {"2026": 500}, "Chevrolet Silverado EV 14-mod battery, 11kW 6-mode charger": {"2026": 500}, "Chevrolet Silverado EV 20-mod battery, 11kW 15-mode charger": {"2026": 500}, "Chevrolet Silverado EV 20-mod battery, 19kW 15-mode charger": {"2026": 520}, "Chevrolet Silverado EV 20-mod battery, 19kW 6-mode charger": {"2026": 480}, "Chevrolet Silverado EV 24-mod battery, 19kW 6-mode charger": {"2026": 490}, "Chevrolet Silverado EV 2WT": {"2025": 510}, "Chevrolet Silverado EV 5WT": {"2025": 480}, "Chevrolet Silverado EV 8WT": {"2025": 500}, "Dodge Charger 2-Dr Daytona R/T AWD 18in": {"2024": 390}, "Dodge Charger 2-Dr Daytona R/T AWD 20in Goodyear": {"2024": 400}, "Dodge Charger 2-Dr Daytona R/T AWD 20in Nexen": {"2024": 350}, "Dodge Charger 2-Dr Daytona Scat Pack Track Pack AWD": {"2024": 480}, "Dodge Charger 2-Dr Daytona Scat Pack Track Pack AWD A/S": {"2024": 430}, "Dodge Charger Daytona R/T AWD 245/55ZR18": {"2025": 350, "2026": 400}, "Dodge Charger Daytona R/T AWD 255/45R20": {"2025": 350, "2026": 360}, "Dodge Charger Daytona R/T AWD 275/40R20": {"2025": 350, "2026": 410}, "Dodge Charger Daytona R/T AWD 305/35ZR20": {"2025": 350, "2026": 390}, "Dodge Charger Daytona Scat Pack AWD 305/35ZR20": {"2025": 380, "2026": 390}, "Dodge Charger Daytona Scat Pack AWD 325/35ZR20 Rear": {"2025": 430, "2026": 470}, "Dodge Charger Daytona Scat Pack AWD 325/35ZR20 Rear A/S": {"2025": 430, "2026": 430}, "Fiat 500e": {"2024": 290, "2025": 290, "2026": 290}, "Fiat 500e All Season": {"2024": 310, "2025": 310, "2026": 310}, "Fisker Ocean Extreme One": {"2023": 370}, "Fisker Ocean Sport 20in": {"2024": 370}, "Fisker Ocean Sport 22in": {"2024": 430}, "Ford F-150 Lightning 4WD": {"2022": 490, "2023": 490, "2024": 490}, "Ford F-150 Lightning 4WD ER1": {"2025": 480}, "Ford F-150 Lightning 4WD ER2": {"2025": 470}, "Ford F-150 Lightning 4WD Extended Range": {"2022": 480, "2023": 480, "2024": 480}, "Ford F-150 Lightning 4WD PRO ER1": {"2025": 480}, "Ford F-150 Lightning 4WD SR": {"2025": 490}, "Ford F-150 Lightning PRO 4WD Extended Range": {"2024": 480}, "Ford F-150 Lightning Platinum 4WD": {"2022": 510, "2023": 510, "2024": 510, "2025": 510}, "Ford MUSTANG MACH-E CAL RT 1 ER AWD": {"2023": 340}, "Ford Mustang Mach-E AWD": {"2022": 360, "2023": 360, "2024": 370, "2025": 340, "2026": 340}, "Ford Mustang Mach-E AWD Extended": {"2022": 370, "2023": 370, "2024": 340, "2025": 320, "2026": 320}, "Ford Mustang Mach-E CAL RT 1 ER AWD": {"2022": 340}, "Ford Mustang Mach-E CAL RT 1 ER RWD": {"2022": 330}, "Ford Mustang Mach-E GT": {"2022": 400, "2023": 400, "2024": 370, "2025": 370, "2026": 370}, "Ford Mustang Mach-E GT Performance": {"2022": 410, "2023": 410}, "Ford Mustang Mach-E RWD": {"2022": 330, "2023": 330, "2024": 330, "2025": 310, "2026": 310}, "Ford Mustang Mach-E RWD Extended": {"2022": 350, "2023": 340, "2024": 320, "2025": 310, "2026": 310}, "Ford Mustang Mach-E RWD LFP": {"2023": 330}, "Ford Mustang Mach-E Rally": {"2024": 390, "2025": 390, "2026": 400}, "GMC Hummer EV Pickup": {"2024": 630}, "GMC Hummer EV Pickup 2M20": {"2024": 650}, "GMC Hummer EV Pickup 2X": {"2025": 640}, "GMC Hummer EV Pickup 3X": {"2025": 650}, "GMC Hummer EV Pickup MT Tires": {"2024": 630}, "GMC Hummer EV Pickup MT Tires 2M20": {"2024": 720}, "GMC Hummer EV Pickup MT Tires 2X": {"2025": 720}, "GMC Hummer EV Pickup MT Tires 3X": {"2025": 700}, "GMC Hummer EV SUV": {"2024": 630}, "GMC Hummer EV SUV 2M20": {"2024": 660}, "GMC Hummer EV SUV 2X": {"2025": 640}, "GMC Hummer EV SUV 3X": {"2025": 650}, "GMC Hummer EV SUV MT Tires": {"2024": 630}, "GMC Hummer EV SUV MT Tires 2M20": {"2024": 720}, "GMC Hummer EV SUV MT Tires 2X": {"2025": 720}, "GMC Hummer EV SUV MT Tires 3X": {"2025": 700}, "GMC Sierra EV": {"2025": 520}, "GMC Sierra EV 14-mod battery, 11kW 15-mode charger": {"2026": 500}, "GMC Sierra EV 20-mod battery, 11kW 15-mode charger": {"2026": 500}, "GMC Sierra EV 20-mod battery, 19kW 15-mode charger": {"2026": 520}, "Genesis Electrified G80": {"2023": 340, "2024": 350, "2025": 350, "2026": 350}, "Genesis Electrified GV70": {"2024": 370, "2025": 370}, "Genesis Electrified GV70 AWD": {"2026": 365}, "Genesis GV60 ADVANCE": {"2023": 350}, "Genesis GV60 AWD": {"2025": 340, "2026": 340}, "Genesis GV60 AWD Advanced": {"2025": 350, "2026": 350}, "Genesis GV60 AWD Performance": {"2025": 370, "2026": 370}, "Genesis GV60 Advanced": {"2024": 345}, "Genesis GV60 PERFORMANCE": {"2023": 370, "2024": 370}, "Genesis GV60 RWD": {"2025": 300, "2026": 310}, "Genesis GV60 Standard": {"2024": 300}, "Honda Prologue AWD": {"2026": 345}, "Honda Prologue AWD Elite": {"2024": 370, "2025": 350}, "Honda Prologue AWD Touring": {"2024": 360, "2025": 340}, "Honda Prologue FWD": {"2024": 340, "2025": 330, "2026": 330}, "Hyundai Ioniq 5 AWD": {"2022": 340, "2025": 330, "2026": 330}, "Hyundai Ioniq 5 AWD XRT": {"2025": 360, "2026": 360}, "Hyundai Ioniq 5 Long range AWD": {"2024": 340}, "Hyundai Ioniq 5 Long range RWD": {"2024": 300}, "Hyundai Ioniq 5 N": {"2025": 430, "2026": 430}, "Hyundai Ioniq 5 RWD": {"2022": 305, "2025": 300, "2026": 300}, "Hyundai Ioniq 5 Robo taxi": {"2025": 480, "2026": 480}, "Hyundai Ioniq 5 Standard range": {"2025": 290, "2026": 290}, "Hyundai Ioniq 5 Standard range RWD": {"2024": 310}, "Hyundai Ioniq 6 AWD": {"2025": 305}, "Hyundai Ioniq 6 Long range AWD": {"2023": 305, "2024": 300}, "Hyundai Ioniq 6 Long range RWD": {"2023": 265, "2024": 265}, "Hyundai Ioniq 6 RWD": {"2025": 280}, "Hyundai Ioniq 6 Standard Range": {"2025": 250}, "Hyundai Ioniq 6 Standard Range RWD": {"2023": 250, "2024": 250}, "Hyundai Ioniq 9 AWD": {"2026": 380}, "Hyundai Ioniq 9 AWD Performance": {"2026": 400}, "Hyundai Ioniq 9 RWD": {"2026": 370}, "Hyundai Kona Electric": {"2022": 280, "2023": 270, "2025": 300}, "Hyundai Kona Electric Long Range": {"2024": 290}, "Hyundai Kona Electric Standard Range": {"2024": 290, "2025": 290}, "Jaguar I-Pace EV400": {"2023": 420, "2024": 420}, "Jeep Wagoneer S AWD": {"2024": 370, "2025": 385, "2026": 375}, "Kia EV6 AWD": {"2022": 320}, "Kia EV6 AWD GT": {"2023": 420, "2024": 410, "2025": 400, "2026": 400}, "Kia EV6 Long Range AWD": {"2023": 325, "2024": 330, "2025": 335, "2026": 335}, "Kia EV6 Long Range RWD": {"2023": 280, "2024": 290, "2025": 300, "2026": 300}, "Kia EV6 RWD": {"2022": 290}, "Kia EV6 Standard Range RWD": {"2023": 280, "2024": 290, "2025": 290, "2026": 290}, "Kia EV9 GT": {"2026": 430}, "Kia EV9 Long Range AWD": {"2024": 410, "2025": 410, "2026": 400}, "Kia EV9 Long Range AWD GT-Line": {"2024": 420, "2025": 420, "2026": 410}, "Kia EV9 Long Range RWD": {"2024": 380, "2025": 380, "2026": 380}, "Kia EV9 Standard Range RWD": {"2024": 380, "2025": 380, "2026": 380}, "Kia Niro Electric": {"2022": 300, "2023": 290, "2024": 290, "2025": 300, "2026": 300}, "Lexus RZ 300e": {"2024": 290, "2025": 290}, "Lexus RZ 350e FWD": {"2026": 280}, "Lexus RZ 450e AWD": {"2023": 340, "2024": 335, "2025": 330, "2026": 323}, "Lexus RZ 550e AWD": {"2026": 350}, "Lordstown Endurance": {"2023": 700}, "Lucid Air Dream P AWD w/19 inch wheels": {"2022": 290}, "Lucid Air Dream P AWD w/21 inch wheels": {"2022": 300}, "Lucid Air Dream R AWD w/19 inch wheels": {"2022": 270}, "Lucid Air Dream R AWD w/21 inch wheels": {"2022": 290}, "Lucid Air G Touring AWD w/19 inch wheels": {"2022": 260}, "Lucid Air G Touring AWD w/21 inch wheels": {"2022": 280}, "Lucid Air G Touring XR AWD with 19 inch wheels": {"2023": 260, "2025": 260}, "Lucid Air G Touring XR AWD with 20 inch wheels": {"2023": 280, "2024": 280, "2025": 280, "2026": 280}, "Lucid Air G Touring XR AWD with 21 inch wheels": {"2023": 280, "2024": 300, "2025": 300, "2026": 300}, "Lucid Air G Touring XR AWD with19 inch wheels": {"2024": 260, "2026": 260}, "Lucid Air GT P AWD with 21 inch wheels": {"2023": 300}, "Lucid Air Pure AWD with 19 inch wheels": {"2023": 240}, "Lucid Air Pure AWD with 20 inch wheels": {"2023": 280}, "Lucid Air Pure RWD with 19 inch wheels": {"2024": 250, "2025": 230, "2026": 230}, "Lucid Air Pure RWD with 20 inch wheels": {"2024": 260, "2025": 260, "2026": 260}, "Lucid Air Sapphire AWD": {"2024": 320, "2025": 320, "2026": 320}, "Lucid Air Touring AWD with 19 inch wheels": {"2023": 240, "2024": 250, "2025": 260, "2026": 250}, "Lucid Air Touring AWD with 20 inch wheels": {"2023": 280, "2024": 270, "2025": 280, "2026": 270}, "Lucid Air Touring AWD with 21 inch wheels": {"2023": 280, "2025": 290}, "Lucid Air Touring AWD with 21inch wheels": {"2024": 290}, "Lucid Gravity Dream w/20F21R wheels": {"2026": 340}, "Lucid Gravity Dream w/21F22R wheels": {"2026": 380}, "Lucid Gravity Dream w/22F23R wheels": {"2026": 380}, "Lucid Gravity GT w/20F21R wheels": {"2025": 315, "2026": 315}, "Lucid Gravity GT w/21F22R wheels": {"2025": 350, "2026": 350}, "Lucid Gravity GT w/22F23R wheels": {"2025": 350, "2026": 350}, "Lucid Gravity Touring w/20F21R wheels": {"2026": 300}, "MINI Cooper SE Hardtop 2 door": {"2022": 310, "2023": 310, "2024": 310}, "MINI Countryman SE ALL4": {"2025": 360, "2026": 360}, "Maserati Grancabrio Folgore": {"2024": 410, "2025": 410}, "Maserati Granturismo Folgore": {"2024": 390, "2025": 410}, "Maserati Grecale Folgore": {"2025": 495}, "Mazda MX-30": {"2022": 370, "2023": 370}, "Mercedes-Benz AMG EQE 4matic Plus": {"2024": 460, "2025": 470, "2026": 470}, "Mercedes-Benz AMG EQS 4matic Plus": {"2022": 440, "2024": 410, "2025": 430}, "Mercedes-Benz CLA250 Plus with EQ Tech": {"2026": 290}, "Mercedes-Benz CLA350 4matic with EQ Tech": {"2026": 290}, "Mercedes-Benz EQB 250 Plus": {"2024": 310, "2025": 310}, "Mercedes-Benz EQB 300 4matic": {"2022": 330, "2024": 390, "2025": 390}, "Mercedes-Benz EQB 350 4matic": {"2022": 350, "2024": 390, "2025": 390}, "Mercedes-Benz EQE 320 4matic": {"2026": 405}, "Mercedes-Benz EQE 320 Plus": {"2026": 360}, "Mercedes-Benz EQE 350 4matic": {"2024": 385, "2025": 405}, "Mercedes-Benz EQE 350 Plus": {"2024": 355, "2025": 360}, "Mercedes-Benz EQE 500 4matic": {"2024": 370, "2025": 410}, "Mercedes-Benz EQS 400 4matic": {"2026": 430}, "Mercedes-Benz EQS 450 4matic": {"2023": 370, "2024": 380, "2025": 400, "2026": 370}, "Mercedes-Benz EQS 450 Plus": {"2022": 350, "2023": 390, "2024": 370, "2025": 375, "2026": 340}, "Mercedes-Benz EQS 550 4matic": {"2026": 420}, "Mercedes-Benz EQS 580 4matic": {"2022": 360, "2023": 420, "2024": 380, "2025": 390, "2026": 360}, "Mercedes-Benz EQS 680 4matic Maybach": {"2024": 430, "2025": 440, "2026": 400}, "Mercedes-Benz G 580 with EQ Technology": {"2025": 540, "2026": 540}, "Nissan ARIYA ENG Plus/EVO Plus e-4ORCE 87kWh": {"2023": 370}, "Nissan ARIYA ENGAGE FWD 63kWh": {"2023": 330, "2024": 330}, "Nissan ARIYA ENGAGE e-4ORCE 63kWh": {"2023": 350, "2024": 350}, "Nissan ARIYA ENGAGE+/EVOLVE+ e-4ORCE 87kWh": {"2024": 370, "2025": 370}, "Nissan ARIYA EVO Plus/EMP Plus/PRM FWD 87kWh": {"2023": 340}, "Nissan ARIYA EVOLVE+ FWD 87kWh": {"2025": 340}, "Nissan ARIYA EVOLVE+/EMPOWER+ FWD 87kWh": {"2024": 340}, "Nissan ARIYA FWD 63kWh": {"2025": 330, "2026": 330}, "Nissan ARIYA FWD 87kWh": {"2026": 340}, "Nissan ARIYA PLAT Plus e-4ORCE 87kWh 19": {"2023": 370}, "Nissan ARIYA PLAT Plus e-4ORCE 87kWh 20": {"2023": 390}, "Nissan ARIYA PLATINUM+ e-4ORCE 87kWh 19in. Wheels": {"2024": 370, "2025": 370, "2026": 370}, "Nissan ARIYA PLATINUM+ e-4ORCE 87kWh 20in. Wheels": {"2024": 390, "2025": 390}, "Nissan ARIYA VENTURE Plus FWD 87kWh": {"2023": 330, "2024": 330}, "Nissan ARIYA e-4ORCE 63kWh": {"2025": 350, "2026": 350}, "Nissan ARIYA e-4ORCE 87kWh": {"2026": 370}, "Nissan LEAF": {"2023": 300, "2024": 300, "2025": 300}, "Nissan LEAF 75kWh": {"2026": 303}, "Nissan LEAF SV": {"2023": 310, "2024": 310, "2025": 310}, "Nissan Leaf": {"2022": 305}, "Nissan Leaf SV/SL": {"2022": 320}, "Polestar 2 BST edition": {"2023": 360}, "Polestar 2 Dual Motor": {"2022": 380, "2023": 340, "2024": 325, "2025": 345}, "Polestar 2 Dual Motor Perf Pack": {"2023": 340}, "Polestar 2 Dual Motor Performance Pack": {"2024": 350, "2025": 370}, "Polestar 2 Single Motor": {"2022": 310, "2023": 310, "2024": 295, "2025": 305}, "Polestar 3 Long Range Dual Motor": {"2025": 396, "2026": 400}, "Polestar 3 Long Range Dual Motor Performance Pack": {"2025": 440, "2026": 420}, "Polestar 3 Long Range Single Motor": {"2025": 360, "2026": 350}, "Polestar 4 Long Range Dual Motor": {"2025": 410, "2026": 400}, "Polestar 4 Long Range Dual Motor Performance": {"2026": 440}, "Polestar 4 Long Range Single Motor": {"2025": 370, "2026": 350}, "Porsche Macan 4 Electric": {"2024": 340, "2025": 340}, "Porsche Macan 4S Electric": {"2025": 370}, "Porsche Macan Electric": {"2025": 340}, "Porsche Macan Turbo Electric": {"2024": 370, "2025": 370}, "Porsche Taycan 4 Cross Turismo": {"2022": 440, "2023": 420, "2024": 420, "2025": 420, "2026": 420}, "Porsche Taycan 4 Perf Battery Plus": {"2025": 390, "2026": 390}, "Porsche Taycan 4S Cross Turismo": {"2022": 450, "2023": 430, "2024": 430, "2025": 420, "2026": 420}, "Porsche Taycan 4S Perf Battery": {"2022": 420}, "Porsche Taycan 4S Perf Battery Plus": {"2022": 430, "2023": 420, "2025": 390, "2026": 390}, "Porsche Taycan 4S Perf Battery Plus 19 inch Wheels": {"2025": 360}, "Porsche Taycan 4S Perf Battery Plus 19in All-Season": {"2026": 360}, "Porsche Taycan 4S Performance Battery": {"2023": 400, "2024": 410, "2025": 380, "2026": 380}, "Porsche Taycan 4S Performance Battery Plus": {"2024": 420}, "Porsche Taycan GTS": {"2022": 410, "2023": 410, "2024": 410, "2025": 390, "2026": 390}, "Porsche Taycan GTS ST": {"2022": 420}, "Porsche Taycan GTS Sport Turismo": {"2023": 420, "2024": 420, "2025": 410, "2026": 410}, "Porsche Taycan Perf Battery": {"2022": 420}, "Porsche Taycan Perf Battery Plus": {"2022": 450, "2023": 410, "2025": 370}, "Porsche Taycan Performance Battery": {"2023": 410, "2024": 410, "2025": 370, "2026": 370}, "Porsche Taycan Performance Battery Plus": {"2024": 410}, "Porsche Taycan Turbo": {"2022": 460, "2023": 420, "2024": 420, "2025": 390, "2026": 390}, "Porsche Taycan Turbo 21in Aero-Design wheel": {"2025": 360}, "Porsche Taycan Turbo Cross Turismo": {"2022": 470, "2023": 420, "2024": 430, "2025": 430, "2026": 430}, "Porsche Taycan Turbo GT": {"2025": 410, "2026": 410}, "Porsche Taycan Turbo GT with Weissach Package": {"2025": 420, "2026": 420}, "Porsche Taycan Turbo S": {"2022": 480, "2023": 450, "2024": 450, "2025": 430, "2026": 430}, "Porsche Taycan Turbo S 21in Aero-Design wheel": {"2025": 380}, "Porsche Taycan Turbo S Cross Turismo": {"2022": 460, "2023": 450, "2024": 450, "2025": 440, "2026": 440}, "Rivian R1S": {"2022": 490, "2023": 493}, "Rivian R1S 20 inch All-Terrain": {"2023": 540}, "Rivian R1S 20 inch All-Terrain Dual Large": {"2023": 490}, "Rivian R1S 20 inch All-Terrain Performance Dual Large": {"2023": 490}, "Rivian R1S 21 inch Dual Large": {"2023": 430}, "Rivian R1S 21 inch Performance Dual Large": {"2023": 430}, "Rivian R1S 22 inch Dual Large": {"2023": 450}, "Rivian R1S 22 inch Performance Dual Large": {"2023": 450}, "Rivian R1S AT Performance Dual Standard Plus": {"2024": 520}, "Rivian R1S All-Terrain Dual Large": {"2024": 490, "2025": 440, "2026": 440}, "Rivian R1S All-Terrain Dual Large Plus": {"2025": 470, "2026": 470}, "Rivian R1S All-Terrain Dual Max": {"2024": 460, "2025": 430, "2026": 430}, "Rivian R1S All-Terrain Dual Standard Plus": {"2024": 520}, "Rivian R1S All-Terrain Performance  Dual Max": {"2025": 430, "2026": 430}, "Rivian R1S All-Terrain Performance Dual Large": {"2024": 490, "2025": 440, "2026": 440}, "Rivian R1S All-Terrain Performance Dual Large Plus": {"2025": 470, "2026": 470}, "Rivian R1S All-Terrain Performance Dual Max": {"2024": 460}, "Rivian R1S All-Terrain Quad Large": {"2024": 540}, "Rivian R1S All-Terrain Tri Max": {"2025": 500, "2026": 500}, "Rivian R1S Dual Large": {"2024": 440, "2025": 410, "2026": 410}, "Rivian R1S Dual Large Plus": {"2025": 420, "2026": 420}, "Rivian R1S Dual Max": {"2024": 420, "2025": 410, "2026": 410}, "Rivian R1S Dual Standard": {"2024": 465, "2025": 415, "2026": 415}, "Rivian R1S Dual Standard Plus": {"2024": 455}, "Rivian R1S Performance Dual Large": {"2024": 440, "2025": 410, "2026": 410}, "Rivian R1S Performance Dual Large Plus": {"2025": 420, "2026": 420}, "Rivian R1S Performance Dual Max": {"2024": 420, "2025": 410, "2026": 410}, "Rivian R1S Performance Dual Standard": {"2024": 470}, "Rivian R1S Performance Dual Standard Plus": {"2024": 440}, "Rivian R1S Quad Large": {"2024": 493}, "Rivian R1S Quad Max": {"2026": 470}, "Rivian R1S Tri Max": {"2025": 450, "2026": 450}, "Rivian R1T": {"2022": 480, "2023": 490}, "Rivian R1T 21 inch Dual Large": {"2023": 430}, "Rivian R1T 21 inch Performance Dual Large": {"2023": 430}, "Rivian R1T 22 inch Dual Large": {"2023": 440}, "Rivian R1T 22 inch Performance Dual Large": {"2023": 440}, "Rivian R1T AT Performance Dual Standard Plus": {"2024": 520}, "Rivian R1T All-Terrain Dual Large": {"2024": 490, "2025": 440, "2026": 440}, "Rivian R1T All-Terrain Dual Large Plus": {"2025": 470, "2026": 470}, "Rivian R1T All-Terrain Dual Max": {"2024": 460, "2025": 430, "2026": 430}, "Rivian R1T All-Terrain Dual Standard Plus": {"2024": 520}, "Rivian R1T All-Terrain Performance Dual Large": {"2024": 490, "2025": 440, "2026": 440}, "Rivian R1T All-Terrain Performance Dual Large Plus": {"2025": 470, "2026": 470}, "Rivian R1T All-Terrain Performance Dual Max": {"2024": 460, "2025": 430, "2026": 430}, "Rivian R1T All-Terrain Quad Large": {"2024": 540}, "Rivian R1T All-Terrain Tri Max": {"2025": 500, "2026": 500}, "Rivian R1T Dual Large": {"2024": 435, "2025": 410, "2026": 410}, "Rivian R1T Dual Large Plus": {"2025": 420, "2026": 420}, "Rivian R1T Dual Max": {"2024": 415, "2025": 405, "2026": 405}, "Rivian R1T Dual Standard": {"2024": 465, "2025": 415, "2026": 415}, "Rivian R1T Dual Standard Plus": {"2024": 455}, "Rivian R1T Performance Dual Large": {"2024": 435, "2025": 410, "2026": 410}, "Rivian R1T Performance Dual Large Plus": {"2025": 420, "2026": 420}, "Rivian R1T Performance Dual Max": {"2024": 415, "2025": 405, "2026": 405}, "Rivian R1T Performance Dual Standard Plus": {"2024": 455}, "Rivian R1T Quad Large": {"2024": 490}, "Rivian R1T Quad Max": {"2026": 470}, "Rivian R1T Tri Max": {"2025": 450, "2026": 450}, "Rolls-Royce Spectre": {"2024": 430, "2025": 460, "2026": 460}, "Rolls-Royce Spectre Black Badge": {"2024": 445, "2025": 465, "2026": 465}, "Subaru Solterra 20 AWD": {"2026": 290}, "Subaru Solterra AWD": {"2023": 310, "2024": 320, "2025": 320, "2026": 280}, "Subaru Solterra Limited/Touring AWD": {"2023": 320, "2024": 330, "2025": 330}, "Tesla Cybertruck AWD": {"2025": 430, "2026": 430}, "Tesla Cybertruck Long Range": {"2025": 420, "2026": 430}, "Tesla Model 3 Long Range AWD": {"2022": 260, "2023": 260, "2024": 260, "2025": 260}, "Tesla Model 3 Long Range AWD-E": {"2024": 260}, "Tesla Model 3 Long Range RWD": {"2024": 250, "2025": 250}, "Tesla Model 3 Long Range RWD-I": {"2025": 260}, "Tesla Model 3 Performance": {"2026": 300}, "Tesla Model 3 Performance AWD": {"2022": 300, "2023": 300, "2024": 300, "2025": 310, "2026": 300}, "Tesla Model 3 Premium AWD": {"2026": 260}, "Tesla Model 3 Premium RWD": {"2026": 250}, "Tesla Model 3 RWD": {"2022": 250, "2023": 250, "2024": 250}, "Tesla Model 3 Standard RWD": {"2026": 240}, "Tesla Model S": {"2022": 280, "2023": 280, "2024": 280, "2025": 270, "2026": 270}, "Tesla Model S Plaid": {"2022": 310, "2024": 330, "2025": 340, "2026": 335}, "Tesla Model X": {"2022": 330, "2023": 330, "2024": 340, "2025": 340, "2026": 320}, "Tesla Model X Plaid": {"2022": 355, "2023": 355, "2024": 360, "2025": 370, "2026": 340}, "Tesla Model Y AWD": {"2022": 280, "2023": 280}, "Tesla Model Y Long Range AWD": {"2022": 280, "2023": 280, "2024": 290, "2025": 290, "2026": 270}, "Tesla Model Y Long Range AWD-I": {"2024": 290}, "Tesla Model Y Long Range RWD": {"2024": 280, "2025": 270, "2026": 250}, "Tesla Model Y Performance AWD": {"2022": 300, "2023": 300, "2024": 320, "2025": 320, "2026": 320}, "Tesla Model Y RWD": {"2022": 260, "2024": 280}, "Tesla Model Y Standard RWD": {"2026": 250}, "Toyota bZ": {"2026": 260}, "Toyota bZ AWD": {"2026": 280}, "Toyota bZ AWD LIMITED": {"2026": 290}, "Toyota bZ LIMITED": {"2026": 270}, "Toyota bZ4X": {"2023": 280, "2024": 280, "2025": 280}, "Toyota bZ4X AWD": {"2023": 320, "2024": 320, "2025": 315}, "Toyota bZ4X LIMITED": {"2023": 300, "2025": 300}, "Toyota bZ4X LIMITED AWD": {"2023": 330, "2025": 320}, "Toyota bZ4X Limited": {"2024": 300}, "Toyota bZ4X Limited AWD": {"2024": 330}, "Vinfast VF 6 Plus": {"2025": 400}, "Vinfast VF 7 Plus": {"2025": 440}, "Vinfast VF 8 Eco": {"2023": 390, "2025": 460}, "Vinfast VF 8 Plus": {"2023": 420, "2025": 440}, "Vinfast VF 9 Eco": {"2024": 450}, "Vinfast VF 9 Plus": {"2024": 490, "2025": 500}, "Volkswagen ID. Buzz": {"2025": 410}, "Volkswagen ID. Buzz 4motion": {"2025": 420}, "Volkswagen ID.4": {"2023": 310, "2024": 320, "2025": 320, "2026": 300}, "Volkswagen ID.4 AWD": {"2026": 330}, "Volkswagen ID.4 AWD Pro": {"2022": 330, "2023": 340, "2024": 330, "2025": 330}, "Volkswagen ID.4 AWD Pro S": {"2022": 350, "2023": 340, "2024": 330, "2025": 330}, "Volkswagen ID.4 Pro": {"2022": 320, "2023": 320, "2024": 300, "2025": 300}, "Volkswagen ID.4 Pro S": {"2022": 330, "2023": 320, "2024": 300, "2025": 300}, "Volkswagen ID.4 S": {"2023": 310, "2024": 320, "2025": 320}, "Volvo C40 Recharge": {"2024": 310}, "Volvo C40 Recharge twin": {"2022": 390, "2023": 390, "2024": 340}, "Volvo EC40": {"2025": 320, "2026": 320}, "Volvo EC40 Twin": {"2025": 350, "2026": 350}, "Volvo EX30 Cross Country": {"2026": 360}, "Volvo EX30 Single Motor extended range": {"2025": 295}, "Volvo EX30 Single motor extended range": {"2026": 290}, "Volvo EX30 Twin Performance": {"2025": 310, "2026": 310}, "Volvo EX40": {"2025": 320, "2026": 320}, "Volvo EX40 Twin": {"2025": 360, "2026": 360}, "Volvo EX90": {"2026": 355}, "Volvo EX90 Twin Motor": {"2025": 410, "2026": 385}, "Volvo EX90 Twin Motor Performance": {"2025": 410, "2026": 385}, "Volvo XC40 Recharge": {"2024": 320}, "Volvo XC40 Recharge twin": {"2022": 390, "2023": 390, "2024": 340}};
+
+function initDropdowns() {
+  const models = Object.keys(evDatabase).sort((a, b) => a.localeCompare(b));
+  let modelOpts = '<option value="average">Average EV</option>';
+  models.forEach(m => modelOpts += `<option value="${m}">${m}</option>`);
+  
+  document.querySelectorAll('.ev-model-select').forEach(el => el.innerHTML = modelOpts);
+  const states = Object.keys(gasData).sort();
+  let stateOpts = '';
+  states.forEach(s => { stateOpts += `<option value=\"${s}\" ${s==='California'?'selected':''}>${s}</option>`; });
+  document.getElementById('state-select-p').innerHTML = stateOpts;
+  
+  updateYears(true);
+}
+
+function updateYears(isInit = false) {
+  const model = document.querySelector('.ev-model-select').value;
+  
+  document.querySelectorAll('.ev-year-select').forEach(yearSel => {
+    if (model === 'average') {
+      yearSel.innerHTML = '<option value="275">N/A</option>';
+      yearSel.disabled = true;
+    } else {
+      yearSel.disabled = false;
+      const years = Object.keys(evDatabase[model]).sort((a, b) => b - a);
+      let yearOpts = '';
+      years.forEach(y => yearOpts += `<option value="${evDatabase[model][y]}">${y}</option>`);
+      yearSel.innerHTML = yearOpts;
+    }
+  });
+
+  if (!isInit) handleYearChange(document.querySelector('.ev-year-select').value);
+}
+
+
+
+
+
+// ═══════════════════════════════════════════════
+//  PAYBACK CALCULATOR
+// ═══════════════════════════════════════════════
+
+function updatePayback() {
+  const miles = parseFloat(document.getElementById('input-miles').value) || 0;
+  const gasIns = parseFloat(document.getElementById('input-gas-ins').value) || 0;
+  const evIns = parseFloat(document.getElementById('input-ev-ins').value) || 0;
+  const tradeIn = parseFloat(document.getElementById('input-trade-in').value) || 0;
+  const evCost = parseFloat(document.getElementById('input-ev-cost').value) || 0;
+
+    const elecPrice = getElecPrice(currentStateP, currentCharging);
+  const gradeData = gasData[currentStateP];
+  if (!elecPrice || !gradeData) return;
+  const gasPrice = gradeData[currentGrade];
+  if (!gasPrice) return;
+
+  const gasCostPerMile = gasPrice / currentMpg;
+  const evCostPerMile = ((currentEff / 1000) * elecPrice) / 0.9;
+
+  const annualGasFuel = miles * gasCostPerMile;
+  const annualEvFuel = miles * evCostPerMile;
+
+  const annualGasMaint = miles * 0.09585;
+  const annualEvMaint = miles * 0.0794;
+  
+  const chargerCost = parseFloat(document.getElementById('input-charger-cost').value) || 0;
+
+  const annualGasTotal = annualGasFuel + gasIns + annualGasMaint;
+  const annualEvTotal = annualEvFuel + evIns + annualEvMaint;
+
+  const annualSavings = annualGasTotal - annualEvTotal;
+  const upfrontCost = Math.max(0, (evCost + chargerCost) - tradeIn);
+
+  let paybackText = '—';
+  let paybackSub = '';
+  if (upfrontCost === 0) {
+    paybackText = 'Immediate';
+    paybackSub = 'EV costs less than trade-in';
+  } else if (annualSavings > 0) {
+    const years = upfrontCost / annualSavings;
+    paybackText = years.toFixed(1) + ' yrs';
+    paybackSub = `to recoup $${upfrontCost.toLocaleString()}`;
+  } else {
+    paybackText = 'Never';
+    paybackSub = 'EV costs more annually';
+  }
+
+  const f0 = v => '$' + Math.round(v).toLocaleString();
+
+  document.getElementById('payback-stats').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-label">Gas Annual Cost</div>
+      <div class="stat-val">${f0(annualGasTotal)}</div>
+      <div class="stat-sub">Fuel: ${f0(annualGasFuel)} | Ins: ${f0(gasIns)} | Maint: ${f0(annualGasMaint)}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">EV Annual Cost</div>
+      <div class="stat-val">${f0(annualEvTotal)}</div>
+      <div class="stat-sub">Fuel: ${f0(annualEvFuel)} | Ins: ${f0(evIns)} | Maint: ${f0(annualEvMaint)}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Net Annual Savings</div>
+      <div class="stat-val" style="color: ${annualSavings >= 0 ? '#5a9932' : '#993C1D'}">
+        ${annualSavings >= 0 ? '+' : ''}${f0(annualSavings)}
+      </div>
+      <div class="stat-sub">Gas cost minus EV cost</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Payback Period</div>
+      <div class="stat-val" style="font-size:1.6rem">${paybackText}</div>
+      <div class="stat-sub">${paybackSub}</div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════
+//  MAP INIT (D3 + TopoJSON)
+// ═══════════════════════════════════════════════
+const tooltip = document.getElementById('tooltip');
+
+d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(us => {
+  initDropdowns();
+  const container = document.getElementById('map-container');
+  const w = container.clientWidth || 800;
+  const h = Math.round(w * 0.60);
+
+  const svg = d3.select(container).append('svg')
+    .attr('viewBox', `0 0 ${w} ${h}`)
+    .attr('width', '100%');
+
+  const proj = d3.geoAlbersUsa()
+    .scale(w * 1.25)
+    .translate([w / 2, h / 2]);
+
+  const path = d3.geoPath(proj);
+
+  pathsSel = svg.append('g').selectAll('path')
+    .data(topojson.feature(us, us.objects.states).features)
+    .join('path')
+    .attr('d', path)
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 0.6)
+    .attr('fill', d => getFill(stateMap[d.properties.name]))
+    .style('cursor', 'pointer')
+    .on('mousemove', function(event, d) {
+      const sd = stateMap[d.properties.name];
+      if (!sd) return;
+
+      const priceLabel = currentCharging === 'home' ? 'Home elec.' : 'Public charger';
+      const priceDisp  = currentCharging === 'home'
+        ? (sd.elecPrice * 100).toFixed(2) + '¢/kWh'
+        : '$' + sd.elecPrice.toFixed(3) + '/kWh';
+
+      const savAbs   = Math.abs(sd.savings);
+      const savSign  = sd.savings >= 0 ? '+' : '';
+      const savClass = sd.savings >= 0 ? 'tt-green' : 'tt-red';
+      const savLabel = sd.savings >= 0 ? 'EV saves' : 'Gas saves';
+
+      tooltip.style.display = 'block';
+      tooltip.style.left    = (event.clientX + 16) + 'px';
+      tooltip.style.top     = (event.clientY - 10) + 'px';
+      tooltip.innerHTML = `
+        <div class="tt-title">${sd.name}</div>
+        <div class="tt-row">
+          <span class="tt-label">${priceLabel}</span>
+          <span class="tt-val">${priceDisp}</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-label">Gas (${currentGrade})</span>
+          <span class="tt-val">$${sd.gasPrice.toFixed(3)}/gal</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-label">EV cost/100 mi</span>
+          <span class="tt-val">$${sd.evCost100.toFixed(2)}</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-label">Gas cost/100 mi</span>
+          <span class="tt-val">$${sd.gasCost100.toFixed(2)}</span>
+        </div>
+        <div class="tt-row" style="border-top:1px solid rgba(255,255,255,.15);margin-top:5px;padding-top:5px;">
+          <span class="tt-label">${savLabel}</span>
+          <span class="tt-val ${savClass}">${savSign}$${savAbs.toFixed(2)}/100 mi</span>
+        </div>
+      `;
+    })
+    .on('mouseleave', () => { tooltip.style.display = 'none'; });
+
+  renderLegend();
+  renderStatCards();
+  renderExplainerCards();
+
+  // ── CO2 Map ──
+  const co2Container = document.getElementById('co2-map-container');
+  const co2w = co2Container.clientWidth || 800;
+  const co2h = Math.round(co2w * 0.60);
+
+  const co2svg = d3.select(co2Container).append('svg')
+    .attr('viewBox', `0 0 ${co2w} ${co2h}`)
+    .attr('width', '100%');
+
+  const co2proj = d3.geoAlbersUsa()
+    .scale(co2w * 1.25)
+    .translate([co2w / 2, co2h / 2]);
+
+  const co2path = d3.geoPath(co2proj);
+
+  co2PathsSel = co2svg.append('g').selectAll('path')
+    .data(topojson.feature(us, us.objects.states).features)
+    .join('path')
+    .attr('d', co2path)
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 0.6)
+    .attr('fill', d => getCO2Fill(co2StateMap[d.properties.name]))
+    .style('cursor', 'pointer')
+    .on('mousemove', function(event, d) {
+      const cd = co2StateMap[d.properties.name];
+      if (!cd) return;
+
+      const avSign  = cd.avoided >= 0 ? '+' : '';
+      const avClass = cd.avoided >= 0 ? 'tt-green' : 'tt-red';
+      const avLabel = cd.avoided >= 0 ? 'CO₂ avoided' : 'Extra CO₂';
+
+      tooltip.style.display = 'block';
+      tooltip.style.left    = (event.clientX + 16) + 'px';
+      tooltip.style.top     = (event.clientY - 10) + 'px';
+      tooltip.innerHTML = `
+        <div class="tt-title">${cd.name}</div>
+        <div class="tt-row">
+          <span class="tt-label">Grid intensity</span>
+          <span class="tt-val">${cd.gridIntensity.toFixed(0)} gCO₂/kWh</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-label">Gas CO₂/100 mi</span>
+          <span class="tt-val">${cd.gasCO2.toFixed(1)} kg</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-label">EV CO₂/100 mi</span>
+          <span class="tt-val">${cd.evCO2.toFixed(1)} kg</span>
+        </div>
+        <div class="tt-row" style="border-top:1px solid rgba(255,255,255,.15);margin-top:5px;padding-top:5px;">
+          <span class="tt-label">${avLabel}</span>
+          <span class="tt-val ${avClass}">${avSign}${cd.avoided.toFixed(1)} kg/100 mi</span>
+        </div>
+      `;
+    })
+    .on('mouseleave', () => { tooltip.style.display = 'none'; });
+
+  renderCO2Legend();
+  renderCO2StatCards();
+});
+</script>
+</body>
+</html>
