@@ -1,0 +1,7 @@
+{
+  "updated": "2026-04-22",
+  "source": "AAA",
+  "states": [
+    { "state": "Alabama", "gas_regular": 3.00, "gas_mid": 3.30, "gas_premium": 3.60, "gas_diesel": 3.90 }
+  ]
+}
