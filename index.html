@@ -836,7 +836,6 @@ function refreshCO2Map() {
     if (d) co2StateMap[state] = d;
   });
 }
-refreshCO2Map();
 
 function co2ToColor(avoided) {
   if (avoided == null) return CO2_COLORS.no_data;
@@ -1221,6 +1220,7 @@ async function bootstrap() {
 // ═══════════════════════════════════════════════
 function initApp() {
 refreshStateMap();
+refreshCO2Map();
 const tooltip = document.getElementById('tooltip');
 
 d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(us => {
