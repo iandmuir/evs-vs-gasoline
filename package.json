@@ -6,6 +6,6 @@
   "engines": { "node": ">=20" },
   "scripts": {
     "update": "node scripts/update-data.js",
-    "test": "node --test scripts/test"
+    "test": "node --test scripts/test/*.test.js"
   }
 }
