@@ -686,7 +686,6 @@ function refreshStateMap() {
     if (d) stateMap[state] = d;
   });
 }
-refreshStateMap();
 
 // ═══════════════════════════════════════════════
 //  COLOR LOGIC
@@ -1188,7 +1187,7 @@ async function bootstrap() {
   try {
     const [dataRes, evRes] = await Promise.all([
       fetch("./data.json", { cache: "no-cache" }),
-      fetch("./ev-database.json", { cache: "no-cache" })
+      fetch("./ev-database.json")
     ]);
     if (!dataRes.ok || !evRes.ok) {
       throw new Error(`Data fetch failed: data=${dataRes.status}, ev=${evRes.status}`);
@@ -1217,12 +1216,11 @@ async function bootstrap() {
   }
 }
 
-bootstrap();
-
 // ═══════════════════════════════════════════════
 //  MAP INIT (D3 + TopoJSON)
 // ═══════════════════════════════════════════════
 function initApp() {
+refreshStateMap();
 const tooltip = document.getElementById('tooltip');
 
 d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(us => {
@@ -1356,6 +1354,8 @@ d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(us => {
   renderCO2StatCards();
 });
 } // end initApp()
+
+bootstrap();
 </script>
 </body>
 </html>
