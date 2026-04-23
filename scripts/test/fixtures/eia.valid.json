@@ -1,0 +1,518 @@
+{
+  "response": {
+    "data": [
+      {
+        "period": "2026-02",
+        "stateid": "AL",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "AL",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "AK",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "AK",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "AZ",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "AZ",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "AR",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "AR",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "CA",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "CA",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "CO",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "CO",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "CT",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "CT",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "DE",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "DE",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "DC",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "DC",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "FL",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "FL",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "GA",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "GA",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "HI",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "HI",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "ID",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "ID",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "IL",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "IL",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "IN",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "IN",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "IA",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "IA",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "KS",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "KS",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "KY",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "KY",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "LA",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "LA",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "ME",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "ME",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "MD",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "MD",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "MA",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "MA",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "MI",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "MI",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "MN",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "MN",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "MS",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "MS",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "MO",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "MO",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "MT",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "MT",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "NE",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "NE",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "NV",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "NV",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "NH",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "NH",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "NJ",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "NJ",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "NM",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "NM",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "NY",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "NY",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "NC",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "NC",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "ND",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "ND",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "OH",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "OH",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "OK",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "OK",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "OR",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "OR",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "PA",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "PA",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "RI",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "RI",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "SC",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "SC",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "SD",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "SD",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "TN",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "TN",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "TX",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "TX",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "UT",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "UT",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "VT",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "VT",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "VA",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "VA",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "WA",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "WA",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "WV",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "WV",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "WI",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "WI",
+        "price": 15.8
+      },
+      {
+        "period": "2026-02",
+        "stateid": "WY",
+        "price": 16.06
+      },
+      {
+        "period": "2026-01",
+        "stateid": "WY",
+        "price": 15.8
+      }
+    ],
+    "description": "Electric Power Monthly Table 5.6.A",
+    "units": "cents per kilowatthour"
+  }
+}
