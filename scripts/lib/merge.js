@@ -22,6 +22,8 @@ export function merge(prev, feedResults, now) {
 }
 
 // Compare only the states subtree; meta changes don't count as real changes.
+// Key order in JSON.stringify is insertion-order-stable for plain objects
+// parsed from JSON; this is sufficient for data.json-shaped state blocks.
 export function statesChanged(prev, next) {
   return JSON.stringify(prev.states) !== JSON.stringify(next.states);
 }

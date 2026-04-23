@@ -104,3 +104,76 @@ test("statesChanged ignores meta differences", () => {
   b.meta.generatedAt = "2099-01-01T00:00:00Z";
   assert.equal(statesChanged(a, b), false);
 });
+
+test("merge leaves untouched states unchanged when feed covers only some states", () => {
+  // Build a prev with two states
+  const prev = {
+    meta: { generatedAt: "2026-04-20T13:00:00Z", pipelineVersion: "1.0.0", feedsRefreshedThisRun: [] },
+    constants: {},
+    states: {
+      Alabama: {
+        stateCode: "AL",
+        gasPrices: { regular: 3.00, midGrade: 3.30, premium: 3.60, diesel: 3.90, updated: "2026-04-18", source: "AAA" }
+      },
+      Alaska: {
+        stateCode: "AK",
+        gasPrices: { regular: 4.00, midGrade: 4.30, premium: 4.60, diesel: 4.90, updated: "2026-04-18", source: "AAA" }
+      }
+    }
+  };
+
+  const now = new Date("2026-04-22T13:00:00Z");
+  // Feed only covers Alabama (not Alaska)
+  const feedResults = [{
+    status: "ok",
+    name: "gas",
+    targetKey: "gasPrices",
+    sourceLabel: "AAA",
+    stateBlocks: {
+      Alabama: { regular: 3.50, midGrade: 3.80, premium: 4.10, diesel: 4.40 }
+    }
+  }];
+
+  const next = merge(prev, feedResults, now);
+  // Alabama should be updated
+  assert.equal(next.states.Alabama.gasPrices.regular, 3.50);
+  assert.equal(next.states.Alabama.gasPrices.updated, "2026-04-22");
+  // Alaska should be untouched
+  assert.equal(next.states.Alaska.gasPrices.regular, 4.00);
+  assert.equal(next.states.Alaska.gasPrices.updated, "2026-04-18");
+});
+
+test("merge applies multiple ok feeds to different targetKeys independently", () => {
+  const prev = basePrev();
+  const now = new Date("2026-04-22T13:00:00Z");
+  const feedResults = [
+    {
+      status: "ok",
+      name: "gas",
+      targetKey: "gasPrices",
+      sourceLabel: "AAA",
+      stateBlocks: {
+        Alabama: { regular: 3.50, midGrade: 3.80, premium: 4.10, diesel: 4.40 }
+      }
+    },
+    {
+      status: "ok",
+      name: "aaaEv",
+      targetKey: "evChargingPublic",
+      sourceLabel: "AAA",
+      stateBlocks: {
+        Alabama: { usdPerKwh: 0.55 }
+      }
+    }
+  ];
+
+  const next = merge(prev, feedResults, now);
+  // Both feeds applied
+  assert.equal(next.states.Alabama.gasPrices.regular, 3.50);
+  assert.equal(next.states.Alabama.gasPrices.source, "AAA");
+  assert.equal(next.states.Alabama.evChargingPublic.usdPerKwh, 0.55);
+  assert.equal(next.states.Alabama.evChargingPublic.source, "AAA");
+  // The two blocks don't clobber each other
+  assert.equal(next.states.Alabama.gasPrices.updated, "2026-04-22");
+  assert.equal(next.states.Alabama.evChargingPublic.updated, "2026-04-22");
+});
