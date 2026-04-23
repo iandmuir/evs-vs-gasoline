@@ -376,7 +376,7 @@
     </div>
 
     <div class="map-panel">
-      <div id="map-container"></div>
+      <div id="map-container"><div id="data-loader" style="padding:2rem;text-align:center;color:#888;">Loading data…</div></div>
       <div class="legend" id="legend"></div>
     </div>
 
@@ -602,115 +602,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script>
 // ═══════════════════════════════════════════════
-//  DATA
+//  DATA (populated at runtime by bootstrap())
 // ═══════════════════════════════════════════════
 
-// EIA residential electricity prices (¢/kWh) — January 2026
-// Source: EIA Electric Power Monthly, Table 5.6.A
-const elecHomeData = {
-  "Alabama":16.06,"Alaska":25.52,"Arizona":15.61,"Arkansas":12.35,
-  "California":30.29,"Colorado":16.44,"Connecticut":28.30,"Delaware":16.51,
-  "District of Columbia":23.72,"Florida":15.92,"Georgia":14.46,"Hawaii":39.79,
-  "Idaho":12.07,"Illinois":16.36,"Indiana":16.19,"Iowa":12.83,
-  "Kansas":14.29,"Kentucky":12.31,"Louisiana":12.46,"Maine":30.73,
-  "Maryland":20.61,"Massachusetts":31.16,"Michigan":19.52,"Minnesota":14.98,
-  "Mississippi":11.74,"Missouri":11.80,"Montana":12.86,"Nebraska":11.76,
-  "Nevada":13.98,"New Hampshire":26.32,"New Jersey":23.13,"New Mexico":14.70,
-  "New York":28.37,"North Carolina":13.68,"North Dakota":10.92,"Ohio":17.59,
-  "Oklahoma":12.62,"Oregon":14.66,"Pennsylvania":20.19,"Rhode Island":30.14,
-  "South Carolina":15.41,"South Dakota":13.60,"Tennessee":12.30,"Texas":15.69,
-  "Utah":12.88,"Vermont":23.29,"Virginia":15.87,"Washington":13.81,
-  "West Virginia":14.77,"Wisconsin":18.20,"Wyoming":12.85
-};
+let elecHomeData = {};
 
-// AAA public EV charging prices ($/kWh) — March 2026
-const evPublicData = {
-  "Alabama":0.430,"Alaska":0.501,"Arizona":0.435,"Arkansas":0.449,
-  "California":0.468,"Colorado":0.378,"Connecticut":0.397,"Delaware":0.364,
-  "District of Columbia":0.392,"Florida":0.408,"Georgia":0.421,"Hawaii":0.515,
-  "Idaho":0.436,"Illinois":0.422,"Indiana":0.423,"Iowa":0.339,
-  "Kansas":0.293,"Kentucky":0.391,"Louisiana":0.476,"Maine":0.415,
-  "Maryland":0.339,"Massachusetts":0.392,"Michigan":0.393,"Minnesota":0.388,
-  "Mississippi":0.411,"Missouri":0.320,"Montana":0.423,"Nebraska":0.340,
-  "Nevada":0.442,"New Hampshire":0.477,"New Jersey":0.461,"New Mexico":0.373,
-  "New York":0.407,"North Carolina":0.406,"North Dakota":0.436,"Ohio":0.428,
-  "Oklahoma":0.424,"Oregon":0.403,"Pennsylvania":0.431,"Rhode Island":0.404,
-  "South Carolina":0.466,"South Dakota":0.351,"Tennessee":0.426,"Texas":0.409,
-  "Utah":0.331,"Vermont":0.346,"Virginia":0.420,"Washington":0.392,
-  "West Virginia":0.536,"Wisconsin":0.421,"Wyoming":0.420
-};
+let evPublicData = {};
 
-// AAA gasoline prices by grade ($/gallon) — March 2026
-const gasData = {
-  "Alabama":     {"Regular":3.676,"Mid-Grade":4.098,"Premium":4.501,"Diesel":5.248},
-  "Alaska":      {"Regular":4.590,"Mid-Grade":4.865,"Premium":5.089,"Diesel":5.640},
-  "Arizona":     {"Regular":4.682,"Mid-Grade":5.071,"Premium":5.382,"Diesel":6.003},
-  "Arkansas":    {"Regular":3.444,"Mid-Grade":3.896,"Premium":4.250,"Diesel":4.884},
-  "California":  {"Regular":5.887,"Mid-Grade":6.118,"Premium":6.311,"Diesel":7.455},
-  "Colorado":    {"Regular":3.874,"Mid-Grade":4.266,"Premium":4.593,"Diesel":4.916},
-  "Connecticut": {"Regular":3.953,"Mid-Grade":4.480,"Premium":4.895,"Diesel":5.885},
-  "Delaware":    {"Regular":3.876,"Mid-Grade":4.463,"Premium":4.748,"Diesel":5.737},
-  "District of Columbia":{"Regular":4.191,"Mid-Grade":4.736,"Premium":5.117,"Diesel":5.693},
-  "Florida":     {"Regular":4.124,"Mid-Grade":4.578,"Premium":4.903,"Diesel":5.736},
-  "Georgia":     {"Regular":3.625,"Mid-Grade":4.092,"Premium":4.508,"Diesel":5.172},
-  "Hawaii":      {"Regular":5.452,"Mid-Grade":5.670,"Premium":5.905,"Diesel":6.691},
-  "Idaho":       {"Regular":4.267,"Mid-Grade":4.559,"Premium":4.814,"Diesel":5.510},
-  "Illinois":    {"Regular":4.203,"Mid-Grade":4.790,"Premium":5.263,"Diesel":5.147},
-  "Indiana":     {"Regular":3.975,"Mid-Grade":4.527,"Premium":5.022,"Diesel":5.189},
-  "Iowa":        {"Regular":3.282,"Mid-Grade":3.522,"Premium":4.138,"Diesel":4.859},
-  "Kansas":      {"Regular":3.288,"Mid-Grade":3.619,"Premium":3.939,"Diesel":4.559},
-  "Kentucky":    {"Regular":3.784,"Mid-Grade":4.319,"Premium":4.754,"Diesel":5.057},
-  "Louisiana":   {"Regular":3.630,"Mid-Grade":4.041,"Premium":4.431,"Diesel":5.119},
-  "Maine":       {"Regular":3.863,"Mid-Grade":4.420,"Premium":4.885,"Diesel":5.769},
-  "Maryland":    {"Regular":4.014,"Mid-Grade":4.574,"Premium":4.907,"Diesel":5.784},
-  "Massachusetts":{"Regular":3.818,"Mid-Grade":4.387,"Premium":4.787,"Diesel":5.731},
-  "Michigan":    {"Regular":3.915,"Mid-Grade":4.514,"Premium":5.073,"Diesel":5.010},
-  "Minnesota":   {"Regular":3.416,"Mid-Grade":3.849,"Premium":4.341,"Diesel":4.875},
-  "Mississippi": {"Regular":3.608,"Mid-Grade":4.035,"Premium":4.419,"Diesel":5.094},
-  "Missouri":    {"Regular":3.438,"Mid-Grade":3.871,"Premium":4.170,"Diesel":4.617},
-  "Montana":     {"Regular":3.711,"Mid-Grade":4.019,"Premium":4.369,"Diesel":4.794},
-  "Nebraska":    {"Regular":3.369,"Mid-Grade":3.552,"Premium":3.997,"Diesel":4.622},
-  "Nevada":      {"Regular":4.931,"Mid-Grade":5.239,"Premium":5.531,"Diesel":6.159},
-  "New Hampshire":{"Regular":3.801,"Mid-Grade":4.346,"Premium":4.804,"Diesel":5.678},
-  "New Jersey":  {"Regular":3.927,"Mid-Grade":4.458,"Premium":4.730,"Diesel":5.770},
-  "New Mexico":  {"Regular":3.850,"Mid-Grade":4.279,"Premium":4.591,"Diesel":5.256},
-  "New York":    {"Regular":3.949,"Mid-Grade":4.439,"Premium":4.828,"Diesel":5.774},
-  "North Carolina":{"Regular":3.839,"Mid-Grade":4.298,"Premium":4.689,"Diesel":5.585},
-  "North Dakota":{"Regular":3.433,"Mid-Grade":3.779,"Premium":4.194,"Diesel":4.592},
-  "Ohio":        {"Regular":3.794,"Mid-Grade":4.327,"Premium":4.837,"Diesel":5.039},
-  "Oklahoma":    {"Regular":3.272,"Mid-Grade":3.688,"Premium":3.979,"Diesel":4.491},
-  "Oregon":      {"Regular":4.933,"Mid-Grade":5.151,"Premium":5.434,"Diesel":6.076},
-  "Pennsylvania":{"Regular":3.976,"Mid-Grade":4.414,"Premium":4.791,"Diesel":5.918},
-  "Rhode Island":{"Regular":3.862,"Mid-Grade":4.513,"Premium":4.922,"Diesel":5.731},
-  "South Carolina":{"Regular":3.701,"Mid-Grade":4.146,"Premium":4.543,"Diesel":5.388},
-  "South Dakota":{"Regular":3.397,"Mid-Grade":3.587,"Premium":4.095,"Diesel":4.618},
-  "Tennessee":   {"Regular":3.724,"Mid-Grade":4.196,"Premium":4.593,"Diesel":5.312},
-  "Texas":       {"Regular":3.678,"Mid-Grade":4.149,"Premium":4.522,"Diesel":5.029},
-  "Utah":        {"Regular":4.199,"Mid-Grade":4.485,"Premium":4.728,"Diesel":5.486},
-  "Vermont":     {"Regular":3.931,"Mid-Grade":4.424,"Premium":4.883,"Diesel":5.744},
-  "Virginia":    {"Regular":3.932,"Mid-Grade":4.399,"Premium":4.775,"Diesel":5.617},
-  "Washington":  {"Regular":5.346,"Mid-Grade":5.585,"Premium":5.836,"Diesel":6.614},
-  "West Virginia":{"Regular":3.864,"Mid-Grade":4.311,"Premium":4.758,"Diesel":5.358},
-  "Wisconsin":   {"Regular":3.615,"Mid-Grade":4.136,"Premium":4.707,"Diesel":4.737},
-  "Wyoming":     {"Regular":3.846,"Mid-Grade":4.151,"Premium":4.436,"Diesel":4.984}
-};
+let gasData = {};
 
-// Grid CO2 emissions intensity by state (gCO2/kWh) — Ember 2025
-const gridCO2Data = {
-  "Alabama":359.41,"Alaska":416.45,"Arizona":282.98,"Arkansas":420.43,
-  "California":177.11,"Colorado":355.39,"Connecticut":285.38,"Delaware":482.32,
-  "District of Columbia":131.45,"Florida":397.63,"Georgia":317.96,"Hawaii":479.46,
-  "Idaho":156.22,"Illinois":222.41,"Indiana":567.96,"Iowa":275.36,
-  "Kansas":291.52,"Kentucky":671.17,"Louisiana":419.64,"Maine":228.11,
-  "Maryland":270.40,"Massachusetts":371.72,"Michigan":406.76,"Minnesota":305.80,
-  "Mississippi":413.44,"Missouri":587.21,"Montana":333.23,"Nebraska":400.49,
-  "Nevada":299.02,"New Hampshire":169.10,"New Jersey":246.21,"New Mexico":307.04,
-  "New York":247.58,"North Carolina":316.22,"North Dakota":468.41,"Ohio":479.05,
-  "Oklahoma":309.69,"Oregon":184.02,"Pennsylvania":352.61,"Rhode Island":429.84,
-  "South Carolina":259.37,"South Dakota":134.92,"Tennessee":323.65,"Texas":342.52,
-  "Utah":542.89,"Vermont":61.96,"Virginia":327.17,"Washington":124.36,
-  "West Virginia":745.30,"Wisconsin":469.23,"Wyoming":539.33
-};
+let gridCO2Data = {};
 
 // Gasoline CO2: 8.887 kg CO2 per gallon (GREET)
 const GASOLINE_KG_CO2_PER_GALLON = 8.887;
@@ -1147,8 +1048,8 @@ function setView(v, btn) {
 }
 
 
-// --- INJECTED EV DATABASE ---
-const evDatabase = {"Acura ZDX AWD": {"2024": 390, "2026": 380}, "Acura ZDX AWD Type S": {"2024": 430, "2026": 410}, "Acura ZDX RWD": {"2024": 370, "2026": 370}, "Audi Q4 40 e-tron": {"2024": 330}, "Audi Q4 45 e-tron": {"2025": 290, "2026": 290}, "Audi Q4 50 e-tron quattro": {"2024": 360}, "Audi Q4 55 e-tron quattro": {"2024": 340, "2025": 340, "2026": 350}, "Audi Q4 Sportback 50 e-tron quattro": {"2024": 360}, "Audi Q4 Sportback 55 e-tron quattro": {"2024": 340, "2025": 340, "2026": 350}, "Audi Q4 e-tron": {"2023": 330}, "Audi Q4 e-tron Sportback": {"2023": 360}, "Audi Q4 e-tron Sportback quattro": {"2022": 360}, "Audi Q4 e-tron quattro": {"2022": 360, "2023": 360}, "Audi Q6 Sportback e-tron quattro": {"2025": 335}, "Audi Q6 e-tron": {"2025": 345}, "Audi Q6 e-tron quattro": {"2025": 345}, "Audi Q6 e-tron ultra": {"2025": 320}, "Audi Q8 Sportback e-tron quattro": {"2024": 390, "2025": 445}, "Audi Q8 Sportback e-tron ultra quattro": {"2024": 390}, "Audi Q8 e-tron quattro": {"2024": 410, "2025": 445}, "Audi RS e-tron GT": {"2022": 420, "2023": 420, "2024": 400}, "Audi RS e-tron GT Performance": {"2025": 400, "2026": 400}, "Audi S e-tron GT": {"2025": 380, "2026": 380}, "Audi SQ6 Sportback e-tron": {"2025": 370}, "Audi SQ6 e-tron": {"2025": 380}, "Audi SQ8 Sportback e-tron": {"2024": 500, "2025": 520}, "Audi SQ8 e-tron": {"2024": 500, "2025": 520}, "Audi e-tron GT": {"2022": 410, "2023": 410, "2024": 400}, "Audi e-tron S": {"2022": 495, "2023": 495}, "Audi e-tron S Sportback": {"2022": 485, "2023": 485}, "Audi e-tron Sportback quattro": {"2022": 440, "2023": 430}, "Audi e-tron quattro": {"2022": 430, "2023": 430}, "BMW i4 M50 Gran Coupe": {"2022": 385, "2023": 385, "2024": 385, "2025": 390}, "BMW i4 M60 xDrive Gran Coupe": {"2026": 375}, "BMW i4 eDrive35 Gran Coupe": {"2023": 310, "2024": 295, "2025": 305, "2026": 310}, "BMW i4 eDrive40 Gran Coupe": {"2022": 325, "2023": 340, "2024": 325, "2025": 310, "2026": 300}, "BMW i4 xDrive40 Gran Coupe": {"2024": 325, "2025": 345, "2026": 345}, "BMW i5 M60 xDrive Sedan": {"2024": 383, "2025": 386, "2026": 356}, "BMW i5 eDrive40 Sedan": {"2024": 336, "2025": 336, "2026": 323}, "BMW i5 xDrive40 Sedan": {"2025": 370, "2026": 353}, "BMW i7 M70 xDrive Sedan": {"2024": 430, "2025": 435, "2026": 435}, "BMW i7 eDrive50 Sedan": {"2024": 380, "2025": 390, "2026": 390}, "BMW i7 xDrive60 Sedan": {"2023": 393, "2024": 386, "2025": 393, "2026": 393}, "BMW iX M60": {"2023": 435, "2024": 420, "2025": 440}, "BMW iX M70": {"2026": 436}, "BMW iX xDrive40": {"2024": 390, "2025": 396}, "BMW iX xDrive45": {"2026": 382}, "BMW iX xDrive50": {"2022": 396, "2023": 396, "2024": 410, "2025": 410}, "BMW iX xDrive60": {"2026": 377}, "Bugatti Rimac Nevera": {"2024": 630, "2025": 630}, "Bugatti Rimac Nevera R": {"2025": 660, "2026": 660}, "Cadillac CELESTIQ": {"2025": 420, "2026": 420}, "Cadillac LYRIQ": {"2023": 380, "2024": 380, "2025": 360, "2026": 370}, "Cadillac LYRIQ AWD": {"2023": 380, "2024": 380, "2025": 390, "2026": 400}, "Cadillac LYRIQ PAWD": {"2026": 380}, "Cadillac LYRIQ PAWD V SERIES": {"2026": 420}, "Cadillac OPTIQ AWD": {"2026": 340}, "Cadillac OPTIQ AWD V SERIES 11 kW Charger 15 modes": {"2026": 370}, "Cadillac OPTIQ AWD V SERIES 19 kW charger 15 modes": {"2026": 410}, "Cadillac OPTIQ RWD": {"2026": 320}, "Cadillac VISTIQ": {"2026": 390}, "Chevrolet Blazer EV AWD": {"2024": 350, "2025": 360, "2026": 360}, "Chevrolet Blazer EV AWD SS": {"2025": 400, "2026": 400}, "Chevrolet Blazer EV FWD": {"2025": 320, "2026": 320}, "Chevrolet Blazer EV FWD 22 inch tire": {"2025": 360, "2026": 360}, "Chevrolet Blazer EV RWD": {"2024": 370, "2025": 350}, "Chevrolet Bolt EUV": {"2022": 290, "2023": 290}, "Chevrolet Bolt EV": {"2022": 280, "2023": 280}, "Chevrolet Equinox EV AWD": {"2024": 350, "2025": 340, "2026": 340}, "Chevrolet Equinox EV FWD": {"2024": 310, "2025": 310, "2026": 310}, "Chevrolet Silverado EV": {"2024": 520, "2025": 510}, "Chevrolet Silverado EV 14-mod battery, 11kW 15-mode charger": {"2026": 500}, "Chevrolet Silverado EV 14-mod battery, 11kW 6-mode charger": {"2026": 500}, "Chevrolet Silverado EV 20-mod battery, 11kW 15-mode charger": {"2026": 500}, "Chevrolet Silverado EV 20-mod battery, 19kW 15-mode charger": {"2026": 520}, "Chevrolet Silverado EV 20-mod battery, 19kW 6-mode charger": {"2026": 480}, "Chevrolet Silverado EV 24-mod battery, 19kW 6-mode charger": {"2026": 490}, "Chevrolet Silverado EV 2WT": {"2025": 510}, "Chevrolet Silverado EV 5WT": {"2025": 480}, "Chevrolet Silverado EV 8WT": {"2025": 500}, "Dodge Charger 2-Dr Daytona R/T AWD 18in": {"2024": 390}, "Dodge Charger 2-Dr Daytona R/T AWD 20in Goodyear": {"2024": 400}, "Dodge Charger 2-Dr Daytona R/T AWD 20in Nexen": {"2024": 350}, "Dodge Charger 2-Dr Daytona Scat Pack Track Pack AWD": {"2024": 480}, "Dodge Charger 2-Dr Daytona Scat Pack Track Pack AWD A/S": {"2024": 430}, "Dodge Charger Daytona R/T AWD 245/55ZR18": {"2025": 350, "2026": 400}, "Dodge Charger Daytona R/T AWD 255/45R20": {"2025": 350, "2026": 360}, "Dodge Charger Daytona R/T AWD 275/40R20": {"2025": 350, "2026": 410}, "Dodge Charger Daytona R/T AWD 305/35ZR20": {"2025": 350, "2026": 390}, "Dodge Charger Daytona Scat Pack AWD 305/35ZR20": {"2025": 380, "2026": 390}, "Dodge Charger Daytona Scat Pack AWD 325/35ZR20 Rear": {"2025": 430, "2026": 470}, "Dodge Charger Daytona Scat Pack AWD 325/35ZR20 Rear A/S": {"2025": 430, "2026": 430}, "Fiat 500e": {"2024": 290, "2025": 290, "2026": 290}, "Fiat 500e All Season": {"2024": 310, "2025": 310, "2026": 310}, "Fisker Ocean Extreme One": {"2023": 370}, "Fisker Ocean Sport 20in": {"2024": 370}, "Fisker Ocean Sport 22in": {"2024": 430}, "Ford F-150 Lightning 4WD": {"2022": 490, "2023": 490, "2024": 490}, "Ford F-150 Lightning 4WD ER1": {"2025": 480}, "Ford F-150 Lightning 4WD ER2": {"2025": 470}, "Ford F-150 Lightning 4WD Extended Range": {"2022": 480, "2023": 480, "2024": 480}, "Ford F-150 Lightning 4WD PRO ER1": {"2025": 480}, "Ford F-150 Lightning 4WD SR": {"2025": 490}, "Ford F-150 Lightning PRO 4WD Extended Range": {"2024": 480}, "Ford F-150 Lightning Platinum 4WD": {"2022": 510, "2023": 510, "2024": 510, "2025": 510}, "Ford MUSTANG MACH-E CAL RT 1 ER AWD": {"2023": 340}, "Ford Mustang Mach-E AWD": {"2022": 360, "2023": 360, "2024": 370, "2025": 340, "2026": 340}, "Ford Mustang Mach-E AWD Extended": {"2022": 370, "2023": 370, "2024": 340, "2025": 320, "2026": 320}, "Ford Mustang Mach-E CAL RT 1 ER AWD": {"2022": 340}, "Ford Mustang Mach-E CAL RT 1 ER RWD": {"2022": 330}, "Ford Mustang Mach-E GT": {"2022": 400, "2023": 400, "2024": 370, "2025": 370, "2026": 370}, "Ford Mustang Mach-E GT Performance": {"2022": 410, "2023": 410}, "Ford Mustang Mach-E RWD": {"2022": 330, "2023": 330, "2024": 330, "2025": 310, "2026": 310}, "Ford Mustang Mach-E RWD Extended": {"2022": 350, "2023": 340, "2024": 320, "2025": 310, "2026": 310}, "Ford Mustang Mach-E RWD LFP": {"2023": 330}, "Ford Mustang Mach-E Rally": {"2024": 390, "2025": 390, "2026": 400}, "GMC Hummer EV Pickup": {"2024": 630}, "GMC Hummer EV Pickup 2M20": {"2024": 650}, "GMC Hummer EV Pickup 2X": {"2025": 640}, "GMC Hummer EV Pickup 3X": {"2025": 650}, "GMC Hummer EV Pickup MT Tires": {"2024": 630}, "GMC Hummer EV Pickup MT Tires 2M20": {"2024": 720}, "GMC Hummer EV Pickup MT Tires 2X": {"2025": 720}, "GMC Hummer EV Pickup MT Tires 3X": {"2025": 700}, "GMC Hummer EV SUV": {"2024": 630}, "GMC Hummer EV SUV 2M20": {"2024": 660}, "GMC Hummer EV SUV 2X": {"2025": 640}, "GMC Hummer EV SUV 3X": {"2025": 650}, "GMC Hummer EV SUV MT Tires": {"2024": 630}, "GMC Hummer EV SUV MT Tires 2M20": {"2024": 720}, "GMC Hummer EV SUV MT Tires 2X": {"2025": 720}, "GMC Hummer EV SUV MT Tires 3X": {"2025": 700}, "GMC Sierra EV": {"2025": 520}, "GMC Sierra EV 14-mod battery, 11kW 15-mode charger": {"2026": 500}, "GMC Sierra EV 20-mod battery, 11kW 15-mode charger": {"2026": 500}, "GMC Sierra EV 20-mod battery, 19kW 15-mode charger": {"2026": 520}, "Genesis Electrified G80": {"2023": 340, "2024": 350, "2025": 350, "2026": 350}, "Genesis Electrified GV70": {"2024": 370, "2025": 370}, "Genesis Electrified GV70 AWD": {"2026": 365}, "Genesis GV60 ADVANCE": {"2023": 350}, "Genesis GV60 AWD": {"2025": 340, "2026": 340}, "Genesis GV60 AWD Advanced": {"2025": 350, "2026": 350}, "Genesis GV60 AWD Performance": {"2025": 370, "2026": 370}, "Genesis GV60 Advanced": {"2024": 345}, "Genesis GV60 PERFORMANCE": {"2023": 370, "2024": 370}, "Genesis GV60 RWD": {"2025": 300, "2026": 310}, "Genesis GV60 Standard": {"2024": 300}, "Honda Prologue AWD": {"2026": 345}, "Honda Prologue AWD Elite": {"2024": 370, "2025": 350}, "Honda Prologue AWD Touring": {"2024": 360, "2025": 340}, "Honda Prologue FWD": {"2024": 340, "2025": 330, "2026": 330}, "Hyundai Ioniq 5 AWD": {"2022": 340, "2025": 330, "2026": 330}, "Hyundai Ioniq 5 AWD XRT": {"2025": 360, "2026": 360}, "Hyundai Ioniq 5 Long range AWD": {"2024": 340}, "Hyundai Ioniq 5 Long range RWD": {"2024": 300}, "Hyundai Ioniq 5 N": {"2025": 430, "2026": 430}, "Hyundai Ioniq 5 RWD": {"2022": 305, "2025": 300, "2026": 300}, "Hyundai Ioniq 5 Robo taxi": {"2025": 480, "2026": 480}, "Hyundai Ioniq 5 Standard range": {"2025": 290, "2026": 290}, "Hyundai Ioniq 5 Standard range RWD": {"2024": 310}, "Hyundai Ioniq 6 AWD": {"2025": 305}, "Hyundai Ioniq 6 Long range AWD": {"2023": 305, "2024": 300}, "Hyundai Ioniq 6 Long range RWD": {"2023": 265, "2024": 265}, "Hyundai Ioniq 6 RWD": {"2025": 280}, "Hyundai Ioniq 6 Standard Range": {"2025": 250}, "Hyundai Ioniq 6 Standard Range RWD": {"2023": 250, "2024": 250}, "Hyundai Ioniq 9 AWD": {"2026": 380}, "Hyundai Ioniq 9 AWD Performance": {"2026": 400}, "Hyundai Ioniq 9 RWD": {"2026": 370}, "Hyundai Kona Electric": {"2022": 280, "2023": 270, "2025": 300}, "Hyundai Kona Electric Long Range": {"2024": 290}, "Hyundai Kona Electric Standard Range": {"2024": 290, "2025": 290}, "Jaguar I-Pace EV400": {"2023": 420, "2024": 420}, "Jeep Wagoneer S AWD": {"2024": 370, "2025": 385, "2026": 375}, "Kia EV6 AWD": {"2022": 320}, "Kia EV6 AWD GT": {"2023": 420, "2024": 410, "2025": 400, "2026": 400}, "Kia EV6 Long Range AWD": {"2023": 325, "2024": 330, "2025": 335, "2026": 335}, "Kia EV6 Long Range RWD": {"2023": 280, "2024": 290, "2025": 300, "2026": 300}, "Kia EV6 RWD": {"2022": 290}, "Kia EV6 Standard Range RWD": {"2023": 280, "2024": 290, "2025": 290, "2026": 290}, "Kia EV9 GT": {"2026": 430}, "Kia EV9 Long Range AWD": {"2024": 410, "2025": 410, "2026": 400}, "Kia EV9 Long Range AWD GT-Line": {"2024": 420, "2025": 420, "2026": 410}, "Kia EV9 Long Range RWD": {"2024": 380, "2025": 380, "2026": 380}, "Kia EV9 Standard Range RWD": {"2024": 380, "2025": 380, "2026": 380}, "Kia Niro Electric": {"2022": 300, "2023": 290, "2024": 290, "2025": 300, "2026": 300}, "Lexus RZ 300e": {"2024": 290, "2025": 290}, "Lexus RZ 350e FWD": {"2026": 280}, "Lexus RZ 450e AWD": {"2023": 340, "2024": 335, "2025": 330, "2026": 323}, "Lexus RZ 550e AWD": {"2026": 350}, "Lordstown Endurance": {"2023": 700}, "Lucid Air Dream P AWD w/19 inch wheels": {"2022": 290}, "Lucid Air Dream P AWD w/21 inch wheels": {"2022": 300}, "Lucid Air Dream R AWD w/19 inch wheels": {"2022": 270}, "Lucid Air Dream R AWD w/21 inch wheels": {"2022": 290}, "Lucid Air G Touring AWD w/19 inch wheels": {"2022": 260}, "Lucid Air G Touring AWD w/21 inch wheels": {"2022": 280}, "Lucid Air G Touring XR AWD with 19 inch wheels": {"2023": 260, "2025": 260}, "Lucid Air G Touring XR AWD with 20 inch wheels": {"2023": 280, "2024": 280, "2025": 280, "2026": 280}, "Lucid Air G Touring XR AWD with 21 inch wheels": {"2023": 280, "2024": 300, "2025": 300, "2026": 300}, "Lucid Air G Touring XR AWD with19 inch wheels": {"2024": 260, "2026": 260}, "Lucid Air GT P AWD with 21 inch wheels": {"2023": 300}, "Lucid Air Pure AWD with 19 inch wheels": {"2023": 240}, "Lucid Air Pure AWD with 20 inch wheels": {"2023": 280}, "Lucid Air Pure RWD with 19 inch wheels": {"2024": 250, "2025": 230, "2026": 230}, "Lucid Air Pure RWD with 20 inch wheels": {"2024": 260, "2025": 260, "2026": 260}, "Lucid Air Sapphire AWD": {"2024": 320, "2025": 320, "2026": 320}, "Lucid Air Touring AWD with 19 inch wheels": {"2023": 240, "2024": 250, "2025": 260, "2026": 250}, "Lucid Air Touring AWD with 20 inch wheels": {"2023": 280, "2024": 270, "2025": 280, "2026": 270}, "Lucid Air Touring AWD with 21 inch wheels": {"2023": 280, "2025": 290}, "Lucid Air Touring AWD with 21inch wheels": {"2024": 290}, "Lucid Gravity Dream w/20F21R wheels": {"2026": 340}, "Lucid Gravity Dream w/21F22R wheels": {"2026": 380}, "Lucid Gravity Dream w/22F23R wheels": {"2026": 380}, "Lucid Gravity GT w/20F21R wheels": {"2025": 315, "2026": 315}, "Lucid Gravity GT w/21F22R wheels": {"2025": 350, "2026": 350}, "Lucid Gravity GT w/22F23R wheels": {"2025": 350, "2026": 350}, "Lucid Gravity Touring w/20F21R wheels": {"2026": 300}, "MINI Cooper SE Hardtop 2 door": {"2022": 310, "2023": 310, "2024": 310}, "MINI Countryman SE ALL4": {"2025": 360, "2026": 360}, "Maserati Grancabrio Folgore": {"2024": 410, "2025": 410}, "Maserati Granturismo Folgore": {"2024": 390, "2025": 410}, "Maserati Grecale Folgore": {"2025": 495}, "Mazda MX-30": {"2022": 370, "2023": 370}, "Mercedes-Benz AMG EQE 4matic Plus": {"2024": 460, "2025": 470, "2026": 470}, "Mercedes-Benz AMG EQS 4matic Plus": {"2022": 440, "2024": 410, "2025": 430}, "Mercedes-Benz CLA250 Plus with EQ Tech": {"2026": 290}, "Mercedes-Benz CLA350 4matic with EQ Tech": {"2026": 290}, "Mercedes-Benz EQB 250 Plus": {"2024": 310, "2025": 310}, "Mercedes-Benz EQB 300 4matic": {"2022": 330, "2024": 390, "2025": 390}, "Mercedes-Benz EQB 350 4matic": {"2022": 350, "2024": 390, "2025": 390}, "Mercedes-Benz EQE 320 4matic": {"2026": 405}, "Mercedes-Benz EQE 320 Plus": {"2026": 360}, "Mercedes-Benz EQE 350 4matic": {"2024": 385, "2025": 405}, "Mercedes-Benz EQE 350 Plus": {"2024": 355, "2025": 360}, "Mercedes-Benz EQE 500 4matic": {"2024": 370, "2025": 410}, "Mercedes-Benz EQS 400 4matic": {"2026": 430}, "Mercedes-Benz EQS 450 4matic": {"2023": 370, "2024": 380, "2025": 400, "2026": 370}, "Mercedes-Benz EQS 450 Plus": {"2022": 350, "2023": 390, "2024": 370, "2025": 375, "2026": 340}, "Mercedes-Benz EQS 550 4matic": {"2026": 420}, "Mercedes-Benz EQS 580 4matic": {"2022": 360, "2023": 420, "2024": 380, "2025": 390, "2026": 360}, "Mercedes-Benz EQS 680 4matic Maybach": {"2024": 430, "2025": 440, "2026": 400}, "Mercedes-Benz G 580 with EQ Technology": {"2025": 540, "2026": 540}, "Nissan ARIYA ENG Plus/EVO Plus e-4ORCE 87kWh": {"2023": 370}, "Nissan ARIYA ENGAGE FWD 63kWh": {"2023": 330, "2024": 330}, "Nissan ARIYA ENGAGE e-4ORCE 63kWh": {"2023": 350, "2024": 350}, "Nissan ARIYA ENGAGE+/EVOLVE+ e-4ORCE 87kWh": {"2024": 370, "2025": 370}, "Nissan ARIYA EVO Plus/EMP Plus/PRM FWD 87kWh": {"2023": 340}, "Nissan ARIYA EVOLVE+ FWD 87kWh": {"2025": 340}, "Nissan ARIYA EVOLVE+/EMPOWER+ FWD 87kWh": {"2024": 340}, "Nissan ARIYA FWD 63kWh": {"2025": 330, "2026": 330}, "Nissan ARIYA FWD 87kWh": {"2026": 340}, "Nissan ARIYA PLAT Plus e-4ORCE 87kWh 19": {"2023": 370}, "Nissan ARIYA PLAT Plus e-4ORCE 87kWh 20": {"2023": 390}, "Nissan ARIYA PLATINUM+ e-4ORCE 87kWh 19in. Wheels": {"2024": 370, "2025": 370, "2026": 370}, "Nissan ARIYA PLATINUM+ e-4ORCE 87kWh 20in. Wheels": {"2024": 390, "2025": 390}, "Nissan ARIYA VENTURE Plus FWD 87kWh": {"2023": 330, "2024": 330}, "Nissan ARIYA e-4ORCE 63kWh": {"2025": 350, "2026": 350}, "Nissan ARIYA e-4ORCE 87kWh": {"2026": 370}, "Nissan LEAF": {"2023": 300, "2024": 300, "2025": 300}, "Nissan LEAF 75kWh": {"2026": 303}, "Nissan LEAF SV": {"2023": 310, "2024": 310, "2025": 310}, "Nissan Leaf": {"2022": 305}, "Nissan Leaf SV/SL": {"2022": 320}, "Polestar 2 BST edition": {"2023": 360}, "Polestar 2 Dual Motor": {"2022": 380, "2023": 340, "2024": 325, "2025": 345}, "Polestar 2 Dual Motor Perf Pack": {"2023": 340}, "Polestar 2 Dual Motor Performance Pack": {"2024": 350, "2025": 370}, "Polestar 2 Single Motor": {"2022": 310, "2023": 310, "2024": 295, "2025": 305}, "Polestar 3 Long Range Dual Motor": {"2025": 396, "2026": 400}, "Polestar 3 Long Range Dual Motor Performance Pack": {"2025": 440, "2026": 420}, "Polestar 3 Long Range Single Motor": {"2025": 360, "2026": 350}, "Polestar 4 Long Range Dual Motor": {"2025": 410, "2026": 400}, "Polestar 4 Long Range Dual Motor Performance": {"2026": 440}, "Polestar 4 Long Range Single Motor": {"2025": 370, "2026": 350}, "Porsche Macan 4 Electric": {"2024": 340, "2025": 340}, "Porsche Macan 4S Electric": {"2025": 370}, "Porsche Macan Electric": {"2025": 340}, "Porsche Macan Turbo Electric": {"2024": 370, "2025": 370}, "Porsche Taycan 4 Cross Turismo": {"2022": 440, "2023": 420, "2024": 420, "2025": 420, "2026": 420}, "Porsche Taycan 4 Perf Battery Plus": {"2025": 390, "2026": 390}, "Porsche Taycan 4S Cross Turismo": {"2022": 450, "2023": 430, "2024": 430, "2025": 420, "2026": 420}, "Porsche Taycan 4S Perf Battery": {"2022": 420}, "Porsche Taycan 4S Perf Battery Plus": {"2022": 430, "2023": 420, "2025": 390, "2026": 390}, "Porsche Taycan 4S Perf Battery Plus 19 inch Wheels": {"2025": 360}, "Porsche Taycan 4S Perf Battery Plus 19in All-Season": {"2026": 360}, "Porsche Taycan 4S Performance Battery": {"2023": 400, "2024": 410, "2025": 380, "2026": 380}, "Porsche Taycan 4S Performance Battery Plus": {"2024": 420}, "Porsche Taycan GTS": {"2022": 410, "2023": 410, "2024": 410, "2025": 390, "2026": 390}, "Porsche Taycan GTS ST": {"2022": 420}, "Porsche Taycan GTS Sport Turismo": {"2023": 420, "2024": 420, "2025": 410, "2026": 410}, "Porsche Taycan Perf Battery": {"2022": 420}, "Porsche Taycan Perf Battery Plus": {"2022": 450, "2023": 410, "2025": 370}, "Porsche Taycan Performance Battery": {"2023": 410, "2024": 410, "2025": 370, "2026": 370}, "Porsche Taycan Performance Battery Plus": {"2024": 410}, "Porsche Taycan Turbo": {"2022": 460, "2023": 420, "2024": 420, "2025": 390, "2026": 390}, "Porsche Taycan Turbo 21in Aero-Design wheel": {"2025": 360}, "Porsche Taycan Turbo Cross Turismo": {"2022": 470, "2023": 420, "2024": 430, "2025": 430, "2026": 430}, "Porsche Taycan Turbo GT": {"2025": 410, "2026": 410}, "Porsche Taycan Turbo GT with Weissach Package": {"2025": 420, "2026": 420}, "Porsche Taycan Turbo S": {"2022": 480, "2023": 450, "2024": 450, "2025": 430, "2026": 430}, "Porsche Taycan Turbo S 21in Aero-Design wheel": {"2025": 380}, "Porsche Taycan Turbo S Cross Turismo": {"2022": 460, "2023": 450, "2024": 450, "2025": 440, "2026": 440}, "Rivian R1S": {"2022": 490, "2023": 493}, "Rivian R1S 20 inch All-Terrain": {"2023": 540}, "Rivian R1S 20 inch All-Terrain Dual Large": {"2023": 490}, "Rivian R1S 20 inch All-Terrain Performance Dual Large": {"2023": 490}, "Rivian R1S 21 inch Dual Large": {"2023": 430}, "Rivian R1S 21 inch Performance Dual Large": {"2023": 430}, "Rivian R1S 22 inch Dual Large": {"2023": 450}, "Rivian R1S 22 inch Performance Dual Large": {"2023": 450}, "Rivian R1S AT Performance Dual Standard Plus": {"2024": 520}, "Rivian R1S All-Terrain Dual Large": {"2024": 490, "2025": 440, "2026": 440}, "Rivian R1S All-Terrain Dual Large Plus": {"2025": 470, "2026": 470}, "Rivian R1S All-Terrain Dual Max": {"2024": 460, "2025": 430, "2026": 430}, "Rivian R1S All-Terrain Dual Standard Plus": {"2024": 520}, "Rivian R1S All-Terrain Performance  Dual Max": {"2025": 430, "2026": 430}, "Rivian R1S All-Terrain Performance Dual Large": {"2024": 490, "2025": 440, "2026": 440}, "Rivian R1S All-Terrain Performance Dual Large Plus": {"2025": 470, "2026": 470}, "Rivian R1S All-Terrain Performance Dual Max": {"2024": 460}, "Rivian R1S All-Terrain Quad Large": {"2024": 540}, "Rivian R1S All-Terrain Tri Max": {"2025": 500, "2026": 500}, "Rivian R1S Dual Large": {"2024": 440, "2025": 410, "2026": 410}, "Rivian R1S Dual Large Plus": {"2025": 420, "2026": 420}, "Rivian R1S Dual Max": {"2024": 420, "2025": 410, "2026": 410}, "Rivian R1S Dual Standard": {"2024": 465, "2025": 415, "2026": 415}, "Rivian R1S Dual Standard Plus": {"2024": 455}, "Rivian R1S Performance Dual Large": {"2024": 440, "2025": 410, "2026": 410}, "Rivian R1S Performance Dual Large Plus": {"2025": 420, "2026": 420}, "Rivian R1S Performance Dual Max": {"2024": 420, "2025": 410, "2026": 410}, "Rivian R1S Performance Dual Standard": {"2024": 470}, "Rivian R1S Performance Dual Standard Plus": {"2024": 440}, "Rivian R1S Quad Large": {"2024": 493}, "Rivian R1S Quad Max": {"2026": 470}, "Rivian R1S Tri Max": {"2025": 450, "2026": 450}, "Rivian R1T": {"2022": 480, "2023": 490}, "Rivian R1T 21 inch Dual Large": {"2023": 430}, "Rivian R1T 21 inch Performance Dual Large": {"2023": 430}, "Rivian R1T 22 inch Dual Large": {"2023": 440}, "Rivian R1T 22 inch Performance Dual Large": {"2023": 440}, "Rivian R1T AT Performance Dual Standard Plus": {"2024": 520}, "Rivian R1T All-Terrain Dual Large": {"2024": 490, "2025": 440, "2026": 440}, "Rivian R1T All-Terrain Dual Large Plus": {"2025": 470, "2026": 470}, "Rivian R1T All-Terrain Dual Max": {"2024": 460, "2025": 430, "2026": 430}, "Rivian R1T All-Terrain Dual Standard Plus": {"2024": 520}, "Rivian R1T All-Terrain Performance Dual Large": {"2024": 490, "2025": 440, "2026": 440}, "Rivian R1T All-Terrain Performance Dual Large Plus": {"2025": 470, "2026": 470}, "Rivian R1T All-Terrain Performance Dual Max": {"2024": 460, "2025": 430, "2026": 430}, "Rivian R1T All-Terrain Quad Large": {"2024": 540}, "Rivian R1T All-Terrain Tri Max": {"2025": 500, "2026": 500}, "Rivian R1T Dual Large": {"2024": 435, "2025": 410, "2026": 410}, "Rivian R1T Dual Large Plus": {"2025": 420, "2026": 420}, "Rivian R1T Dual Max": {"2024": 415, "2025": 405, "2026": 405}, "Rivian R1T Dual Standard": {"2024": 465, "2025": 415, "2026": 415}, "Rivian R1T Dual Standard Plus": {"2024": 455}, "Rivian R1T Performance Dual Large": {"2024": 435, "2025": 410, "2026": 410}, "Rivian R1T Performance Dual Large Plus": {"2025": 420, "2026": 420}, "Rivian R1T Performance Dual Max": {"2024": 415, "2025": 405, "2026": 405}, "Rivian R1T Performance Dual Standard Plus": {"2024": 455}, "Rivian R1T Quad Large": {"2024": 490}, "Rivian R1T Quad Max": {"2026": 470}, "Rivian R1T Tri Max": {"2025": 450, "2026": 450}, "Rolls-Royce Spectre": {"2024": 430, "2025": 460, "2026": 460}, "Rolls-Royce Spectre Black Badge": {"2024": 445, "2025": 465, "2026": 465}, "Subaru Solterra 20 AWD": {"2026": 290}, "Subaru Solterra AWD": {"2023": 310, "2024": 320, "2025": 320, "2026": 280}, "Subaru Solterra Limited/Touring AWD": {"2023": 320, "2024": 330, "2025": 330}, "Tesla Cybertruck AWD": {"2025": 430, "2026": 430}, "Tesla Cybertruck Long Range": {"2025": 420, "2026": 430}, "Tesla Model 3 Long Range AWD": {"2022": 260, "2023": 260, "2024": 260, "2025": 260}, "Tesla Model 3 Long Range AWD-E": {"2024": 260}, "Tesla Model 3 Long Range RWD": {"2024": 250, "2025": 250}, "Tesla Model 3 Long Range RWD-I": {"2025": 260}, "Tesla Model 3 Performance": {"2026": 300}, "Tesla Model 3 Performance AWD": {"2022": 300, "2023": 300, "2024": 300, "2025": 310, "2026": 300}, "Tesla Model 3 Premium AWD": {"2026": 260}, "Tesla Model 3 Premium RWD": {"2026": 250}, "Tesla Model 3 RWD": {"2022": 250, "2023": 250, "2024": 250}, "Tesla Model 3 Standard RWD": {"2026": 240}, "Tesla Model S": {"2022": 280, "2023": 280, "2024": 280, "2025": 270, "2026": 270}, "Tesla Model S Plaid": {"2022": 310, "2024": 330, "2025": 340, "2026": 335}, "Tesla Model X": {"2022": 330, "2023": 330, "2024": 340, "2025": 340, "2026": 320}, "Tesla Model X Plaid": {"2022": 355, "2023": 355, "2024": 360, "2025": 370, "2026": 340}, "Tesla Model Y AWD": {"2022": 280, "2023": 280}, "Tesla Model Y Long Range AWD": {"2022": 280, "2023": 280, "2024": 290, "2025": 290, "2026": 270}, "Tesla Model Y Long Range AWD-I": {"2024": 290}, "Tesla Model Y Long Range RWD": {"2024": 280, "2025": 270, "2026": 250}, "Tesla Model Y Performance AWD": {"2022": 300, "2023": 300, "2024": 320, "2025": 320, "2026": 320}, "Tesla Model Y RWD": {"2022": 260, "2024": 280}, "Tesla Model Y Standard RWD": {"2026": 250}, "Toyota bZ": {"2026": 260}, "Toyota bZ AWD": {"2026": 280}, "Toyota bZ AWD LIMITED": {"2026": 290}, "Toyota bZ LIMITED": {"2026": 270}, "Toyota bZ4X": {"2023": 280, "2024": 280, "2025": 280}, "Toyota bZ4X AWD": {"2023": 320, "2024": 320, "2025": 315}, "Toyota bZ4X LIMITED": {"2023": 300, "2025": 300}, "Toyota bZ4X LIMITED AWD": {"2023": 330, "2025": 320}, "Toyota bZ4X Limited": {"2024": 300}, "Toyota bZ4X Limited AWD": {"2024": 330}, "Vinfast VF 6 Plus": {"2025": 400}, "Vinfast VF 7 Plus": {"2025": 440}, "Vinfast VF 8 Eco": {"2023": 390, "2025": 460}, "Vinfast VF 8 Plus": {"2023": 420, "2025": 440}, "Vinfast VF 9 Eco": {"2024": 450}, "Vinfast VF 9 Plus": {"2024": 490, "2025": 500}, "Volkswagen ID. Buzz": {"2025": 410}, "Volkswagen ID. Buzz 4motion": {"2025": 420}, "Volkswagen ID.4": {"2023": 310, "2024": 320, "2025": 320, "2026": 300}, "Volkswagen ID.4 AWD": {"2026": 330}, "Volkswagen ID.4 AWD Pro": {"2022": 330, "2023": 340, "2024": 330, "2025": 330}, "Volkswagen ID.4 AWD Pro S": {"2022": 350, "2023": 340, "2024": 330, "2025": 330}, "Volkswagen ID.4 Pro": {"2022": 320, "2023": 320, "2024": 300, "2025": 300}, "Volkswagen ID.4 Pro S": {"2022": 330, "2023": 320, "2024": 300, "2025": 300}, "Volkswagen ID.4 S": {"2023": 310, "2024": 320, "2025": 320}, "Volvo C40 Recharge": {"2024": 310}, "Volvo C40 Recharge twin": {"2022": 390, "2023": 390, "2024": 340}, "Volvo EC40": {"2025": 320, "2026": 320}, "Volvo EC40 Twin": {"2025": 350, "2026": 350}, "Volvo EX30 Cross Country": {"2026": 360}, "Volvo EX30 Single Motor extended range": {"2025": 295}, "Volvo EX30 Single motor extended range": {"2026": 290}, "Volvo EX30 Twin Performance": {"2025": 310, "2026": 310}, "Volvo EX40": {"2025": 320, "2026": 320}, "Volvo EX40 Twin": {"2025": 360, "2026": 360}, "Volvo EX90": {"2026": 355}, "Volvo EX90 Twin Motor": {"2025": 410, "2026": 385}, "Volvo EX90 Twin Motor Performance": {"2025": 410, "2026": 385}, "Volvo XC40 Recharge": {"2024": 320}, "Volvo XC40 Recharge twin": {"2022": 390, "2023": 390, "2024": 340}};
+// --- EV DATABASE (populated at runtime by bootstrap()) ---
+let evDatabase = {};
 
 function initDropdowns() {
   const models = Object.keys(evDatabase).sort((a, b) => a.localeCompare(b));
@@ -1264,8 +1165,64 @@ function updatePayback() {
 }
 
 // ═══════════════════════════════════════════════
+//  BOOTSTRAP (fetch data, then launch app)
+// ═══════════════════════════════════════════════
+
+function showErrorState(err) {
+  console.error(err);
+  const el = document.getElementById("map-container");
+  if (el) {
+    el.innerHTML =
+      '<div style="padding:2rem;text-align:center;color:#666;">' +
+      "Couldn't load the latest data. Try reloading." +
+      "</div>";
+  }
+}
+
+function hideLoader() {
+  const el = document.getElementById("data-loader");
+  if (el) el.remove();
+}
+
+async function bootstrap() {
+  try {
+    const [dataRes, evRes] = await Promise.all([
+      fetch("./data.json", { cache: "no-cache" }),
+      fetch("./ev-database.json", { cache: "no-cache" })
+    ]);
+    if (!dataRes.ok || !evRes.ok) {
+      throw new Error(`Data fetch failed: data=${dataRes.status}, ev=${evRes.status}`);
+    }
+    const data = await dataRes.json();
+    evDatabase = await evRes.json();
+
+    for (const [state, blk] of Object.entries(data.states)) {
+      elecHomeData[state] = blk.elecResidential.usdPerKwh != null
+        ? blk.elecResidential.usdPerKwh * 100  // convert $/kWh -> ¢/kWh for the UI's existing math
+        : null;
+      evPublicData[state] = blk.evChargingPublic.usdPerKwh;
+      gasData[state] = {
+        Regular: blk.gasPrices.regular,
+        "Mid-Grade": blk.gasPrices.midGrade,
+        Premium: blk.gasPrices.premium,
+        Diesel: blk.gasPrices.diesel
+      };
+      gridCO2Data[state] = blk.gridCo2.gCo2PerKwh;
+    }
+
+    hideLoader();
+    initApp();
+  } catch (err) {
+    showErrorState(err);
+  }
+}
+
+bootstrap();
+
+// ═══════════════════════════════════════════════
 //  MAP INIT (D3 + TopoJSON)
 // ═══════════════════════════════════════════════
+function initApp() {
 const tooltip = document.getElementById('tooltip');
 
 d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(us => {
@@ -1398,6 +1355,7 @@ d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(us => {
   renderCO2Legend();
   renderCO2StatCards();
 });
+} // end initApp()
 </script>
 </body>
 </html>
