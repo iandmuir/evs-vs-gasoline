@@ -65,16 +65,23 @@ test("runPipeline writes data.json when a feed changes values", async () => {
 test("runPipeline does NOT rewrite file when nothing changed", async () => {
   const dir = await mkdtemp(join(tmpdir(), "pipe-"));
   const prevPath = join(dir, "data.json");
-  await writeFile(prevPath, JSON.stringify(seedPrev()));
+  // Use data with FRESH updated dates so the stale alarm doesn't fire
+  const prev = seedPrev();
+  const today = "2026-04-22"; // matches the 'now' below
+  for (const s of Object.values(prev.states)) {
+    s.gasPrices.updated = today;
+    s.evChargingPublic.updated = today;
+    s.elecResidential.updated = today;
+  }
+  await writeFile(prevPath, JSON.stringify(prev));
   const mtimeBefore = statSync(prevPath).mtimeMs;
 
-  // All feeds reject → no data changes.
   await new Promise(r => setTimeout(r, 5));
   const exitCode = await runPipeline({
     dataPath: prevPath,
     now: new Date("2026-04-22T13:00:00Z"),
     feeds: [
-      stubRejectFeed("gas", "stale"),
+      stubRejectFeed("gas", "stale"),  // reason doesn't matter now
       stubRejectFeed("aaaEv", "http 500"),
       stubRejectFeed("eiaResidential", "http 500")
     ]

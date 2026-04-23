@@ -33,13 +33,8 @@ export async function runPipeline({
   if (!statesChanged(prev, next)) {
     // No-op run: don't bump meta, don't rewrite file, but still decide
     // whether to alarm on all-feeds-broken-for->3-days.
-    // A feed that rejects with a "stale" reason is operationally healthy —
-    // it contacted the upstream and found no new data. Only alarm when feeds
-    // are truly broken (none are "ok" and none have a stale-data rejection).
-    const allBroken = results.every(
-      r => r.status !== "ok" && !(typeof r.reason === "string" && r.reason.startsWith("stale"))
-    );
-    if (allBroken && isEverythingStale(next, now, STALE_ALARM_DAYS)) {
+    const allRejected = results.every(r => r.status !== "ok");
+    if (allRejected && isEverythingStale(next, now, STALE_ALARM_DAYS)) {
       log(`[orchestrator] ALARM: all feeds rejected AND data is >${STALE_ALARM_DAYS} days stale`);
       return 1;
     }
