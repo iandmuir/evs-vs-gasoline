@@ -1,0 +1,11 @@
+{
+  "name": "evs-vs-gasoline",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "update": "node scripts/update-data.js",
+    "test": "node --test scripts/test"
+  }
+}
