@@ -12,6 +12,11 @@ test("assertCoverage passes when threshold met", () => {
   assert.doesNotThrow(() => assertCoverage(covered, 2, "testFeed"));
 });
 
+test("assertCoverage passes when size equals threshold exactly", () => {
+  const covered = new Set(["Alabama", "Alaska"]);
+  assert.doesNotThrow(() => assertCoverage(covered, 2, "testFeed"));
+});
+
 test("assertCoverage throws RejectedFeedError when below threshold", () => {
   const covered = new Set(["Alabama"]);
   assert.throws(
@@ -20,9 +25,16 @@ test("assertCoverage throws RejectedFeedError when below threshold", () => {
   );
 });
 
+test("assertRange rejects empty array", () => {
+  assert.throws(
+    () => assertRange([], 0, 100, "x.price"),
+    RejectedFeedError
+  );
+});
+
 test("assertRange passes for in-range values", () => {
   assert.doesNotThrow(() =>
-    assertRange([1.5, 3.0, 9.99], 1.5, 10.0, "gas.regular")
+    assertRange([1.5, 3.0, 9.99, 10.0], 1.5, 10.0, "gas.regular")
   );
 });
 
@@ -50,5 +62,6 @@ test("assertRange rejects NaN / non-finite", () => {
 test("RejectedFeedError carries feed name and reason", () => {
   const err = new RejectedFeedError("eia", "unit guard failed");
   assert.equal(err.feed, "eia");
+  assert.equal(err.reason, "unit guard failed");
   assert.match(err.message, /unit guard failed/);
 });
