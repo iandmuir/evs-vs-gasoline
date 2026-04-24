@@ -1,10 +1,11 @@
 {
   "meta": {
-    "generatedAt": "2026-04-24T00:38:51.389Z",
+    "generatedAt": "2026-04-24T00:45:49.432Z",
     "pipelineVersion": "1.0.0",
     "feedsRefreshedThisRun": [
       "gas",
-      "aaaEv"
+      "aaaEv",
+      "eiaResidential"
     ]
   },
   "constants": {
@@ -28,10 +29,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1606,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1618,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 359.41,
@@ -55,10 +56,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.2552,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.2579,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 416.45,
@@ -82,10 +83,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1561,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1603,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 282.98,
@@ -109,10 +110,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1235,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1273,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 420.43,
@@ -136,10 +137,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.3029,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.3322,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 177.11,
@@ -163,10 +164,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.16440000000000002,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1679,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 355.39,
@@ -190,10 +191,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.28300000000000003,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.3077,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 285.38,
@@ -217,10 +218,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.16510000000000002,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.16269999999999998,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 482.32,
@@ -244,10 +245,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.2372,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.2397,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 131.45,
@@ -271,10 +272,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1592,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.158,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 397.63,
@@ -298,10 +299,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1446,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1413,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 317.96,
@@ -325,10 +326,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.3979,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.43,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 479.46,
@@ -352,10 +353,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1207,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1263,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 156.22,
@@ -379,10 +380,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1636,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1783,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 222.41,
@@ -406,10 +407,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.16190000000000002,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1606,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 567.96,
@@ -433,10 +434,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1283,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1274,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 275.36,
@@ -460,10 +461,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1429,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.15109999999999998,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 291.52,
@@ -487,10 +488,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1231,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.13419999999999999,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 671.17,
@@ -514,10 +515,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1246,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.12869999999999998,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 419.64,
@@ -541,10 +542,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.3073,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.32170000000000004,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 228.11,
@@ -568,10 +569,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.2061,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.20079999999999998,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 270.4,
@@ -595,10 +596,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.3116,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.3046,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 371.72,
@@ -622,10 +623,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.19519999999999998,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.2,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 406.76,
@@ -649,10 +650,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.14980000000000002,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1539,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 305.8,
@@ -676,10 +677,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1174,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1472,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 413.44,
@@ -703,10 +704,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.11800000000000001,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1217,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 587.21,
@@ -730,10 +731,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1286,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1333,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 333.23,
@@ -757,10 +758,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1176,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.11789999999999999,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 400.49,
@@ -784,10 +785,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1398,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1438,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 299.02,
@@ -811,10 +812,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.2632,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.2652,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 169.1,
@@ -838,10 +839,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.23129999999999998,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.23120000000000002,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 246.21,
@@ -865,10 +866,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.147,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1507,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 307.04,
@@ -892,10 +893,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.2837,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.2999,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 247.58,
@@ -919,10 +920,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1368,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1464,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 316.22,
@@ -946,10 +947,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1092,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1164,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 468.41,
@@ -973,10 +974,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1759,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1752,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 479.05,
@@ -1000,10 +1001,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.12619999999999998,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.12890000000000001,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 309.69,
@@ -1027,10 +1028,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1466,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1464,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 184.02,
@@ -1054,10 +1055,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.20190000000000002,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.203,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 352.61,
@@ -1081,10 +1082,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.3014,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.2945,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 429.84,
@@ -1108,10 +1109,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.15410000000000001,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.16149999999999998,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 259.37,
@@ -1135,10 +1136,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.136,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1324,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 134.92,
@@ -1162,10 +1163,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.12300000000000001,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1282,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 323.65,
@@ -1189,10 +1190,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.15689999999999998,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.15410000000000001,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 342.52,
@@ -1216,10 +1217,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1288,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1333,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 542.89,
@@ -1243,10 +1244,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.2329,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.2327,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 61.96,
@@ -1270,10 +1271,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.15869999999999998,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.15960000000000002,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 327.17,
@@ -1297,10 +1298,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1381,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1411,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 124.36,
@@ -1324,10 +1325,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1477,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1441,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 745.3,
@@ -1351,10 +1352,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.182,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.18739999999999998,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 469.23,
@@ -1378,10 +1379,10 @@
         "source": "AAA"
       },
       "elecResidential": {
-        "usdPerKwh": 0.1285,
-        "period": null,
-        "updated": "2026-04-23",
-        "source": "seed"
+        "usdPerKwh": 0.1304,
+        "period": "2026-02",
+        "updated": "2026-04-24",
+        "source": "EIA"
       },
       "gridCo2": {
         "gCo2PerKwh": 539.33,
