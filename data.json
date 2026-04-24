@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-04-24T00:45:49.432Z",
+    "generatedAt": "2026-04-24T14:29:11.483Z",
     "pipelineVersion": "1.0.0",
     "feedsRefreshedThisRun": [
       "gas",
@@ -132,7 +132,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.433,
+        "usdPerKwh": 0.432,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -186,7 +186,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.387,
+        "usdPerKwh": 0.389,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -240,7 +240,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.378,
+        "usdPerKwh": 0.38,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -402,7 +402,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.419,
+        "usdPerKwh": 0.42,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -429,7 +429,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.34,
+        "usdPerKwh": 0.339,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -483,7 +483,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.402,
+        "usdPerKwh": 0.404,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -618,7 +618,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.386,
+        "usdPerKwh": 0.384,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -672,7 +672,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.412,
+        "usdPerKwh": 0.415,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -699,7 +699,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.302,
+        "usdPerKwh": 0.301,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -834,7 +834,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.429,
+        "usdPerKwh": 0.43,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -861,7 +861,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.368,
+        "usdPerKwh": 0.371,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -1050,7 +1050,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.417,
+        "usdPerKwh": 0.418,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -1104,7 +1104,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.452,
+        "usdPerKwh": 0.454,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -1185,7 +1185,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.397,
+        "usdPerKwh": 0.396,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -1266,7 +1266,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.376,
+        "usdPerKwh": 0.377,
         "updated": "2026-04-24",
         "source": "AAA"
       },
@@ -1293,7 +1293,7 @@
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.379,
+        "usdPerKwh": 0.38,
         "updated": "2026-04-24",
         "source": "AAA"
       },
