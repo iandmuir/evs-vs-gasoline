@@ -46,10 +46,11 @@ export function parseEiaResponse(json) {
     if (!resp || !Array.isArray(resp.data)) {
       throw new RejectedFeedError(NAME, "missing response.data[]");
     }
-    // Unit guard. EIA reports the unit in response.units or response.data[i].units;
-    // prefer response.units when present.
-    const units = resp.units || (resp.data[0] && resp.data[0].units) || "";
-    if (!/cents per kilowatthour/i.test(units)) {
+    // Unit guard. EIA v2 puts the unit in "price-units" on each data row
+    // (following the pattern {fieldname}-units). The string is "cents per
+    // kilowatt-hour" (hyphenated), so the regex allows an optional hyphen.
+    const units = resp.units || (resp.data[0] && (resp.data[0]["price-units"] || resp.data[0].units)) || "";
+    if (!/cents per kilowatt-?hour/i.test(units)) {
       throw new RejectedFeedError(NAME, `unexpected units: ${JSON.stringify(units)}`);
     }
     if (resp.data.length === 0) {
