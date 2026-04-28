@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Where (and When) Does It Pay to Go Electric?</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -580,18 +581,18 @@
 
   <!-- Formula box -->
   <div class="formula-box">
-    <strong>How to read this:</strong> On the <strong>Savings Map</strong>, green states are where an EV costs less to fuel than the selected gas car; red states are where gasoline is cheaper. The metric is <em>savings per 100 miles</em> = (gas cost) − (EV fuel cost). On the <strong>CO₂ Map</strong>, green states show where driving the selected EV avoids the most CO₂ compared to the gas car; lighter shades indicate smaller reductions. The metric is <em>kg CO₂ avoided per 100 miles</em> = (gasoline CO₂) − (grid electricity CO₂). Gasoline emits 8.887 kg CO₂ per gallon burned (GREET). EV emissions depend on each state's electricity grid carbon intensity. <strong>At-home charging</strong> uses EIA average residential electricity rates by state for January 2026. <strong>Public charger</strong> uses AAA average Level 2 / DC fast-charging prices by state (March 2026). <strong>Gasoline prices</strong> are AAA state averages by grade (March 2026). <strong>EV charging</strong> calculations assume a standard 90% efficiency rate to account for energy lost as heat. The <strong>Payback Calculator</strong> assumes maintenance costs of ¢9.59/mile for gas cars and ¢7.94/mile for EVs. <strong>Important:</strong> The Savings Map and Table compare fuel costs only — they exclude vehicle purchase price differences, maintenance, insurance, and other ownership costs.
+    <strong>How to read this:</strong> On the <strong>Savings Map</strong>, green states are where an EV costs less to fuel than the selected gas car; red states are where gasoline is cheaper. The metric is <em>savings per 100 miles</em> = (gas cost) − (EV fuel cost). On the <strong>CO₂ Map</strong>, green states show where driving the selected EV avoids the most CO₂ compared to the gas car; lighter shades indicate smaller reductions. The metric is <em>kg CO₂ avoided per 100 miles</em> = (gasoline CO₂) − (grid electricity CO₂). Gasoline emits 8.887 kg CO₂ per gallon burned (GREET). EV emissions depend on each state's electricity grid carbon intensity. <strong>At-home charging</strong> uses EIA average residential electricity rates by state for <span data-src="eiaMonth">January 2026</span>. <strong>Public charger</strong> uses AAA average Level 2 / DC fast-charging prices by state (<span data-src="pubEvDay">March 2026</span>). <strong>Gasoline prices</strong> are AAA state averages by grade (<span data-src="gasDay">March 2026</span>). <strong>EV charging</strong> calculations assume a standard 90% efficiency rate to account for energy lost as heat. The <strong>Payback Calculator</strong> assumes maintenance costs of ¢9.59/mile for gas cars and ¢7.94/mile for EVs. <strong>Important:</strong> The Savings Map and Table compare fuel costs only — they exclude vehicle purchase price differences, maintenance, insurance, and other ownership costs.
   </div>
 </main>
 
 <footer>
   <strong>Sources:</strong>
-  At-home electricity — U.S. EIA Electric Power Monthly, Table 5.6.A, residential average retail price by state, January 2026. ·
-  Public EV charging — AAA EV Charging Prices by state (<a href="https://gasprices.aaa.com/ev-charging-prices/" target="_blank">gasprices.aaa.com</a>, March 2026). ·
+  At-home electricity — U.S. EIA Electric Power Monthly, Table 5.6.A, residential average retail price by state, <span data-src="eiaMonth">January 2026</span>. ·
+  Public EV charging — AAA EV Charging Prices by state (<a href="https://gasprices.aaa.com/ev-charging-prices/" target="_blank">gasprices.aaa.com</a>, <span data-src="pubEvDay">March 2026</span>). ·
   Maintenance costs — AAA "Your Driving Costs" study. ·
-  Gasoline prices — AAA State Gas Price Averages by grade (<a href="https://gasprices.aaa.com/state-gas-price-averages/" target="_blank">gasprices.aaa.com</a>, March 2026). ·
+  Gasoline prices — AAA State Gas Price Averages by grade (<a href="https://gasprices.aaa.com/state-gas-price-averages/" target="_blank">gasprices.aaa.com</a>, <span data-src="gasDay">March 2026</span>). ·
   Gasoline CO₂ emissions — Argonne National Laboratory GREET model (8.887 kg CO₂ per gallon). ·
-  Electricity grid emissions intensity — <a href="https://ember-energy.org/data/us-electricity-data/" target="_blank">Ember US Electricity Data</a>, CO₂ intensity by state, 2025.
+  Electricity grid emissions intensity — <a href="https://ember-energy.org/data/us-electricity-data/" target="_blank">Ember US Electricity Data</a>, CO₂ intensity by state, <span data-src="co2Year">2025</span>.
   <br><br>
   Built with <a href="https://d3js.org" target="_blank">D3.js</a> and <a href="https://github.com/topojson/topojson" target="_blank">TopoJSON</a> using <a href="https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json" target="_blank">US Atlas</a> topology. Inspired by Jesse Jenkins' <a href="https://jessejenkins.github.io/heat-pump-map/" target="_blank">Heat Pump Economics Tool</a>.
 </footer>
@@ -612,6 +613,13 @@ let evPublicData = {};
 let gasData = {};
 
 let gridCO2Data = {};
+
+// Source dates — populated from data.json at bootstrap, used to keep
+// the methodology prose in lockstep with whatever the pipeline last fetched.
+let sourceDates = {
+  eiaMonth: '', gasDay: '', pubEvDay: '', co2Year: '',
+  eiaShort: '', gasShort: '', pubEvShort: ''
+};
 
 // Gasoline CO2: 8.887 kg CO2 per gallon (GREET)
 const GASOLINE_KG_CO2_PER_GALLON = 8.887;
@@ -734,11 +742,11 @@ function renderExplainerCards() {
   const savCol = avgSav >= 0 ? '#5a9932' : '#993C1D';
 
   const chargeSub = currentCharging === 'home'
-    ? `${currentEff} Wh/mi · residential electricity (EIA Jan 2026)`
+    ? `${currentEff} Wh/mi · residential electricity (EIA ${sourceDates.eiaShort})`
     : currentCharging === 'public'
-    ? `${currentEff} Wh/mi · public charger (AAA Mar 2026)`
+    ? `${currentEff} Wh/mi · public charger (AAA ${sourceDates.pubEvShort})`
     : currentCharging === 'mix'
-    ? `${currentEff} Wh/mi · home (EIA Jan 2026) / public (AAA Mar 2026)`
+    ? `${currentEff} Wh/mi · home (EIA ${sourceDates.eiaShort}) / public (AAA ${sourceDates.pubEvShort})`
     : `${currentEff} Wh/mi · custom pricing`;
 
   document.getElementById('explainer-cards').innerHTML = `
@@ -750,7 +758,7 @@ function renderExplainerCards() {
     <div class="exp-card">
       <div class="exp-label">ICE car avg gas cost / 100 mi</div>
       <div class="exp-val">$${avgGas.toFixed(2)}</div>
-      <div class="exp-sub">${currentMpg} MPG · ${currentGrade} unleaded (AAA Mar 2026)</div>
+      <div class="exp-sub">${currentMpg} MPG · ${currentGrade} unleaded (AAA ${sourceDates.gasShort})</div>
     </div>
     <div class="exp-card">
       <div class="exp-label">Avg EV advantage / 100 mi</div>
@@ -1183,6 +1191,64 @@ function hideLoader() {
   if (el) el.remove();
 }
 
+// ═══════════════════════════════════════════════
+//  SOURCE DATES — derive from data.json, paint into prose
+// ═══════════════════════════════════════════════
+const MONTHS_LONG  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function fmtDayLong(iso) {  // "2026-04-27" -> "27 April 2026"
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${d} ${MONTHS_LONG[m - 1]} ${y}`;
+}
+function fmtMonthLong(yyyymm) {  // "2026-02" or "2026-02-15" -> "February 2026"
+  if (!yyyymm) return '';
+  const [y, m] = yyyymm.split('-').map(Number);
+  return `${MONTHS_LONG[m - 1]} ${y}`;
+}
+function fmtMonthShort(yyyymm) {  // "2026-04-27" -> "Apr 2026"
+  if (!yyyymm) return '';
+  const [y, m] = yyyymm.split('-').map(Number);
+  return `${MONTHS_SHORT[m - 1]} ${y}`;
+}
+
+function pickLatest(states, getField) {
+  let max = '';
+  for (const blk of Object.values(states)) {
+    const v = getField(blk);
+    if (typeof v === 'string' && v > max) max = v;
+  }
+  return max;
+}
+
+function populateSourceDates(data) {
+  const gasDate    = pickLatest(data.states, b => b.gasPrices && b.gasPrices.updated);
+  const pubEvDate  = pickLatest(data.states, b => b.evChargingPublic && b.evChargingPublic.updated);
+  const eiaPeriod  = pickLatest(data.states, b => b.elecResidential && b.elecResidential.period);
+  const co2Year    = (Object.values(data.states)[0] || {}).gridCo2 &&
+                     Object.values(data.states)[0].gridCo2.year;
+
+  sourceDates = {
+    // long forms — Sources footer + How-to-read
+    gasDay:    fmtDayLong(gasDate),       // "27 April 2026"
+    pubEvDay:  fmtDayLong(pubEvDate),
+    eiaMonth:  fmtMonthLong(eiaPeriod),   // "February 2026"
+    co2Year:   co2Year ? String(co2Year) : '',
+    // short forms — explainer cards
+    gasShort:    fmtMonthShort(gasDate),  // "Apr 2026"
+    pubEvShort:  fmtMonthShort(pubEvDate),
+    eiaShort:    fmtMonthShort(eiaPeriod) // "Feb 2026"
+  };
+}
+
+function applySourceDates() {
+  document.querySelectorAll('[data-src]').forEach(el => {
+    const key = el.getAttribute('data-src');
+    if (sourceDates[key]) el.textContent = sourceDates[key];
+  });
+}
+
 async function bootstrap() {
   try {
     const [dataRes, evRes] = await Promise.all([
@@ -1208,6 +1274,9 @@ async function bootstrap() {
       };
       gridCO2Data[state] = blk.gridCo2.gCo2PerKwh;
     }
+
+    populateSourceDates(data);
+    applySourceDates();
 
     hideLoader();
     initApp();
