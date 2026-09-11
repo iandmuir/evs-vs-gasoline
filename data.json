@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-10T16:47:42.992Z",
+    "generatedAt": "2026-09-11T16:49:50.298Z",
     "pipelineVersion": "1.0.0",
     "feedsRefreshedThisRun": [
       "gas",
@@ -16,22 +16,22 @@
     "Alabama": {
       "stateCode": "AL",
       "gasPrices": {
-        "regular": 3.8428,
-        "midGrade": 4.327,
-        "premium": 4.7425,
-        "diesel": 5.6633,
-        "updated": "2026-09-10",
+        "regular": 3.8717,
+        "midGrade": 4.3546,
+        "premium": 4.7764,
+        "diesel": 5.7082,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.417,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.16399999999999998,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -43,22 +43,22 @@
     "Alaska": {
       "stateCode": "AK",
       "gasPrices": {
-        "regular": 5.0261,
-        "midGrade": 5.2827,
-        "premium": 5.5201,
-        "diesel": 6.1349,
-        "updated": "2026-09-10",
+        "regular": 5.0505,
+        "midGrade": 5.2863,
+        "premium": 5.4948,
+        "diesel": 6.1482,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.49,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2821,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -70,22 +70,22 @@
     "Arizona": {
       "stateCode": "AZ",
       "gasPrices": {
-        "regular": 4.5633,
-        "midGrade": 4.9387,
-        "premium": 5.2548,
-        "diesel": 5.9975,
-        "updated": "2026-09-10",
+        "regular": 4.5704,
+        "midGrade": 4.9335,
+        "premium": 5.2631,
+        "diesel": 6.005,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.444,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.442,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1518,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -97,22 +97,22 @@
     "Arkansas": {
       "stateCode": "AR",
       "gasPrices": {
-        "regular": 3.8536,
-        "midGrade": 4.336,
-        "premium": 4.7446,
-        "diesel": 5.6174,
-        "updated": "2026-09-10",
+        "regular": 3.9243,
+        "midGrade": 4.3874,
+        "premium": 4.781,
+        "diesel": 5.6683,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.45,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.451,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1412,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -124,22 +124,22 @@
     "California": {
       "stateCode": "CA",
       "gasPrices": {
-        "regular": 5.8797,
-        "midGrade": 6.108,
-        "premium": 6.3045,
-        "diesel": 7.873,
-        "updated": "2026-09-10",
+        "regular": 5.8992,
+        "midGrade": 6.1271,
+        "premium": 6.3243,
+        "diesel": 7.9114,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.477,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.34740000000000004,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -151,22 +151,22 @@
     "Colorado": {
       "stateCode": "CO",
       "gasPrices": {
-        "regular": 4.307,
-        "midGrade": 4.7026,
-        "premium": 5.0452,
-        "diesel": 5.6509,
-        "updated": "2026-09-10",
+        "regular": 4.3604,
+        "midGrade": 4.7484,
+        "premium": 5.0928,
+        "diesel": 5.7325,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.387,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.17129999999999998,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -178,22 +178,22 @@
     "Connecticut": {
       "stateCode": "CT",
       "gasPrices": {
-        "regular": 4.3564,
-        "midGrade": 4.9102,
-        "premium": 5.3251,
-        "diesel": 5.9463,
-        "updated": "2026-09-10",
+        "regular": 4.3707,
+        "midGrade": 4.9323,
+        "premium": 5.3437,
+        "diesel": 5.959,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.399,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.398,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2432,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -205,22 +205,22 @@
     "Delaware": {
       "stateCode": "DE",
       "gasPrices": {
-        "regular": 4.243,
-        "midGrade": 4.8108,
-        "premium": 5.1113,
-        "diesel": 5.957,
-        "updated": "2026-09-10",
+        "regular": 4.3268,
+        "midGrade": 4.8865,
+        "premium": 5.1981,
+        "diesel": 5.9676,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.381,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1929,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -232,22 +232,22 @@
     "District of Columbia": {
       "stateCode": "DC",
       "gasPrices": {
-        "regular": 4.2133,
-        "midGrade": 4.8813,
-        "premium": 5.2537,
-        "diesel": 5.979,
-        "updated": "2026-09-10",
+        "regular": 4.248,
+        "midGrade": 4.8812,
+        "premium": 5.2642,
+        "diesel": 5.9798,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.402,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2439,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -259,22 +259,22 @@
     "Florida": {
       "stateCode": "FL",
       "gasPrices": {
-        "regular": 4.0771,
-        "midGrade": 4.5542,
-        "premium": 4.8816,
-        "diesel": 5.8108,
-        "updated": "2026-09-10",
+        "regular": 4.149,
+        "midGrade": 4.6057,
+        "premium": 4.9314,
+        "diesel": 5.8589,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.414,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.151,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -286,22 +286,22 @@
     "Georgia": {
       "stateCode": "GA",
       "gasPrices": {
-        "regular": 3.9131,
-        "midGrade": 4.3886,
-        "premium": 4.8117,
-        "diesel": 5.7146,
-        "updated": "2026-09-10",
+        "regular": 3.9589,
+        "midGrade": 4.4478,
+        "premium": 4.865,
+        "diesel": 5.7911,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.413,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.412,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1636,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -313,22 +313,22 @@
     "Hawaii": {
       "stateCode": "HI",
       "gasPrices": {
-        "regular": 5.3953,
-        "midGrade": 5.6535,
-        "premium": 5.9078,
-        "diesel": 6.9449,
-        "updated": "2026-09-10",
+        "regular": 5.4005,
+        "midGrade": 5.6336,
+        "premium": 5.8789,
+        "diesel": 6.9756,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.534,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.5272,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -340,22 +340,22 @@
     "Idaho": {
       "stateCode": "ID",
       "gasPrices": {
-        "regular": 4.7221,
-        "midGrade": 4.995,
-        "premium": 5.2651,
-        "diesel": 5.9403,
-        "updated": "2026-09-10",
+        "regular": 4.7624,
+        "midGrade": 5.044,
+        "premium": 5.3135,
+        "diesel": 5.9954,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.425,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1437,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -367,22 +367,22 @@
     "Illinois": {
       "stateCode": "IL",
       "gasPrices": {
-        "regular": 4.4183,
-        "midGrade": 5.0031,
-        "premium": 5.5397,
-        "diesel": 5.9295,
-        "updated": "2026-09-10",
+        "regular": 4.4878,
+        "midGrade": 5.0511,
+        "premium": 5.5863,
+        "diesel": 5.9746,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.456,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.454,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1989,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -394,22 +394,22 @@
     "Indiana": {
       "stateCode": "IN",
       "gasPrices": {
-        "regular": 3.4845,
-        "midGrade": 4.0698,
-        "premium": 4.5985,
-        "diesel": 5.9335,
-        "updated": "2026-09-10",
+        "regular": 3.5623,
+        "midGrade": 4.1209,
+        "premium": 4.6578,
+        "diesel": 5.9551,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.429,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1751,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -421,22 +421,22 @@
     "Iowa": {
       "stateCode": "IA",
       "gasPrices": {
-        "regular": 4.0568,
-        "midGrade": 4.2412,
-        "premium": 4.8964,
-        "diesel": 5.7122,
-        "updated": "2026-09-10",
+        "regular": 4.1422,
+        "midGrade": 4.3458,
+        "premium": 4.9647,
+        "diesel": 5.7232,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.335,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1593,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -448,22 +448,22 @@
     "Kansas": {
       "stateCode": "KS",
       "gasPrices": {
-        "regular": 3.8226,
-        "midGrade": 4.1584,
-        "premium": 4.51,
-        "diesel": 5.5387,
-        "updated": "2026-09-10",
+        "regular": 3.8475,
+        "midGrade": 4.1853,
+        "premium": 4.5422,
+        "diesel": 5.5818,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.318,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.15710000000000002,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -475,22 +475,22 @@
     "Kentucky": {
       "stateCode": "KY",
       "gasPrices": {
-        "regular": 3.8402,
-        "midGrade": 4.4015,
-        "premium": 4.8366,
-        "diesel": 5.6685,
-        "updated": "2026-09-10",
+        "regular": 3.9686,
+        "midGrade": 4.5237,
+        "premium": 4.9698,
+        "diesel": 5.7027,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.413,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.416,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1426,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -502,22 +502,22 @@
     "Louisiana": {
       "stateCode": "LA",
       "gasPrices": {
-        "regular": 3.8142,
-        "midGrade": 4.2934,
-        "premium": 4.6877,
-        "diesel": 5.5595,
-        "updated": "2026-09-10",
+        "regular": 3.8523,
+        "midGrade": 4.3289,
+        "premium": 4.7274,
+        "diesel": 5.5878,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.478,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.479,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1349,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -529,22 +529,22 @@
     "Maine": {
       "stateCode": "ME",
       "gasPrices": {
-        "regular": 4.2396,
-        "midGrade": 4.7869,
-        "premium": 5.2586,
-        "diesel": 5.9694,
-        "updated": "2026-09-10",
+        "regular": 4.2547,
+        "midGrade": 4.8029,
+        "premium": 5.2714,
+        "diesel": 5.9844,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.41,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2959,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -556,22 +556,22 @@
     "Maryland": {
       "stateCode": "MD",
       "gasPrices": {
-        "regular": 4.0922,
-        "midGrade": 4.7107,
-        "premium": 5.057,
-        "diesel": 5.9853,
-        "updated": "2026-09-10",
+        "regular": 4.1697,
+        "midGrade": 4.7711,
+        "premium": 5.1136,
+        "diesel": 5.9936,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.349,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2184,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -583,22 +583,22 @@
     "Massachusetts": {
       "stateCode": "MA",
       "gasPrices": {
-        "regular": 4.2442,
-        "midGrade": 4.8528,
-        "premium": 5.2614,
-        "diesel": 5.8767,
-        "updated": "2026-09-10",
+        "regular": 4.2604,
+        "midGrade": 4.8576,
+        "premium": 5.2713,
+        "diesel": 5.8898,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.393,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2961,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -610,22 +610,22 @@
     "Michigan": {
       "stateCode": "MI",
       "gasPrices": {
-        "regular": 4.228,
-        "midGrade": 4.8144,
-        "premium": 5.4162,
-        "diesel": 5.906,
-        "updated": "2026-09-10",
+        "regular": 4.3068,
+        "midGrade": 4.8875,
+        "premium": 5.491,
+        "diesel": 5.9239,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.398,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.399,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2299,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -637,22 +637,22 @@
     "Minnesota": {
       "stateCode": "MN",
       "gasPrices": {
-        "regular": 4.1534,
-        "midGrade": 4.6292,
-        "premium": 5.1288,
-        "diesel": 5.7636,
-        "updated": "2026-09-10",
+        "regular": 4.2128,
+        "midGrade": 4.6595,
+        "premium": 5.157,
+        "diesel": 5.7851,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.373,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.372,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1752,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -664,22 +664,22 @@
     "Mississippi": {
       "stateCode": "MS",
       "gasPrices": {
-        "regular": 3.7681,
-        "midGrade": 4.2395,
-        "premium": 4.6215,
-        "diesel": 5.5852,
-        "updated": "2026-09-10",
+        "regular": 3.8034,
+        "midGrade": 4.2746,
+        "premium": 4.6626,
+        "diesel": 5.6127,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.423,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.14880000000000002,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -691,22 +691,22 @@
     "Missouri": {
       "stateCode": "MO",
       "gasPrices": {
-        "regular": 3.8821,
-        "midGrade": 4.2594,
-        "premium": 4.6174,
-        "diesel": 5.5637,
-        "updated": "2026-09-10",
+        "regular": 3.9422,
+        "midGrade": 4.3029,
+        "premium": 4.6573,
+        "diesel": 5.5966,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.33,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.329,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.16219999999999998,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -718,22 +718,22 @@
     "Montana": {
       "stateCode": "MT",
       "gasPrices": {
-        "regular": 4.4094,
-        "midGrade": 4.7399,
-        "premium": 5.0942,
-        "diesel": 5.77,
-        "updated": "2026-09-10",
+        "regular": 4.4291,
+        "midGrade": 4.7635,
+        "premium": 5.1088,
+        "diesel": 5.7984,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.421,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1514,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -745,22 +745,22 @@
     "Nebraska": {
       "stateCode": "NE",
       "gasPrices": {
-        "regular": 4.004,
-        "midGrade": 4.1796,
-        "premium": 4.6952,
-        "diesel": 5.6619,
-        "updated": "2026-09-10",
+        "regular": 4.094,
+        "midGrade": 4.2986,
+        "premium": 4.7855,
+        "diesel": 5.6825,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.342,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1325,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -772,22 +772,22 @@
     "Nevada": {
       "stateCode": "NV",
       "gasPrices": {
-        "regular": 4.9881,
-        "midGrade": 5.2871,
-        "premium": 5.5993,
-        "diesel": 6.2971,
-        "updated": "2026-09-10",
+        "regular": 5.0134,
+        "midGrade": 5.3018,
+        "premium": 5.6157,
+        "diesel": 6.3278,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.428,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1311,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -799,22 +799,22 @@
     "New Hampshire": {
       "stateCode": "NH",
       "gasPrices": {
-        "regular": 4.1852,
-        "midGrade": 4.7401,
-        "premium": 5.1989,
-        "diesel": 5.8559,
-        "updated": "2026-09-10",
+        "regular": 4.1966,
+        "midGrade": 4.7425,
+        "premium": 5.2039,
+        "diesel": 5.8792,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.47,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.471,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2701,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -826,22 +826,22 @@
     "New Jersey": {
       "stateCode": "NJ",
       "gasPrices": {
-        "regular": 4.3182,
-        "midGrade": 4.881,
-        "premium": 5.1547,
-        "diesel": 5.9025,
-        "updated": "2026-09-10",
+        "regular": 4.3653,
+        "midGrade": 4.9157,
+        "premium": 5.1948,
+        "diesel": 5.9289,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.454,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.456,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2495,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -853,22 +853,22 @@
     "New Mexico": {
       "stateCode": "NM",
       "gasPrices": {
-        "regular": 4.2201,
-        "midGrade": 4.6631,
-        "premium": 4.9867,
-        "diesel": 5.926,
-        "updated": "2026-09-10",
+        "regular": 4.3066,
+        "midGrade": 4.7444,
+        "premium": 5.0627,
+        "diesel": 5.9624,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.381,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.382,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1506,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -880,22 +880,22 @@
     "New York": {
       "stateCode": "NY",
       "gasPrices": {
-        "regular": 4.3306,
-        "midGrade": 4.8453,
-        "premium": 5.251,
-        "diesel": 5.9508,
-        "updated": "2026-09-10",
+        "regular": 4.3496,
+        "midGrade": 4.8687,
+        "premium": 5.2683,
+        "diesel": 5.9763,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.406,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2949,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -907,22 +907,22 @@
     "North Carolina": {
       "stateCode": "NC",
       "gasPrices": {
-        "regular": 3.8973,
-        "midGrade": 4.3752,
-        "premium": 4.7666,
-        "diesel": 5.8277,
-        "updated": "2026-09-10",
+        "regular": 3.9509,
+        "midGrade": 4.4179,
+        "premium": 4.8108,
+        "diesel": 5.854,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.412,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.411,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1474,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -934,22 +934,22 @@
     "North Dakota": {
       "stateCode": "ND",
       "gasPrices": {
-        "regular": 4.0348,
-        "midGrade": 4.41,
-        "premium": 4.7835,
-        "diesel": 5.6748,
-        "updated": "2026-09-10",
+        "regular": 4.0982,
+        "midGrade": 4.4675,
+        "premium": 4.8746,
+        "diesel": 5.7241,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.448,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1412,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -961,22 +961,22 @@
     "Ohio": {
       "stateCode": "OH",
       "gasPrices": {
-        "regular": 4.0734,
-        "midGrade": 4.651,
-        "premium": 5.1839,
-        "diesel": 5.8919,
-        "updated": "2026-09-10",
+        "regular": 4.183,
+        "midGrade": 4.7142,
+        "premium": 5.2528,
+        "diesel": 5.9101,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.431,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.19190000000000002,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -988,22 +988,22 @@
     "Oklahoma": {
       "stateCode": "OK",
       "gasPrices": {
-        "regular": 3.829,
-        "midGrade": 4.2684,
-        "premium": 4.5668,
-        "diesel": 5.4976,
-        "updated": "2026-09-10",
+        "regular": 3.8718,
+        "midGrade": 4.2969,
+        "premium": 4.6077,
+        "diesel": 5.5264,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.424,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1433,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1015,22 +1015,22 @@
     "Oregon": {
       "stateCode": "OR",
       "gasPrices": {
-        "regular": 5.0573,
-        "midGrade": 5.2711,
-        "premium": 5.564,
-        "diesel": 6.3224,
-        "updated": "2026-09-10",
+        "regular": 5.0663,
+        "midGrade": 5.2936,
+        "premium": 5.593,
+        "diesel": 6.3521,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.401,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1632,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1042,22 +1042,22 @@
     "Pennsylvania": {
       "stateCode": "PA",
       "gasPrices": {
-        "regular": 4.3662,
-        "midGrade": 4.8412,
-        "premium": 5.2232,
-        "diesel": 6.1359,
-        "updated": "2026-09-10",
+        "regular": 4.4528,
+        "midGrade": 4.8989,
+        "premium": 5.2806,
+        "diesel": 6.1503,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.423,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.424,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2173,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1069,22 +1069,22 @@
     "Rhode Island": {
       "stateCode": "RI",
       "gasPrices": {
-        "regular": 4.2814,
-        "midGrade": 4.996,
-        "premium": 5.3987,
-        "diesel": 5.8429,
-        "updated": "2026-09-10",
+        "regular": 4.3031,
+        "midGrade": 5.0159,
+        "premium": 5.4031,
+        "diesel": 5.8531,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.401,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2923,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1096,22 +1096,22 @@
     "South Carolina": {
       "stateCode": "SC",
       "gasPrices": {
-        "regular": 3.8181,
-        "midGrade": 4.2891,
-        "premium": 4.6871,
-        "diesel": 5.7252,
-        "updated": "2026-09-10",
+        "regular": 3.9021,
+        "midGrade": 4.3789,
+        "premium": 4.7776,
+        "diesel": 5.845,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.431,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1555,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1123,22 +1123,22 @@
     "South Dakota": {
       "stateCode": "SD",
       "gasPrices": {
-        "regular": 4.097,
-        "midGrade": 4.3085,
-        "premium": 4.8415,
-        "diesel": 5.6224,
-        "updated": "2026-09-10",
+        "regular": 4.1311,
+        "midGrade": 4.3402,
+        "premium": 4.8573,
+        "diesel": 5.6674,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.351,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1536,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1150,22 +1150,22 @@
     "Tennessee": {
       "stateCode": "TN",
       "gasPrices": {
-        "regular": 3.8326,
-        "midGrade": 4.3065,
-        "premium": 4.7106,
-        "diesel": 5.6745,
-        "updated": "2026-09-10",
+        "regular": 3.8923,
+        "midGrade": 4.3777,
+        "premium": 4.7866,
+        "diesel": 5.7015,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.425,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1407,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1177,22 +1177,22 @@
     "Texas": {
       "stateCode": "TX",
       "gasPrices": {
-        "regular": 3.7683,
-        "midGrade": 4.2798,
-        "premium": 4.6537,
-        "diesel": 5.5368,
-        "updated": "2026-09-10",
+        "regular": 3.8314,
+        "midGrade": 4.3441,
+        "premium": 4.7177,
+        "diesel": 5.5805,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.428,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1594,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1204,22 +1204,22 @@
     "Utah": {
       "stateCode": "UT",
       "gasPrices": {
-        "regular": 4.6416,
-        "midGrade": 4.9184,
-        "premium": 5.1622,
-        "diesel": 5.8572,
-        "updated": "2026-09-10",
+        "regular": 4.689,
+        "midGrade": 4.9708,
+        "premium": 5.2215,
+        "diesel": 5.9063,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.345,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.13369999999999999,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1231,22 +1231,22 @@
     "Vermont": {
       "stateCode": "VT",
       "gasPrices": {
-        "regular": 4.3095,
-        "midGrade": 4.8031,
-        "premium": 5.28,
-        "diesel": 5.8865,
-        "updated": "2026-09-10",
+        "regular": 4.3208,
+        "midGrade": 4.811,
+        "premium": 5.2909,
+        "diesel": 5.911,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.361,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.2444,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1258,22 +1258,22 @@
     "Virginia": {
       "stateCode": "VA",
       "gasPrices": {
-        "regular": 4.0319,
-        "midGrade": 4.5484,
-        "premium": 4.9237,
-        "diesel": 5.9464,
-        "updated": "2026-09-10",
+        "regular": 4.0968,
+        "midGrade": 4.5804,
+        "premium": 4.9644,
+        "diesel": 5.9569,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.431,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.43,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1722,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1285,22 +1285,22 @@
     "Washington": {
       "stateCode": "WA",
       "gasPrices": {
-        "regular": 5.5312,
-        "midGrade": 5.772,
-        "premium": 6.0281,
-        "diesel": 6.9682,
-        "updated": "2026-09-10",
+        "regular": 5.5382,
+        "midGrade": 5.7839,
+        "premium": 6.0462,
+        "diesel": 7.0021,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.393,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1491,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1312,22 +1312,22 @@
     "West Virginia": {
       "stateCode": "WV",
       "gasPrices": {
-        "regular": 3.9651,
-        "midGrade": 4.4079,
-        "premium": 4.8405,
-        "diesel": 5.7564,
-        "updated": "2026-09-10",
+        "regular": 4.0915,
+        "midGrade": 4.5064,
+        "premium": 4.9381,
+        "diesel": 5.7752,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.528,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1545,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1339,22 +1339,22 @@
     "Wisconsin": {
       "stateCode": "WI",
       "gasPrices": {
-        "regular": 3.9708,
-        "midGrade": 4.5182,
-        "premium": 5.1298,
-        "diesel": 5.7482,
-        "updated": "2026-09-10",
+        "regular": 4.0113,
+        "midGrade": 4.551,
+        "premium": 5.1606,
+        "diesel": 5.7573,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
-        "usdPerKwh": 0.426,
-        "updated": "2026-09-10",
+        "usdPerKwh": 0.425,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1956,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
@@ -1366,22 +1366,22 @@
     "Wyoming": {
       "stateCode": "WY",
       "gasPrices": {
-        "regular": 4.4111,
-        "midGrade": 4.708,
-        "premium": 5.0046,
-        "diesel": 5.6524,
-        "updated": "2026-09-10",
+        "regular": 4.4413,
+        "midGrade": 4.7372,
+        "premium": 5.0333,
+        "diesel": 5.7078,
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "evChargingPublic": {
         "usdPerKwh": 0.442,
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "AAA"
       },
       "elecResidential": {
         "usdPerKwh": 0.1524,
         "period": "2026-06",
-        "updated": "2026-09-10",
+        "updated": "2026-09-11",
         "source": "EIA"
       },
       "gridCo2": {
