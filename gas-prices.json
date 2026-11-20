@@ -1,363 +1,363 @@
 {
-  "updated": "2026-11-19T08:00:01.501115+00:00",
+  "updated": "2026-11-20T08:00:01.966874+00:00",
   "source": "AAA",
   "states": [
     {
       "state": "Alabama",
-      "gas_regular": 3.4256,
-      "gas_mid": 3.9153,
-      "gas_premium": 4.3271,
-      "gas_diesel": 5.6356
+      "gas_regular": 3.3982,
+      "gas_mid": 3.8856,
+      "gas_premium": 4.2996,
+      "gas_diesel": 5.6069
     },
     {
       "state": "Alaska",
-      "gas_regular": 4.3734,
-      "gas_mid": 4.5335,
-      "gas_premium": 4.8063,
-      "gas_diesel": 6.1332
+      "gas_regular": 4.3595,
+      "gas_mid": 4.5023,
+      "gas_premium": 4.7819,
+      "gas_diesel": 6.1217
     },
     {
       "state": "Arizona",
-      "gas_regular": 3.9934,
-      "gas_mid": 4.356,
-      "gas_premium": 4.6869,
-      "gas_diesel": 6.0611
+      "gas_regular": 3.9691,
+      "gas_mid": 4.3241,
+      "gas_premium": 4.6625,
+      "gas_diesel": 6.038
     },
     {
       "state": "Arkansas",
-      "gas_regular": 3.4102,
-      "gas_mid": 3.9139,
-      "gas_premium": 4.3101,
-      "gas_diesel": 5.5795
+      "gas_regular": 3.375,
+      "gas_mid": 3.8763,
+      "gas_premium": 4.2677,
+      "gas_diesel": 5.5458
     },
     {
       "state": "California",
-      "gas_regular": 5.5249,
-      "gas_mid": 5.7691,
-      "gas_premium": 5.9598,
-      "gas_diesel": 7.8955
+      "gas_regular": 5.5105,
+      "gas_mid": 5.7485,
+      "gas_premium": 5.9407,
+      "gas_diesel": 7.861
     },
     {
       "state": "Colorado",
-      "gas_regular": 3.5859,
-      "gas_mid": 3.969,
-      "gas_premium": 4.2975,
-      "gas_diesel": 5.8614
+      "gas_regular": 3.5277,
+      "gas_mid": 3.9062,
+      "gas_premium": 4.224,
+      "gas_diesel": 5.8179
     },
     {
       "state": "Connecticut",
-      "gas_regular": 3.9783,
-      "gas_mid": 4.6799,
-      "gas_premium": 5.0647,
-      "gas_diesel": 6.2013
+      "gas_regular": 3.9579,
+      "gas_mid": 4.6697,
+      "gas_premium": 5.0526,
+      "gas_diesel": 6.1789
     },
     {
       "state": "Delaware",
-      "gas_regular": 3.7265,
-      "gas_mid": 4.3254,
-      "gas_premium": 4.6292,
-      "gas_diesel": 5.9893
+      "gas_regular": 3.7089,
+      "gas_mid": 4.3039,
+      "gas_premium": 4.5957,
+      "gas_diesel": 5.9866
     },
     {
       "state": "District of Columbia",
-      "gas_regular": 4.1104,
-      "gas_mid": 4.7807,
-      "gas_premium": 5.1754,
-      "gas_diesel": 6.3625
+      "gas_regular": 4.0968,
+      "gas_mid": 4.8205,
+      "gas_premium": 5.1267,
+      "gas_diesel": 6.349
     },
     {
       "state": "Florida",
-      "gas_regular": 3.532,
-      "gas_mid": 4.0108,
-      "gas_premium": 4.3564,
-      "gas_diesel": 5.6748
+      "gas_regular": 3.5069,
+      "gas_mid": 3.9862,
+      "gas_premium": 4.3296,
+      "gas_diesel": 5.6474
     },
     {
       "state": "Georgia",
-      "gas_regular": 3.2811,
-      "gas_mid": 3.791,
-      "gas_premium": 4.2339,
-      "gas_diesel": 5.4711
+      "gas_regular": 3.2545,
+      "gas_mid": 3.7636,
+      "gas_premium": 4.2009,
+      "gas_diesel": 5.4461
     },
     {
       "state": "Hawaii",
-      "gas_regular": 5.5981,
-      "gas_mid": 5.8796,
-      "gas_premium": 6.134,
-      "gas_diesel": 7.243
+      "gas_regular": 5.6019,
+      "gas_mid": 5.8757,
+      "gas_premium": 6.1323,
+      "gas_diesel": 7.2204
     },
     {
       "state": "Idaho",
-      "gas_regular": 4.0273,
-      "gas_mid": 4.3608,
-      "gas_premium": 4.6116,
-      "gas_diesel": 6.0681
+      "gas_regular": 3.9916,
+      "gas_mid": 4.3308,
+      "gas_premium": 4.5923,
+      "gas_diesel": 6.0269
     },
     {
       "state": "Illinois",
-      "gas_regular": 4.0695,
-      "gas_mid": 4.703,
-      "gas_premium": 5.2684,
-      "gas_diesel": 6.1744
+      "gas_regular": 4.0191,
+      "gas_mid": 4.6466,
+      "gas_premium": 5.2159,
+      "gas_diesel": 6.1262
     },
     {
       "state": "Indiana",
-      "gas_regular": 3.224,
-      "gas_mid": 3.8535,
-      "gas_premium": 4.3772,
-      "gas_diesel": 6.3091
+      "gas_regular": 3.168,
+      "gas_mid": 3.7991,
+      "gas_premium": 4.32,
+      "gas_diesel": 6.268
     },
     {
       "state": "Iowa",
-      "gas_regular": 3.5699,
-      "gas_mid": 3.9084,
-      "gas_premium": 4.4752,
-      "gas_diesel": 5.5717
+      "gas_regular": 3.5367,
+      "gas_mid": 3.8673,
+      "gas_premium": 4.4446,
+      "gas_diesel": 5.5405
     },
     {
       "state": "Kansas",
-      "gas_regular": 3.534,
-      "gas_mid": 3.9207,
-      "gas_premium": 4.2767,
-      "gas_diesel": 5.5108
+      "gas_regular": 3.4969,
+      "gas_mid": 3.889,
+      "gas_premium": 4.248,
+      "gas_diesel": 5.4725
     },
     {
       "state": "Kentucky",
-      "gas_regular": 3.4984,
-      "gas_mid": 4.1062,
-      "gas_premium": 4.5408,
-      "gas_diesel": 5.8489
+      "gas_regular": 3.4626,
+      "gas_mid": 4.0548,
+      "gas_premium": 4.5053,
+      "gas_diesel": 5.8162
     },
     {
       "state": "Louisiana",
-      "gas_regular": 3.3713,
-      "gas_mid": 3.8762,
-      "gas_premium": 4.2824,
-      "gas_diesel": 5.4913
+      "gas_regular": 3.3398,
+      "gas_mid": 3.8398,
+      "gas_premium": 4.248,
+      "gas_diesel": 5.4569
     },
     {
       "state": "Maine",
-      "gas_regular": 3.972,
-      "gas_mid": 4.5663,
-      "gas_premium": 5.0478,
-      "gas_diesel": 6.1589
+      "gas_regular": 3.9449,
+      "gas_mid": 4.5304,
+      "gas_premium": 5.0297,
+      "gas_diesel": 6.1373
     },
     {
       "state": "Maryland",
-      "gas_regular": 3.7484,
-      "gas_mid": 4.3733,
-      "gas_premium": 4.6711,
-      "gas_diesel": 6.0288
+      "gas_regular": 3.7324,
+      "gas_mid": 4.349,
+      "gas_premium": 4.6474,
+      "gas_diesel": 6.0218
     },
     {
       "state": "Massachusetts",
-      "gas_regular": 3.9085,
-      "gas_mid": 4.5967,
-      "gas_premium": 4.9897,
-      "gas_diesel": 6.0961
+      "gas_regular": 3.8859,
+      "gas_mid": 4.5787,
+      "gas_premium": 4.9748,
+      "gas_diesel": 6.0756
     },
     {
       "state": "Michigan",
-      "gas_regular": 3.704,
-      "gas_mid": 4.373,
-      "gas_premium": 4.9989,
-      "gas_diesel": 6.1928
+      "gas_regular": 3.6653,
+      "gas_mid": 4.3409,
+      "gas_premium": 4.9651,
+      "gas_diesel": 6.1576
     },
     {
       "state": "Minnesota",
-      "gas_regular": 3.6111,
-      "gas_mid": 4.0928,
-      "gas_premium": 4.6154,
-      "gas_diesel": 5.7576
+      "gas_regular": 3.574,
+      "gas_mid": 4.0561,
+      "gas_premium": 4.577,
+      "gas_diesel": 5.7217
     },
     {
       "state": "Mississippi",
-      "gas_regular": 3.49,
-      "gas_mid": 3.9898,
-      "gas_premium": 4.3923,
-      "gas_diesel": 5.5927
+      "gas_regular": 3.4567,
+      "gas_mid": 3.9682,
+      "gas_premium": 4.3647,
+      "gas_diesel": 5.5636
     },
     {
       "state": "Missouri",
-      "gas_regular": 3.4538,
-      "gas_mid": 3.8594,
-      "gas_premium": 4.2146,
-      "gas_diesel": 5.6723
+      "gas_regular": 3.4186,
+      "gas_mid": 3.8237,
+      "gas_premium": 4.1843,
+      "gas_diesel": 5.6338
     },
     {
       "state": "Montana",
-      "gas_regular": 3.5864,
-      "gas_mid": 3.92,
-      "gas_premium": 4.2812,
-      "gas_diesel": 5.8741
+      "gas_regular": 3.5603,
+      "gas_mid": 3.8902,
+      "gas_premium": 4.2507,
+      "gas_diesel": 5.8659
     },
     {
       "state": "Nebraska",
-      "gas_regular": 3.6955,
-      "gas_mid": 3.9603,
-      "gas_premium": 4.4562,
-      "gas_diesel": 5.6385
+      "gas_regular": 3.6609,
+      "gas_mid": 3.9436,
+      "gas_premium": 4.4193,
+      "gas_diesel": 5.5994
     },
     {
       "state": "Nevada",
-      "gas_regular": 4.8471,
-      "gas_mid": 5.1908,
-      "gas_premium": 5.4697,
-      "gas_diesel": 6.6464
+      "gas_regular": 4.8006,
+      "gas_mid": 5.1427,
+      "gas_premium": 5.4271,
+      "gas_diesel": 6.6156
     },
     {
       "state": "New Hampshire",
-      "gas_regular": 3.9243,
-      "gas_mid": 4.5464,
-      "gas_premium": 5.0134,
-      "gas_diesel": 6.0952
+      "gas_regular": 3.9018,
+      "gas_mid": 4.5299,
+      "gas_premium": 4.989,
+      "gas_diesel": 6.0612
     },
     {
       "state": "New Jersey",
-      "gas_regular": 3.8973,
-      "gas_mid": 4.5455,
-      "gas_premium": 4.8474,
-      "gas_diesel": 6.075
+      "gas_regular": 3.8759,
+      "gas_mid": 4.5247,
+      "gas_premium": 4.8275,
+      "gas_diesel": 6.0411
     },
     {
       "state": "New Mexico",
-      "gas_regular": 3.5836,
-      "gas_mid": 4.0097,
-      "gas_premium": 4.3518,
-      "gas_diesel": 5.6336
+      "gas_regular": 3.5943,
+      "gas_mid": 4.0387,
+      "gas_premium": 4.3648,
+      "gas_diesel": 5.6131
     },
     {
       "state": "New York",
-      "gas_regular": 4.0964,
-      "gas_mid": 4.6755,
-      "gas_premium": 5.0703,
-      "gas_diesel": 6.3202
+      "gas_regular": 4.0769,
+      "gas_mid": 4.6509,
+      "gas_premium": 5.055,
+      "gas_diesel": 6.2979
     },
     {
       "state": "North Carolina",
-      "gas_regular": 3.0753,
-      "gas_mid": 3.5461,
-      "gas_premium": 3.9749,
-      "gas_diesel": 5.2767
+      "gas_regular": 3.0559,
+      "gas_mid": 3.525,
+      "gas_premium": 3.9564,
+      "gas_diesel": 5.261
     },
     {
       "state": "North Dakota",
-      "gas_regular": 3.6188,
-      "gas_mid": 4.046,
-      "gas_premium": 4.4765,
-      "gas_diesel": 5.7052
+      "gas_regular": 3.5895,
+      "gas_mid": 4.0116,
+      "gas_premium": 4.431,
+      "gas_diesel": 5.6858
     },
     {
       "state": "Ohio",
-      "gas_regular": 3.3197,
-      "gas_mid": 3.9023,
-      "gas_premium": 4.4485,
-      "gas_diesel": 6.008
+      "gas_regular": 3.2534,
+      "gas_mid": 3.8304,
+      "gas_premium": 4.381,
+      "gas_diesel": 5.9553
     },
     {
       "state": "Oklahoma",
-      "gas_regular": 3.2749,
-      "gas_mid": 3.7045,
-      "gas_premium": 4.0024,
-      "gas_diesel": 5.3735
+      "gas_regular": 3.241,
+      "gas_mid": 3.6651,
+      "gas_premium": 3.9735,
+      "gas_diesel": 5.3327
     },
     {
       "state": "Oregon",
-      "gas_regular": 4.4014,
-      "gas_mid": 4.6637,
-      "gas_premium": 4.9648,
-      "gas_diesel": 6.4531
+      "gas_regular": 4.3653,
+      "gas_mid": 4.6416,
+      "gas_premium": 4.9489,
+      "gas_diesel": 6.4296
     },
     {
       "state": "Pennsylvania",
-      "gas_regular": 4.1772,
-      "gas_mid": 4.6157,
-      "gas_premium": 5.0623,
-      "gas_diesel": 6.4392
+      "gas_regular": 4.1523,
+      "gas_mid": 4.5953,
+      "gas_premium": 5.0455,
+      "gas_diesel": 6.4216
     },
     {
       "state": "Rhode Island",
-      "gas_regular": 3.7836,
-      "gas_mid": 4.5558,
-      "gas_premium": 4.9194,
-      "gas_diesel": 5.9705
+      "gas_regular": 3.7644,
+      "gas_mid": 4.5187,
+      "gas_premium": 4.8941,
+      "gas_diesel": 5.9413
     },
     {
       "state": "South Carolina",
-      "gas_regular": 3.3272,
-      "gas_mid": 3.7997,
-      "gas_premium": 4.2024,
-      "gas_diesel": 5.4984
+      "gas_regular": 3.2972,
+      "gas_mid": 3.7648,
+      "gas_premium": 4.1615,
+      "gas_diesel": 5.461
     },
     {
       "state": "South Dakota",
-      "gas_regular": 3.6525,
-      "gas_mid": 3.9153,
-      "gas_premium": 4.4569,
-      "gas_diesel": 5.5051
+      "gas_regular": 3.6211,
+      "gas_mid": 3.8883,
+      "gas_premium": 4.4543,
+      "gas_diesel": 5.4935
     },
     {
       "state": "Tennessee",
-      "gas_regular": 3.3844,
-      "gas_mid": 3.8549,
-      "gas_premium": 4.2686,
-      "gas_diesel": 5.6737
+      "gas_regular": 3.355,
+      "gas_mid": 3.827,
+      "gas_premium": 4.2312,
+      "gas_diesel": 5.6476
     },
     {
       "state": "Texas",
-      "gas_regular": 3.2203,
-      "gas_mid": 3.7411,
-      "gas_premium": 4.1217,
-      "gas_diesel": 5.3815
+      "gas_regular": 3.2045,
+      "gas_mid": 3.7329,
+      "gas_premium": 4.1122,
+      "gas_diesel": 5.3455
     },
     {
       "state": "Utah",
-      "gas_regular": 3.9965,
-      "gas_mid": 4.3001,
-      "gas_premium": 4.5356,
-      "gas_diesel": 6.0244
+      "gas_regular": 3.9578,
+      "gas_mid": 4.2487,
+      "gas_premium": 4.4919,
+      "gas_diesel": 5.9942
     },
     {
       "state": "Vermont",
-      "gas_regular": 4.0562,
-      "gas_mid": 4.6671,
-      "gas_premium": 5.1035,
-      "gas_diesel": 6.1139
+      "gas_regular": 4.0196,
+      "gas_mid": 4.684,
+      "gas_premium": 5.1015,
+      "gas_diesel": 6.0705
     },
     {
       "state": "Virginia",
-      "gas_regular": 3.6589,
-      "gas_mid": 4.1731,
-      "gas_premium": 4.5894,
-      "gas_diesel": 5.9909
+      "gas_regular": 3.6381,
+      "gas_mid": 4.1484,
+      "gas_premium": 4.572,
+      "gas_diesel": 5.9745
     },
     {
       "state": "Washington",
-      "gas_regular": 4.7682,
-      "gas_mid": 5.0641,
-      "gas_premium": 5.3172,
-      "gas_diesel": 6.9798
+      "gas_regular": 4.7414,
+      "gas_mid": 5.0347,
+      "gas_premium": 5.2911,
+      "gas_diesel": 6.9622
     },
     {
       "state": "West Virginia",
-      "gas_regular": 3.8327,
-      "gas_mid": 4.2579,
-      "gas_premium": 4.7174,
-      "gas_diesel": 6.178
+      "gas_regular": 3.8069,
+      "gas_mid": 4.2472,
+      "gas_premium": 4.6872,
+      "gas_diesel": 6.1624
     },
     {
       "state": "Wisconsin",
-      "gas_regular": 3.5476,
-      "gas_mid": 4.1875,
-      "gas_premium": 4.7581,
-      "gas_diesel": 5.8289
+      "gas_regular": 3.4992,
+      "gas_mid": 4.14,
+      "gas_premium": 4.7299,
+      "gas_diesel": 5.7926
     },
     {
       "state": "Wyoming",
-      "gas_regular": 3.8551,
-      "gas_mid": 4.1719,
-      "gas_premium": 4.4525,
-      "gas_diesel": 5.9935
+      "gas_regular": 3.8289,
+      "gas_mid": 4.1514,
+      "gas_premium": 4.4376,
+      "gas_diesel": 5.9693
     }
   ]
 }
